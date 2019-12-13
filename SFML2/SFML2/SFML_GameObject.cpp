@@ -1,6 +1,65 @@
 #include "pch.h"
 #include "SFML_GameObject.h"
 
+void SFML_GameObject::SetPositionX(int positionX)
+{
+	this->positionX = positionX;
+}
+
+void SFML_GameObject::SetPositionY(int positionY)
+{
+	this->positionY = positionY;
+}
+
+void SFML_GameObject::SetWidth(int width)
+{
+	this->width = width;
+}
+
+void SFML_GameObject::SetHeight(int height)
+{
+	this->height = height;
+}
+
+void SFML_GameObject::SetOriginalWidth(int originalWidth)
+{
+	this->originalWidth = originalWidth;
+}
+
+void SFML_GameObject::SetOriginalHeight(int originalHeight)
+{
+	this->originalHeight = originalHeight;
+}
+
+int SFML_GameObject::GetOriginalWidth()
+{
+	return this->originalWidth;
+}
+
+int SFML_GameObject::GetOriginalHeight()
+{
+	return this->originalHeight;
+}
+
+int SFML_GameObject::GetPositionX()
+{
+	return this->positionX;
+}
+
+int SFML_GameObject::GetPositionY()
+{
+	return this->positionY;
+}
+
+int SFML_GameObject::GetWidth()
+{
+	return this->width;
+}
+
+int SFML_GameObject::GetHeight()
+{
+	return this->height;
+}
 
 SFML_GameObject::SFML_GameObject(int positionX, int positionY, int width, int height)
 {
