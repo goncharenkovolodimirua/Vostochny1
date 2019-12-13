@@ -38,6 +38,9 @@ public:
 
 	virtual sf::IntRect GetIntRect();
 	virtual bool CheckColision(SFML_GameObject *gameObject);
+	virtual void DrawOnWindow(sf::RenderWindow *window) = 0;
+	virtual void Resize(int width, int height) = 0;
+	virtual void ResizeDefault()=0;
 	
 };
 #endif
