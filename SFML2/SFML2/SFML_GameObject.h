@@ -21,6 +21,7 @@ protected:
 public:
 	
 	SFML_GameObject(int positionX, int positionY, int width, int height);
+	SFML_GameObject(int positionX, int positionY);
 	
 };
 #endif

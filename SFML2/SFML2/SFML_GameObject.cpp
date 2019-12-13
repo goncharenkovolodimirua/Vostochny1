@@ -12,6 +12,16 @@ SFML_GameObject::SFML_GameObject(int positionX, int positionY, int width, int he
 	this->originalHeight = 0;
 }
 
+SFML_GameObject::SFML_GameObject(int positionX, int positionY)
+{
+	this->positionX = positionX;
+	this->positionY = positionY;
+	this->width = 0;
+	this->height = 0;
+	this->originalWidth = 0;
+	this->originalHeight = 0;
+}
+
 SFML_GameObject::~SFML_GameObject()
 {
 }
