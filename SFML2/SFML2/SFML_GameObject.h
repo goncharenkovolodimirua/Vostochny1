@@ -35,6 +35,8 @@ public:
 	SFML_GameObject(int positionX, int positionY, int width, int height);
 	SFML_GameObject(int positionX, int positionY);
 	virtual ~SFML_GameObject();
+
+	virtual sf::IntRect GetIntRect();
 	
 };
 #endif

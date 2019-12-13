@@ -61,6 +61,12 @@ int SFML_GameObject::GetHeight()
 	return this->height;
 }
 
+sf::IntRect SFML_GameObject::GetIntRect()
+{
+	sf::IntRect rectangle(this->positionX, this->positionY, this->width, this->height);
+	return rectangle;
+}
+
 SFML_GameObject::SFML_GameObject(int positionX, int positionY, int width, int height)
 {
 	this->positionX = positionX;
