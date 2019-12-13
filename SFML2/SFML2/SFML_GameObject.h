@@ -37,6 +37,7 @@ public:
 	virtual ~SFML_GameObject();
 
 	virtual sf::IntRect GetIntRect();
+	virtual bool CheckColision(SFML_GameObject *gameObject);
 	
 };
 #endif

@@ -67,6 +67,11 @@ sf::IntRect SFML_GameObject::GetIntRect()
 	return rectangle;
 }
 
+bool SFML_GameObject::CheckColision(SFML_GameObject *gameObject)
+{
+	return this->GetIntRect().intersects(gameObject->GetIntRect());
+}
+
 SFML_GameObject::SFML_GameObject(int positionX, int positionY, int width, int height)
 {
 	this->positionX = positionX;
