@@ -22,3 +22,33 @@ PhysicalGameObject::PhysicalGameObject(int positionX, int positionY, int width,
 PhysicalGameObject::~PhysicalGameObject()
 {
 }
+
+void PhysicalGameObject::SetVx(float Vx)
+{
+	this->Vx = Vx;
+}
+
+void PhysicalGameObject::SetVy(float Vy)
+{
+	this->Vy = Vy;
+}
+
+void PhysicalGameObject::SetBoundXMin(int boundXMin)
+{
+	this->boundXMin = boundXMin;
+}
+
+void PhysicalGameObject::SetBoundXMax(int boundXMax)
+{
+	this->boundXMax = boundXMax;
+}
+
+void PhysicalGameObject::SetboundYMin(int boundYMin)
+{
+	this->boundYMin = boundYMin;
+}
+
+void PhysicalGameObject::SetBoundYMax(int boundYMax)
+{
+	this->boundYMax = boundYMax;
+}

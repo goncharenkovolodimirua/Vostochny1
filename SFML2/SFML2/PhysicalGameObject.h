@@ -22,5 +22,13 @@ public:
 		int widthInTexture, int heightInTexture,float Vx, float Vy,
 		int boundXMin,	int boundXMax, int boundYMin, int boundYMax);
 	virtual ~PhysicalGameObject();
+
+	void SetVx(float Vx);
+	void SetVy(float Vy);
+
+	void SetBoundXMin(int boundXMin);
+	void SetBoundXMax(int boundXMax);
+	void SetboundYMin(int boundYMin);
+	void SetBoundYMax(int boundYMax);
 };
 #endif
