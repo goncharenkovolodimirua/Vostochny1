@@ -1,0 +1,26 @@
+#ifndef __PHYSICAL_GAME_OBJECT__
+#define __PHYSICAL_GAME_OBJECT__
+#include "SFML_GraphicalGameObject.h"
+class PhysicalGameObject :
+	public SFML_GraphicalGameObject
+{
+private:
+	float Vx;
+	float Vy;
+
+	float globalPosX;
+	float globalPosY;
+
+	int boundXMin;
+	int boundXMax;
+	int boundYMin;
+	int boundYMax;
+
+public:
+	PhysicalGameObject(int positionX, int positionY, int width,
+		int height, sf::Image* textureImage, int positionXinTexture, int positionYInTexture,
+		int widthInTexture, int heightInTexture,float Vx, float Vy,
+		int boundXMin,	int boundXMax, int boundYMin, int boundYMax);
+	virtual ~PhysicalGameObject();
+};
+#endif
