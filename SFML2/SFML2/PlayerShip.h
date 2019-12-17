@@ -1,7 +1,7 @@
 #ifndef __PLAYER_SHIP__
 #define __PLAYER_SHIP__
 #include "SFML_GraphicalGameObject.h"
-
+#include <list>
 class PlayerShip :
     public SFML_GraphicalGameObject
 {
@@ -10,6 +10,8 @@ private:
     int controlWidthMax;
     int controlHeightMin;
     int controlHeightMax;
+
+	std::list<SFML_GameObject*>* bulletsList;
 
 public:
     PlayerShip(
