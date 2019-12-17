@@ -52,3 +52,31 @@ void PhysicalGameObject::SetBoundYMax(int boundYMax)
 {
 	this->boundYMax = boundYMax;
 }
+
+void PhysicalGameObject::Move(float deltaT)
+{
+	this->globalPosX += Vx * deltaT;
+	this->globalPosY += Vy * deltaT;
+	this->SetPosition((uint16_t)this->globalPosX, (uint16_t)this->globalPosY);
+}
+
+bool PhysicalGameObject::IsInBounds()
+{
+
+	this->GetPositionY();
+
+	if (this->boundXMin > this->GetPositionX())
+	{
+		return false;
+	}
+	else if (this->boundXMax < (this->GetPositionX() + this->GetWidth())) {
+		return false;
+	}
+	else if (this->boundYMin > (this->GetPositionY() + this->GetHeight())) {
+		return false;
+	}
+	else if (this->boundYMax < this->GetPositionY()) {
+		return false;
+	}
+	return true;
+}

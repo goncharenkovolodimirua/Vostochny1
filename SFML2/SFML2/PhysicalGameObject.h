@@ -23,6 +23,9 @@ public:
 		int boundXMin,	int boundXMax, int boundYMin, int boundYMax);
 	virtual ~PhysicalGameObject();
 
+	void Move(float deltaT);
+	bool IsInBounds();
+
 	void SetVx(float Vx);
 	void SetVy(float Vy);
 
