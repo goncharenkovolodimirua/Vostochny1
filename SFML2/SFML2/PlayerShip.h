@@ -25,7 +25,8 @@ public:
         int controlWidthMin,
         int controlWidthMax,
         int cotrolHeightMin,
-        int controlHeightMax
+        int controlHeightMax,
+        std::list<SFML_GameObject*>* bulletsList
     );
     ~PlayerShip();
         
