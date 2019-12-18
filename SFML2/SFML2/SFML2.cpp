@@ -3,10 +3,11 @@
 
 #include "pch.h"
 #include <SFML/Graphics.hpp>
+#include "SFML_GameWindow.h"
 
 int main()
 {
-
+	SFML_GameWindow gw(1920, 1080, "Test");
 
 	
 
