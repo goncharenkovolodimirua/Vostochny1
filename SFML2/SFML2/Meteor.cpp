@@ -1,19 +1,18 @@
 #include "pch.h"
 #include "Meteor.h"
 
-
 Meteor::Meteor(int positionX, int positionY, int width,
 	int height, sf::Image* textureImage, int positionXinTexture, int positionYInTexture,
 	int widthInTexture, int heightInTexture, float Vx, float Vy,
-	int boundXMin, int boundXMax, int boundYMin, int boundYMax, float mass):PhysicalGameObject(positionX, positionY, width,
+	int boundXMin, int boundXMax, int boundYMin, int boundYMax, float mass, std::list<SFML_GameObject*>* meteors):PhysicalGameObject(positionX, positionY, width,
 		height, textureImage, positionXinTexture, positionYInTexture,
 		 widthInTexture, heightInTexture, Vx, Vy,
 		boundXMin, boundXMax, boundYMin, boundYMax)
 {
 	this->mass = mass;
 	this->health = METEOR_INITIAL_MAX_HEALTH;
+	this->meteors = meteors;
 }
-
 
 Meteor::~Meteor()
 {
