@@ -39,3 +39,27 @@ SFML_TextGameObject::~SFML_TextGameObject()
 {
 	delete this->SFMLText;
 }
+
+void SFML_TextGameObject::ResizeDefault()
+{
+	this->SFMLText->setScale(1, 1);
+}
+
+void SFML_TextGameObject::Resize(int width, int height) {
+	float scaleX;
+	float scaleY;
+
+	this->SFMLText->setScale(1, 1);
+	this->SetOriginalWidth(this->SFMLText->getGlobalBounds().width);
+	this->SetOriginalHeight(this->SFMLText->getGlobalBounds().height);
+
+	if ((width > 0)&(height > 0)) {
+		scaleX = (float)width / this->GetOriginalWidth();
+		scaleY = (float)height / this->GetOriginalHeight();
+
+		this->SetWidth (width);
+		this->SetHeight (height);
+
+		this->SFMLText->setScale(scaleX, scaleY);
+	}
+}

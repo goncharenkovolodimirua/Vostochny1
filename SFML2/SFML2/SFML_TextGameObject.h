@@ -21,6 +21,9 @@ public:
 	SFML_TextGameObject(int positionX, int positionY, sf::Font* font, int fontSize, std::string text);
 	
 	virtual ~SFML_TextGameObject();
+
+	virtual void ResizeDefault();
+	virtual void Resize(int width, int height);
 };
 
 
