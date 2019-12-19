@@ -128,6 +128,24 @@ void PlayerShip::Control(float time) {
 	
 }
 
+bool PlayerShip::CheckCollisionsWithMeteors(std::list<PhysicalGameObject*>* meteors)
+{
+	std::list<PhysicalGameObject*>::iterator k;
+	bool collision = false;
+
+	for (k = meteors->begin(); k != meteors->end();) {
+		if ((*k)->CheckColision(this)) {
+			collision = true;
+			++k;
+		}
+		else {
+			++k;
+		}
+	}
+
+	return collision;
+}
+
 void PlayerShip::SetBulletTextureImage(sf::Image * bulletTexture)
 {
 	this->bulletTexture = bulletTexture;
