@@ -1,8 +1,16 @@
 #ifndef __PLAYER_SHIP__
 #define __PLAYER_SHIP__
+
+#define BULLET_TIMEOUT 10
+#define BULLET_COST 1000
+#define BULLET_SPEED -0.8
+
 #include "SFML_GraphicalGameObject.h"
 #include "PhysicalGameObject.h"
+#include "Bullet.h"
+
 #include <list>
+
 class PlayerShip :
     public SFML_GraphicalGameObject
 {
@@ -12,7 +20,25 @@ private:
     int controlHeightMin;
     int controlHeightMax;
 
+	int needToShot;
+	float lastShotTime;
+
+	bool lastSpaceStatement;
+
 	std::list<PhysicalGameObject*>* bulletsList;
+
+	sf::Image* bulletTexture;
+	int bulletWidth;
+	int bulletHeight;
+
+	int bulletBoundXMax;
+	int bulletBoundYMax;
+	int bulletBoundXMin;
+	int bulletBoundYMin;
+
+
+protected:
+	void Shoot();
 
 public:
     PlayerShip(
@@ -34,5 +60,15 @@ public:
     ~PlayerShip();
         
     void Control(float time);
+
+	void SetBulletTextureImage(sf::Image* bulletTexture);
+	void SetBulletBoundXMax(int bulletBoundXMax);
+	void SetBulletBoundYMax(int bulletBoundYMax);
+	void SetBulletBoundXMin(int bulletBoundXMin);
+	void SetBulletBoundYMin(int bulletBoundYMin);
+
+	void SetBulletWidth(int bulletWidth);
+	void SetBulletHeight(int bulletHeight);
+
 };
 #endif
