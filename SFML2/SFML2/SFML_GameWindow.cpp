@@ -47,12 +47,13 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 
 
 	sf::Image met;
-	met.loadFromFile("77.png");
+	met.loadFromFile("78.png");
 
 	sf::Image shp;
-	shp.loadFromFile("55.png");
-	PlayerShip sh(1000, 1000, 100, 300, &shp, 0, 0, shp.getSize().x, shp.getSize().y, 0, windowWidth, 0, windowHeight, &bullets);
-	
+	shp.loadFromFile("57.png");
+	PlayerShip sh(1000, 1000, 330, 210, &shp, 0, 0, shp.getSize().x, shp.getSize().y, 0, windowWidth, 0, windowHeight, &bullets);
+
+
 	sh.SetBulletTextureImage(&met);
 	sh.SetBulletBoundXMax(windowWidth);
 	sh.SetBulletBoundYMax(windowHeight);
@@ -63,7 +64,7 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 	sh.SetBulletHeight(30);
 
 	sf::Image bkgImg;
-	bkgImg.loadFromFile("33.jpg");
+	bkgImg.loadFromFile("34.png");
 	Background back(0, 0, windowWidth, windowHeight, &bkgImg, 0, 0, bkgImg.getSize().x, bkgImg.getSize().y);
 
 
@@ -99,7 +100,7 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 				mass = 25 + rand() % 300;
 
 				dinamicMeteor = new Meteor(positionX, positionY, width, width, &met, 0, 0,
-					met.getSize().x, met.getSize().y, Vx, Vy, 0, windowWidth, 0, windowHeight, mass, &meteors);
+					int(met.getSize().x/2), int(met.getSize().y), Vx, Vy, 0, windowWidth, 0, windowHeight, mass, &meteors);
 
 			} while (dinamicMeteor->CheckCollisionsWithMetheors(&meteors));
 
