@@ -89,3 +89,43 @@ void SFML_TextGameObject::Resize(int width, int height) {
 		this->SFMLText->setScale(scaleX, scaleY);
 	}
 }
+
+int SFML_TextGameObject::GetFontSize()
+{
+	return this->fontSize;
+}
+
+std::string SFML_TextGameObject::GetText()
+{
+	return this->text;
+}
+
+void SFML_TextGameObject::SetFont(sf::Font * font)
+{
+	this->SFMLFont = font;
+	this->SFMLText->setFont(*font);
+}
+
+void SFML_TextGameObject::SetFontSize(int fontSize)
+{
+	this->fontSize = fontSize;
+	this->SFMLText->setCharacterSize(fontSize);
+}
+
+void SFML_TextGameObject::SetText(std::string text)
+{
+	this->text = text;
+	this->SFMLText->setString(text);
+}
+
+void SFML_TextGameObject::SetTextPosition(int positionX, int positionY)
+{
+	this->SetPositionX(positionX);
+	this->SetPositionY(positionY);
+	this->SFMLText->setPosition(positionX, positionY);
+}
+
+void SFML_TextGameObject::SetTextColor(sf::Color color)
+{
+	this->SFMLText->setColor(color);
+}
