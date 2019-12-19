@@ -9,29 +9,57 @@
 #include "SFML_GameObject.h"
 #include "SFML_GraphicalGameObject.h"
 #include "PhysicalGameObject.h"
+
+#include "Meteor.h"
+
+#include <cstdlib>
+#include <ctime>
+
+#define TIME_BETW_GEN 900000
+
 #pragma warning(disable : 4996)
 
 
 SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string windowName){
+
+	int positionX;
+	int positionY;
+	int width;
+	float Vx;
+	float Vy;
+	float mass;
+
+	float timeBetweenGen = TIME_BETW_GEN;
+
+	Meteor* dinamicMeteor=nullptr;
+
 	this->window = new sf::RenderWindow(sf::VideoMode(windowWidth, windowHeight), windowName, sf::Style::Close);
 	this->clock = new sf::Clock;
 
-	std::list<SFML_GameObject*> bullets;
+	std::list<PhysicalGameObject*> bullets;
+	std::list<PhysicalGameObject*> meteors;
 
+	std::list<PhysicalGameObject*>::iterator meteorsIterator;
 
+	srand(time(NULL));
 
 	sf::Image met;
 	met.loadFromFile("77.png");
-	PhysicalGameObject s1(10, 10, 300, 300, &met, 0, 0, met.getSize().x, met.getSize().y,0.1,0.2, 0,1920,0,1080);
+
+
+
+
+
+	Meteor s1(10, 10, 300, 300, &met, 0, 0, met.getSize().x, met.getSize().y,0.1,0.2, 0,1920,0,1080,100, &meteors);
 	//SFML_GraphicalGameObject s2(280,150, 300, 300, &met, 0, 0, met.getSize().x, met.getSize().y);
 	//std::cout << s1.CheckColision(&s2);
 
 
-	sf::Image shp;
-	shp.loadFromFile("55.png");
-	PlayerShip sh(1000, 1000, 100, 300, &shp, 0, 0, shp.getSize().x, shp.getSize().y, 0, windowWidth, 0, windowHeight, &bullets);
-	std::list<SFML_GameObject*> meteors;
-	//std::list<SFML_GameObject*>::iterator meteorsIterator;
+	//sf::Image shp;
+	//shp.loadFromFile("55.png");
+	//PlayerShip sh(1000, 1000, 100, 300, &shp, 0, 0, shp.getSize().x, shp.getSize().y, 0, windowWidth, 0, windowHeight, &bullets);
+	
+	
 
 
 	//sf::Image bkgImg;
@@ -40,8 +68,7 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 	//sf::Image shp;
 	//shp.loadFromFile("55.png");
 
-	//sf::Image met;
-	//met.loadFromFile("77.png");
+	
 
 
 	//
@@ -65,21 +92,50 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 
 		}
 	
-		float time = this->clock->getElapsedTime().asMicroseconds(); //äàòü ïðîøåäøåå âðåìÿ â ìèêðîñåêóíäàõ
-		clock->restart(); //ïåðåçàãðóæàåò âðåìÿ
+		float time = this->clock->getElapsedTime().asMicroseconds(); 
+		clock->restart(); 
 
-
-		sh.Control(time/800);
-
-		if (sh.CheckColision(&s1)) {
-			std::cout << "collision" << std::endl;
+		if (timeBetweenGen > 0) {
+			timeBetweenGen -= time;
 		}
+		else {
+			timeBetweenGen = TIME_BETW_GEN;
+
+			do
+			{
+				if (dinamicMeteor != nullptr) {
+					delete dinamicMeteor;
+				}
+				width = int((windowWidth / 10) + rand() % (5 * (windowWidth / 100)));
+				positionX = rand() % (windowWidth - width - 1);
+				positionY = -width + 1;
+				Vx = 0; //-0.5 + 0.01 * (rand() % 101);
+				Vy = 0.1 + 0.01 * (rand() % 31);
+				mass = 25 + rand() % 300;
+
+				dinamicMeteor = new Meteor(positionX, positionY, width, width, &met, 0, 0,
+					met.getSize().x, met.getSize().y, Vx, Vy, 0, windowWidth, 0, windowHeight, mass, &meteors);
+
+			} while (dinamicMeteor->CheckCollisionsWithMetheors(&meteors));
+
+			meteors.push_back(dinamicMeteor);
+
+			dinamicMeteor=nullptr;
+
+		}
+
+
+		//sh.Control(time/800);
+
+		//if (sh.CheckColision(&s1)) {
+			//std::cout << "collision" << std::endl;
+		//}
 
 		window->clear();
 		//backg.DrawOnWindow(window);
 	
 		//
-		sh.DrawOnWindow(window);
+		//sh.DrawOnWindow(window);
 		//m1.DrawOnWindow(window);
 
 		//sf::Font font;//øðèôò 
@@ -96,11 +152,31 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 		//	meteorsIterator != meteors.end(); meteorsIterator++) {
 		//	(*meteorsIterator)->DrawOnWindow(this->window);
 		//}
-	
+		
+
+
 		s1.DrawOnWindow(window);
 		s1.Move(time / 800);
+
+
+		s1.CheckColisionsWithBullets(&meteors);
+
+		for (meteorsIterator = meteors.begin(); meteorsIterator != meteors.end();) {
+			(*meteorsIterator)->Move(time / 800);
+			(*meteorsIterator)->DrawOnWindow(window);
+
+			if (!(*meteorsIterator)->IsInBounds())
+			{	
+				delete (*meteorsIterator);
+				meteorsIterator=meteors.erase(meteorsIterator);
+			}
+			else {
+				meteorsIterator++;
+			}
+		}
+
 		
-			std::cout << s1.IsInBounds()<<std::endl;
+			
 		
 		//s2.DrawOnWindow(window);
 		window->display();
