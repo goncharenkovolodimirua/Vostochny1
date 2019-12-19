@@ -61,6 +61,8 @@ public:
         
     void Control(float time);
 
+	bool CheckCollisionsWithMeteors(std::list<PhysicalGameObject*>* meteors);
+
 	void SetBulletTextureImage(sf::Image* bulletTexture);
 	void SetBulletBoundXMax(int bulletBoundXMax);
 	void SetBulletBoundYMax(int bulletBoundYMax);

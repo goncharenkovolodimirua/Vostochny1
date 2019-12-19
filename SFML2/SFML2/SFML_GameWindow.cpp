@@ -30,6 +30,10 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 	float Vy;
 	float mass;
 
+	float deltaTime;
+
+	bool started = true;
+
 	float timeBetweenGen = TIME_BETW_GEN;
 
 	Meteor* dinamicMeteor=nullptr;
@@ -77,12 +81,15 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 			}
 
 		}
-	
-		float time = this->clock->getElapsedTime().asMicroseconds(); 
-		clock->restart(); 
+		
+		if (started) {
+			deltaTime = this->clock->getElapsedTime().asMicroseconds();
+			clock->restart();
+		}
+
 
 		if (timeBetweenGen > 0) {
-			timeBetweenGen -= time;
+			timeBetweenGen -= deltaTime;
 		}
 		else {
 			timeBetweenGen = TIME_BETW_GEN;
@@ -111,7 +118,7 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 		}
 
 
-		sh.Control(time/800);
+		sh.Control(deltaTime /800);
 
 		//if (sh.CheckColision(&s1)) {
 			//std::cout << "collision" << std::endl;
@@ -122,11 +129,11 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 
 
 		for (meteorsIterator = meteors.begin(); meteorsIterator != meteors.end();) {
-			(*meteorsIterator)->Move(time / 800);
+			(*meteorsIterator)->Move(deltaTime / 800);
 			(*meteorsIterator)->CheckColisionsWithBullets(&bullets);
 			
 
-			if ((*meteorsIterator)->CheckAlive(time/800)) {
+			if ((*meteorsIterator)->CheckAlive(deltaTime /800)) {
 				(*meteorsIterator)->DrawOnWindow(window);
 				
 				if (!(*meteorsIterator)->IsInBounds())
@@ -147,7 +154,7 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 		
 
 		for (bulletsIterator = bullets.begin(); bulletsIterator != bullets.end();) {
-			(*bulletsIterator)->Move(time / 800);
+			(*bulletsIterator)->Move(deltaTime / 800);
 			(*bulletsIterator)->DrawOnWindow(window);
 
 			if (!(*bulletsIterator)->IsInBounds())
@@ -159,9 +166,17 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 				bulletsIterator++;
 			}
 		}
+		if (sh.CheckCollisionsWithMeteors(&meteors)) {
+			started = false;
+			deltaTime = 0;
+		}
+
+		
 
 		sh.DrawOnWindow(window);
 		window->display();
+
+
 	}
 	
 	
