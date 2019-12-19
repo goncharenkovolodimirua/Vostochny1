@@ -9,6 +9,7 @@
 #include "SFML_GameObject.h"
 #include "SFML_GraphicalGameObject.h"
 #include "PhysicalGameObject.h"
+#include "Bullet.h"
 #pragma warning(disable : 4996)
 
 
@@ -16,7 +17,9 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 	this->window = new sf::RenderWindow(sf::VideoMode(windowWidth, windowHeight), windowName, sf::Style::Close);
 	this->clock = new sf::Clock;
 
-	std::list<SFML_GameObject*> bullets;
+	std::list<PhysicalGameObject*> bullets;
+
+	std::list<PhysicalGameObject*>::iterator bulletsIterator;
 
 
 
@@ -31,9 +34,9 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 	shp.loadFromFile("55.png");
 	PlayerShip sh(1000, 1000, 100, 300, &shp, 0, 0, shp.getSize().x, shp.getSize().y, 0, windowWidth, 0, windowHeight, &bullets);
 	std::list<SFML_GameObject*> meteors;
-	//std::list<SFML_GameObject*>::iterator meteorsIterator;
-
-
+	
+	Bullet* b1 = new Bullet(300, 300, 30, 30, &met, 0, 0, met.getSize().x, met.getSize().y, 0.0, -0.3, 0, 1920, 0, 1080, 100);
+	bullets.push_back(b1);
 	//sf::Image bkgImg;
 	//bkgImg.loadFromFile("33.jpg");
 
@@ -99,9 +102,24 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 	
 		s1.DrawOnWindow(window);
 		s1.Move(time / 800);
+		std::cout << s1.IsInBounds()<<std::endl;
 		
-			std::cout << s1.IsInBounds()<<std::endl;
-		
+
+		for (bulletsIterator = bullets.begin(); bulletsIterator != bullets.end();) {
+			(*bulletsIterator)->Move(time / 800);
+			(*bulletsIterator)->DrawOnWindow(window);
+
+			if (!(*bulletsIterator)->IsInBounds())
+			{
+				delete (*bulletsIterator);
+				bulletsIterator = bullets.erase(bulletsIterator);
+			}
+			else {
+				bulletsIterator++;
+			}
+		}
+
+
 		//s2.DrawOnWindow(window);
 		window->display();
 	}
