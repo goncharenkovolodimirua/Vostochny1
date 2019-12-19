@@ -13,7 +13,7 @@ Meteor::Meteor(int positionX, int positionY, int width,
 		boundXMin, boundXMax, boundYMin, boundYMax)
 {
 	this->mass = mass;
-	this->health = METEOR_INITIAL_MAX_HEALTH;
+	this->health = METEOR_INITIAL_NORMAL_HEALTH;
 	this->meteors = meteors;
 	this->relifeTime = METEOR_RELIFE_TIME;
 }
@@ -50,7 +50,7 @@ void Meteor::CheckColisionsWithBullets(std::list<PhysicalGameObject*> *bulletsLi
 			if ((*k)->CheckColision(this)) {
 				delete (*k);
 				k=bulletsList->erase(k);
-				this->health = this->health - (int(METEOR_NORMAL_MASS / this->mass*(METEOR_INITIAL_MAX_HEALTH / 2)));
+				this->health = this->health - (int(METEOR_NORMAL_MASS / this->mass*(METEOR_INITIAL_NORMAL_HEALTH / 2)));
 			}
 			else {
 				++k;
