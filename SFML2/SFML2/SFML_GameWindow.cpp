@@ -9,7 +9,7 @@
 #include "SFML_GameObject.h"
 #include "SFML_GraphicalGameObject.h"
 #include "PhysicalGameObject.h"
-
+#include "Background.h"
 #include "Meteor.h"
 
 #include <cstdlib>
@@ -49,15 +49,6 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 	sf::Image met;
 	met.loadFromFile("77.png");
 
-
-
-
-
-	Meteor s1(10, 10, 300, 300, &met, 0, 0, met.getSize().x, met.getSize().y,0.1,0.2, 0,1920,0,1080,100 , &meteors);
-	//SFML_GraphicalGameObject s2(280,150, 300, 300, &met, 0, 0, met.getSize().x, met.getSize().y);
-	//std::cout << s1.CheckColision(&s2);
-
-
 	sf::Image shp;
 	shp.loadFromFile("55.png");
 	PlayerShip sh(1000, 1000, 100, 300, &shp, 0, 0, shp.getSize().x, shp.getSize().y, 0, windowWidth, 0, windowHeight, &bullets);
@@ -73,25 +64,11 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 	
 	Bullet* b1 = new Bullet(300, 300, 30, 30, &met, 0, 0, met.getSize().x, met.getSize().y, 0.0, -0.3, 0, 1920, 0, 1080, 100);
 	bullets.push_back(b1);
-	//sf::Image bkgImg;
-	//bkgImg.loadFromFile("33.jpg");
 
-	//sf::Image shp;
-	//shp.loadFromFile("55.png");
+	sf::Image bkgImg;
+	bkgImg.loadFromFile("33.jpg");
+	Background back(0, 0, windowWidth, windowHeight, &bkgImg, 0, 0, bkgImg.getSize().x, bkgImg.getSize().y);
 
-	
-
-
-	//
-	//
-	//SpaceBackground backg(&bkgImg, 0, 0, windowWidth, windowHeight, 0, 0, bkgImg.getSize().x, bkgImg.getSize().y);
-	//PlayerShip pl(100, 100, 100, 300, &shp, 0, 0, shp.getSize().x, shp.getSize().y, 0, windowWidth, 0, windowHeight);
-	//Meteor m1(100, 100, 100, 100, &met, 0, 0, met.getSize().x, met.getSize().y);
-	//
-	//meteors.push_back(new Meteor(300, 300, 100, 100, &met, 0, 0, met.getSize().x, met.getSize().y));
-	////vect.push_back(Meteor(800, 800, 100, 100, &met, 0, 0, met.getSize().x, met.getSize().y));
-
-	
 
 	while (this->window->isOpen()) {
 		sf::Event event;
@@ -143,6 +120,7 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 		//}
 
 		window->clear();
+		back.DrawOnWindow(window);
 		//backg.DrawOnWindow(window);
 	
 		//
@@ -211,8 +189,6 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 			}
 		}
 
-
-		//s2.DrawOnWindow(window);
 		sh.DrawOnWindow(window);
 		window->display();
 	}
