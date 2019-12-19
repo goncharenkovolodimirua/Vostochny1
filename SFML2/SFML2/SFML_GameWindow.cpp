@@ -175,15 +175,23 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 		for (meteorsIterator = meteors.begin(); meteorsIterator != meteors.end();) {
 			(*meteorsIterator)->Move(time / 800);
 			(*meteorsIterator)->CheckColisionsWithBullets(&bullets);
-			(*meteorsIterator)->DrawOnWindow(window);
+			
 
-			if (!(*meteorsIterator)->IsInBounds())
-			{	
-				delete (*meteorsIterator);
-				meteorsIterator=meteors.erase(meteorsIterator);
+			if ((*meteorsIterator)->CheckAlive(time/800)) {
+				(*meteorsIterator)->DrawOnWindow(window);
+				
+				if (!(*meteorsIterator)->IsInBounds())
+				{
+					delete (*meteorsIterator);
+					meteorsIterator = meteors.erase(meteorsIterator);
+				}
+				else {
+					meteorsIterator++;
+				}
 			}
 			else {
-				meteorsIterator++;
+				delete (*meteorsIterator);
+				meteorsIterator = meteors.erase(meteorsIterator);
 			}
 		}
 
