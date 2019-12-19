@@ -88,8 +88,14 @@ bool Meteor::CheckCollisionsWithMetheors(std::list<PhysicalGameObject*>* meteors
 
 	for (k = meteors->begin(); k != meteors->end();) {
 		if (this->health > 0) {
-			if ((*k)->CheckColision(this)) {
-				collision = true;
+			if ((*k) != this) {
+				if ((*k)->CheckColision(this)) {
+					collision = true;
+					++k;
+				}
+				else {
+					++k;
+				}
 			}
 			else {
 				++k;
