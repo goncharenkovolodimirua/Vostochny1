@@ -34,6 +34,7 @@ public:
 	int GetHealth();
 
 	void CheckColisionsWithBullets(std::list<PhysicalGameObject*>* bulletsList);
+	bool CheckAlive(float time);
 
 };
 #endif

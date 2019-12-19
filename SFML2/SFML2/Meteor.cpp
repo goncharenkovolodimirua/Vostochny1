@@ -15,7 +15,6 @@ Meteor::Meteor(int positionX, int positionY, int width,
 	this->mass = mass;
 	this->health = METEOR_INITIAL_MAX_HEALTH;
 	this->meteors = meteors;
-
 	this->relifeTime = METEOR_RELIFE_TIME;
 }
 
@@ -63,5 +62,21 @@ void Meteor::CheckColisionsWithBullets(std::list<PhysicalGameObject*> *bulletsLi
 	}
 	if (this->health <= 0) {
 		
+	}
+}
+
+bool Meteor::CheckAlive(float time)
+{
+	if (this->health > 0) {
+		return true;
+	}
+	else {
+		if (this->relifeTime > 0) {
+			this->relifeTime -= time;
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }
