@@ -61,9 +61,6 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 
 	sh.SetBulletWidth(30);
 	sh.SetBulletHeight(30);
-	
-	Bullet* b1 = new Bullet(300, 300, 30, 30, &met, 0, 0, met.getSize().x, met.getSize().y, 0.0, -0.3, 0, 1920, 0, 1080, 100);
-	bullets.push_back(b1);
 
 	sf::Image bkgImg;
 	bkgImg.loadFromFile("33.jpg");
@@ -121,34 +118,7 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 
 		window->clear();
 		back.DrawOnWindow(window);
-		//backg.DrawOnWindow(window);
-	
-		//
-		//sh.DrawOnWindow(window);
-		//m1.DrawOnWindow(window);
 
-		//sf::Font font;//øðèôò 
-		//font.loadFromFile("F.ttf");//ïåðåäàåì íàøåìó øðèôòó ôàéë øðèôòà
-		//sf::Text text("", font,100);//ñîçäàåì îáúåêò òåêñò. çàêèäûâàåì â îáúåêò òåêñò ñòðîêó, øðèôò, ðàçìåð øðèôòà(â ïèêñåëÿõ);//ñàì îáúåêò òåêñò (íå ñòðîêà)
-		////text.setColor(sf::Color::Red);//ïîêðàñèëè òåêñò â êðàñíûé. åñëè óáðàòü ýòó ñòðîêó, òî ïî óìîë÷àíèþ îí áåëûé
-		////text.setStyle(sf::Text::Bold | sf::Text::Underlined);//æèðíûé è ïîä÷åðêíóòûé òåêñò. ïî óìîë÷àíèþ îí "õóäîé":)) è íå ïîä÷åðêíóòûé
-		//text.setString("SCORE:");//çàäàåò ñòðîêó òåêñòó
-		//text.setPosition(500, 500);//çàäàåì ïîçèöèþ òåêñòà, öåíòð êàìåðû
-		//text.getGlobalBounds
-		//window->draw(text);//ðèñóþ ýòîò òåêñò
-		//
-		//for (meteorsIterator = meteors.begin();
-		//	meteorsIterator != meteors.end(); meteorsIterator++) {
-		//	(*meteorsIterator)->DrawOnWindow(this->window);
-		//}
-		
-
-
-		s1.DrawOnWindow(window);
-		s1.Move(time / 800);
-
-
-		s1.CheckColisionsWithBullets(&meteors);
 
 		for (meteorsIterator = meteors.begin(); meteorsIterator != meteors.end();) {
 			(*meteorsIterator)->Move(time / 800);
