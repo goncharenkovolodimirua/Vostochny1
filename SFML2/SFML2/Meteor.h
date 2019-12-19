@@ -2,6 +2,7 @@
 #define __METEOR__
 
 #define METEOR_INITIAL_MAX_HEALTH 100
+#define METEOR_NORMAL_MASS 100
 
 #include "PhysicalGameObject.h"
 
@@ -10,7 +11,7 @@ class Meteor :
 	public PhysicalGameObject
 {
 private:
-	std::list<SFML_GameObject*>* meteors;
+	std::list<PhysicalGameObject*>* meteors;
 
 	float mass;
 	int health;
@@ -19,7 +20,7 @@ public:
 	Meteor(int positionX, int positionY, int width,
 		int height, sf::Image* textureImage, int positionXinTexture, int positionYInTexture,
 		int widthInTexture, int heightInTexture, float Vx, float Vy,
-		int boundXMin, int boundXMax, int boundYMin, int boundYMax, float mass, std::list<SFML_GameObject*>* meteors);
+		int boundXMin, int boundXMax, int boundYMin, int boundYMax, float mass, std::list<PhysicalGameObject*>* meteors);
 	virtual ~Meteor();
 
 	void SetMass(float mass);
@@ -27,6 +28,8 @@ public:
 
 	float GetMass();
 	int GetHealth();
+
+	void CheckColisionsWithBullets(std::list<PhysicalGameObject*>* bulletsList);
 
 };
 #endif
