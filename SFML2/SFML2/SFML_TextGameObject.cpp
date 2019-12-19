@@ -90,6 +90,11 @@ void SFML_TextGameObject::Resize(int width, int height) {
 	}
 }
 
+void SFML_TextGameObject::DrawOnWindow(sf::RenderWindow * window)
+{
+	window->draw(*this->SFMLText);
+}
+
 int SFML_TextGameObject::GetFontSize()
 {
 	return this->fontSize;

@@ -38,6 +38,8 @@ public:
 
 	virtual void ResizeDefault();
 	virtual void Resize(int width, int height);
+
+	virtual void DrawOnWindow(sf::RenderWindow *window);
 };
 
 
