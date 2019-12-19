@@ -27,3 +27,17 @@ int Bullet::GetCost()
 {
 	return this->cost;
 }
+
+void Bullet::CheckColisionsWithBullets(std::list<PhysicalGameObject*>* bulletsList)
+{
+}
+
+bool Bullet::CheckAlive(float time)
+{
+	return false;
+}
+
+bool Bullet::CheckCollisionsWithMetheors(std::list<PhysicalGameObject*>* meteors)
+{
+	return false;
+}

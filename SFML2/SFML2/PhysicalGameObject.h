@@ -1,6 +1,9 @@
 #ifndef __PHYSICAL_GAME_OBJECT__
 #define __PHYSICAL_GAME_OBJECT__
 #include "SFML_GraphicalGameObject.h"
+
+#include <list>
+
 class PhysicalGameObject :
 	public SFML_GraphicalGameObject
 {
@@ -33,5 +36,10 @@ public:
 	void SetBoundXMax(int boundXMax);
 	void SetboundYMin(int boundYMin);
 	void SetBoundYMax(int boundYMax);
+
+	virtual void CheckColisionsWithBullets(std::list<PhysicalGameObject*>* bulletsList)=0;
+	virtual bool CheckAlive(float time)=0;
+
+	virtual bool CheckCollisionsWithMetheors(std::list<PhysicalGameObject*>* meteors)=0;
 };
 #endif

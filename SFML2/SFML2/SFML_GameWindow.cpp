@@ -53,7 +53,7 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 
 
 
-	Meteor s1(10, 10, 300, 300, &met, 0, 0, met.getSize().x, met.getSize().y,0.1,0.2, 0,1920,0,1080,100, &meteors);
+	Meteor s1(10, 10, 300, 300, &met, 0, 0, met.getSize().x, met.getSize().y,0.1,0.2, 0,1920,0,1080,100 , &meteors);
 	//SFML_GraphicalGameObject s2(280,150, 300, 300, &met, 0, 0, met.getSize().x, met.getSize().y);
 	//std::cout << s1.CheckColision(&s2);
 
@@ -62,6 +62,14 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 	shp.loadFromFile("55.png");
 	PlayerShip sh(1000, 1000, 100, 300, &shp, 0, 0, shp.getSize().x, shp.getSize().y, 0, windowWidth, 0, windowHeight, &bullets);
 	
+	sh.SetBulletTextureImage(&met);
+	sh.SetBulletBoundXMax(windowWidth);
+	sh.SetBulletBoundYMax(windowHeight);
+	sh.SetBulletBoundXMin(0);
+	sh.SetBulletBoundYMin(0);
+
+	sh.SetBulletWidth(30);
+	sh.SetBulletHeight(30);
 	
 	Bullet* b1 = new Bullet(300, 300, 30, 30, &met, 0, 0, met.getSize().x, met.getSize().y, 0.0, -0.3, 0, 1920, 0, 1080, 100);
 	bullets.push_back(b1);
@@ -166,15 +174,24 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 
 		for (meteorsIterator = meteors.begin(); meteorsIterator != meteors.end();) {
 			(*meteorsIterator)->Move(time / 800);
-			(*meteorsIterator)->DrawOnWindow(window);
+			(*meteorsIterator)->CheckColisionsWithBullets(&bullets);
+			
 
-			if (!(*meteorsIterator)->IsInBounds())
-			{	
-				delete (*meteorsIterator);
-				meteorsIterator=meteors.erase(meteorsIterator);
+			if ((*meteorsIterator)->CheckAlive(time/800)) {
+				(*meteorsIterator)->DrawOnWindow(window);
+				
+				if (!(*meteorsIterator)->IsInBounds())
+				{
+					delete (*meteorsIterator);
+					meteorsIterator = meteors.erase(meteorsIterator);
+				}
+				else {
+					meteorsIterator++;
+				}
 			}
 			else {
-				meteorsIterator++;
+				delete (*meteorsIterator);
+				meteorsIterator = meteors.erase(meteorsIterator);
 			}
 		}
 
