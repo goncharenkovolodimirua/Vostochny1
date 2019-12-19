@@ -1,0 +1,27 @@
+#pragma once
+#ifndef __SFML_TextGameObject__
+#define __SFML_TextGameObject__
+
+#include "SFML_GameObject.h"
+#include <string>
+
+
+class SFML_TextGameObject :
+	public SFML_GameObject
+{
+private:
+	sf::Font* SFMLFont;
+	int fontSize;
+	sf::Text* SFMLText;
+	std::string text;
+
+
+public:
+	SFML_TextGameObject(int positionX, int positionY, sf::Font* font, int fontSize);
+	SFML_TextGameObject(int positionX, int positionY, sf::Font* font, int fontSize, std::string text);
+	
+	virtual ~SFML_TextGameObject();
+};
+
+
+#endif
