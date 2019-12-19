@@ -36,6 +36,8 @@ public:
 	void CheckColisionsWithBullets(std::list<PhysicalGameObject*>* bulletsList);
 	bool CheckAlive(float time);
 
+	bool CheckCollisionsWithMetheors(std::list<PhysicalGameObject*>* meteors);
+
 };
 #endif
 

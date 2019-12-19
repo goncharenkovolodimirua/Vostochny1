@@ -44,7 +44,7 @@ int Meteor::GetHealth()
 
 void Meteor::CheckColisionsWithBullets(std::list<PhysicalGameObject*> *bulletsList)
 {
-	std::list<PhysicalGameObject*>::iterator k = bulletsList->begin();
+	std::list<PhysicalGameObject*>::iterator k;
 	for (k = bulletsList->begin(); k != bulletsList->end();) {
 		if (this->health > 0) {
 			if ((*k)->CheckColision(this)) {
@@ -79,4 +79,25 @@ bool Meteor::CheckAlive(float time)
 			return false;
 		}
 	}
+}
+
+bool Meteor::CheckCollisionsWithMetheors(std::list<PhysicalGameObject*>* meteors)
+{
+	std::list<PhysicalGameObject*>::iterator k;
+	bool collision = false;
+
+	for (k = meteors->begin(); k != meteors->end();) {
+		if (this->health > 0) {
+			if ((*k)->CheckColision(this)) {
+				collision = true;
+			}
+			else {
+				++k;
+			}
+		}
+		else {
+			++k;
+		}
+	}
+	return collision;
 }
