@@ -1,6 +1,32 @@
 #include "pch.h"
 #include "SFML_TextGameObject.h"
 
+
+SFML_TextGameObject::SFML_TextGameObject(int positionX, int positionY, int width, int height, 
+	sf::Font * font, int fontSize):SFML_GameObject(positionX, positionY, width, height)
+{
+	this->SFMLFont = font;
+	this->fontSize = fontSize;
+	this->SFMLText = new sf::Text("", *this->SFMLFont, this->fontSize);
+	
+	this->SFMLText->setPosition(positionX, positionY);
+
+	this->Resize(width, height);
+}
+
+SFML_TextGameObject::SFML_TextGameObject(int positionX, int positionY, int width, 
+	int height, sf::Font * font, int fontSize, std::string text) :SFML_GameObject(positionX, positionY, width, height)
+{
+	this->SFMLFont = font;
+	this->fontSize = fontSize;
+	this->SFMLText = new sf::Text("", *this->SFMLFont, this->fontSize);
+	this->SFMLText->setString(text);
+
+	this->SFMLText->setPosition(positionX, positionY);
+
+	this->Resize(width, height);
+}
+
 SFML_TextGameObject::SFML_TextGameObject(int positionX, int positionY, 
 	sf::Font * font, int fontSize) :SFML_GameObject(positionX, positionY)
 {

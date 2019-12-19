@@ -17,6 +17,9 @@ private:
 
 
 public:
+	SFML_TextGameObject(int positionX, int positionY, int width, int height, sf::Font* font, int fontSize);
+	SFML_TextGameObject(int positionX, int positionY, int width, int height, sf::Font* font, int fontSize, std::string text);
+	
 	SFML_TextGameObject(int positionX, int positionY, sf::Font* font, int fontSize);
 	SFML_TextGameObject(int positionX, int positionY, sf::Font* font, int fontSize, std::string text);
 	
