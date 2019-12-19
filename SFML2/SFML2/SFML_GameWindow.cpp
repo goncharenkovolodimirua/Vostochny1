@@ -17,6 +17,7 @@
 
 #define TIME_BETW_GEN 900000
 
+#include "Bullet.h"
 #pragma warning(disable : 4996)
 
 
@@ -40,8 +41,10 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 	std::list<PhysicalGameObject*> meteors;
 
 	std::list<PhysicalGameObject*>::iterator meteorsIterator;
+	std::list<PhysicalGameObject*>::iterator bulletsIterator;
 
 	srand(time(NULL));
+
 
 	sf::Image met;
 	met.loadFromFile("77.png");
@@ -55,13 +58,13 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 	//std::cout << s1.CheckColision(&s2);
 
 
-	//sf::Image shp;
-	//shp.loadFromFile("55.png");
-	//PlayerShip sh(1000, 1000, 100, 300, &shp, 0, 0, shp.getSize().x, shp.getSize().y, 0, windowWidth, 0, windowHeight, &bullets);
+	sf::Image shp;
+	shp.loadFromFile("55.png");
+	PlayerShip sh(1000, 1000, 100, 300, &shp, 0, 0, shp.getSize().x, shp.getSize().y, 0, windowWidth, 0, windowHeight, &bullets);
+	std::list<SFML_GameObject*> meteors;
 	
-	
-
-
+	Bullet* b1 = new Bullet(300, 300, 30, 30, &met, 0, 0, met.getSize().x, met.getSize().y, 0.0, -0.3, 0, 1920, 0, 1080, 100);
+	bullets.push_back(b1);
 	//sf::Image bkgImg;
 	//bkgImg.loadFromFile("33.jpg");
 
@@ -176,8 +179,22 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 		}
 
 		
-			
-		
+
+		for (bulletsIterator = bullets.begin(); bulletsIterator != bullets.end();) {
+			(*bulletsIterator)->Move(time / 800);
+			(*bulletsIterator)->DrawOnWindow(window);
+
+			if (!(*bulletsIterator)->IsInBounds())
+			{
+				delete (*bulletsIterator);
+				bulletsIterator = bullets.erase(bulletsIterator);
+			}
+			else {
+				bulletsIterator++;
+			}
+		}
+
+
 		//s2.DrawOnWindow(window);
 		window->display();
 	}

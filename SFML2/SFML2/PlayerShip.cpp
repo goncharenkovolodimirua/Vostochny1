@@ -17,7 +17,7 @@ PlayerShip::PlayerShip(
     int controlWidthMax,
     int cotrolHeightMin,
     int controlHeightMax,
-    std::list<SFML_GameObject*>* bulletsList
+    std::list<PhysicalGameObject*>* bulletsList
 ): SFML_GraphicalGameObject(
         posX,
         posY,
