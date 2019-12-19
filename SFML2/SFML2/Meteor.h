@@ -3,6 +3,7 @@
 
 #define METEOR_INITIAL_MAX_HEALTH 100
 #define METEOR_NORMAL_MASS 100
+#define METEOR_RELIFE_TIME 500
 
 #include "PhysicalGameObject.h"
 
@@ -15,6 +16,9 @@ private:
 
 	float mass;
 	int health;
+	
+	int relifeTime;
+
 
 public:
 	Meteor(int positionX, int positionY, int width,

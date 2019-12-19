@@ -15,6 +15,8 @@ Meteor::Meteor(int positionX, int positionY, int width,
 	this->mass = mass;
 	this->health = METEOR_INITIAL_MAX_HEALTH;
 	this->meteors = meteors;
+
+	this->relifeTime = METEOR_RELIFE_TIME;
 }
 
 Meteor::~Meteor()
