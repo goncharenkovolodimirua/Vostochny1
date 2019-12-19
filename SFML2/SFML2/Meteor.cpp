@@ -61,7 +61,7 @@ void Meteor::CheckColisionsWithBullets(std::list<PhysicalGameObject*> *bulletsLi
 		}
 	}
 	if (this->health <= 0) {
-		
+		this->ChangeTextureRectangle(this->GetOriginalWidth(), 0, this->GetOriginalWidth(), this->GetOriginalHeight());
 	}
 }
 
