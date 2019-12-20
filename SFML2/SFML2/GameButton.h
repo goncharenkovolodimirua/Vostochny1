@@ -11,6 +11,8 @@ private:
 	int offsetVertical;
 	int offsetHorizontal;
 
+	bool lastSatement;
+
 	sf::Color noMouseFillColor;
 	sf::Color mouseOverFillColor;
 	sf::Color pressedFillColor;
