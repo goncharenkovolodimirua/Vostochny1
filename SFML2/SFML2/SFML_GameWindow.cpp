@@ -107,11 +107,16 @@ void SFML_GameWindow::ClearLabels()
 
 SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string windowName){
 
+	int fontSize;
+	int textPositionY;
+	int textPositionX;
+	
 	srand(time(NULL));
 
 	this->meteorTexture.loadFromFile("78.png");
 	this->shipTexture.loadFromFile("57.png");
 	this->backgroundImage.loadFromFile("34.png");
+	this->font.loadFromFile(FONT_NAME);
 
 	this->window = new sf::RenderWindow(sf::VideoMode(windowWidth, windowHeight), windowName, sf::Style::Close);
 	this->clock = new sf::Clock;
@@ -119,12 +124,19 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 	this->windowWidth = windowWidth;
 	this->windowHeight = windowHeight;
 
-	this->started = true;
+	this->started= false;
 
 
-	this->ship=new PlayerShip(1000, 1000, 330, 210, &this->shipTexture,
+	this->ship=new PlayerShip(1000, 800, 330, 210, &this->shipTexture,
 		0, 0, this->shipTexture.getSize().x, this->shipTexture.getSize().y,
 		0, this->windowWidth, 0, this->windowHeight, &bullets);
+
+	fontSize = int(this->windowHeight / 4);
+	textPositionY = int((this->windowHeight / 3.5) - (fontSize / 2));
+	this->gameName = new SFML_TextGameObject(100, 0, &this->font, fontSize,GAME_NAME);
+	textPositionX = (this->windowWidth / 2) - (this->gameName->GetWidth() / 2);
+	this->gameName->SetTextPosition(textPositionX, textPositionY);
+
 
 	this->ship->SetBulletTextureImage(&this->meteorTexture);
 	this->ship->SetBulletBoundXMax(this->windowWidth);
@@ -171,6 +183,7 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 		}
 
 		this->ship->DrawOnWindow(this->window);
+		this->gameName->DrawOnWindow(window);
 		this->window->display();
 	}
 }
