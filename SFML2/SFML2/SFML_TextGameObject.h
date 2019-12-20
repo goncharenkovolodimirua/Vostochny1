@@ -37,7 +37,7 @@ public:
 	std::string GetText();
 
 	virtual void ResizeDefault();
-	virtual void Resize(int width, int height);
+	virtual void Resize(uint16_t width, uint16_t height);
 
 	virtual void DrawOnWindow(sf::RenderWindow *window);
 };

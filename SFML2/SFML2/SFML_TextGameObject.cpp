@@ -71,7 +71,7 @@ void SFML_TextGameObject::ResizeDefault()
 	this->SFMLText->setScale(1, 1);
 }
 
-void SFML_TextGameObject::Resize(int width, int height) {
+void SFML_TextGameObject::Resize(uint16_t width, uint16_t height) {
 	float scaleX;
 	float scaleY;
 
