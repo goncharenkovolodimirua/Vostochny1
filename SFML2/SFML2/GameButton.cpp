@@ -17,7 +17,7 @@ GameButton::GameButton(int positionX, int positionY, sf::Font* font, int fontSiz
 
 	this->noMouseFillColor = sf::Color(255, 255, 255);
 	this->mouseOverFillColor = sf::Color(255, 255, 255);
-	this->pressedFillColor= sf::Color(255, 255, 255);
+	this->pressedFillColor = sf::Color(255, 255, 255);
 
 	rectangle->setFillColor(this->noMouseFillColor);
 
@@ -42,20 +42,20 @@ void GameButton::DrawOnWindow(sf::RenderWindow *window)
 
 }
 
-void GameButton::SetBackgroundColorNoMouse(sf::Color * color)
+void GameButton::SetBackgroundColorNoMouse(sf::Color color)
 {
-	this->noMouseFillColor = *color;
-	this->rectangle->setFillColor(*color);
+	this->noMouseFillColor = color;
+	this->rectangle->setFillColor(color);
 }
 
-void GameButton::SetBackgroundColorMouseOver(sf::Color * color)
+void GameButton::SetBackgroundColorMouseOver(sf::Color color)
 {
-	this->mouseOverFillColor = *color;
+	this->mouseOverFillColor = color;
 }
 
-void GameButton::SetBackgroundColorPressed(sf::Color * color)
+void GameButton::SetBackgroundColorPressed(sf::Color color)
 {
-	this->pressedFillColor = *color;
+	this->pressedFillColor = color;
 
 }
 
