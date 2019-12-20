@@ -9,6 +9,9 @@ GameButton::GameButton(int positionX, int positionY, sf::Font* font, int fontSiz
 	this->offsetVertical = offsetVertical;
 	this->offsetHorizontal = offsetHorizontal;
 
+	this->SetWidth(this->GetWidth() + offsetHorizontal);
+	this->SetHeight(this->GetHeight() + offsetVertical);
+
 	this->rectangle = new sf::RectangleShape(sf::Vector2f(this->GetWidth()+offsetHorizontal, 
 		this->GetHeight()+offsetVertical));
 
@@ -16,7 +19,7 @@ GameButton::GameButton(int positionX, int positionY, sf::Font* font, int fontSiz
 		this->GetSFMLText()->getGlobalBounds().top-offsetVertical/2);
 
 	
-
+	
 	rectangle->setFillColor(sf::Color(100, 250, 50));
 
 }
@@ -31,4 +34,9 @@ void GameButton::DrawOnWindow(sf::RenderWindow *window)
 	window->draw(*this->rectangle);
 	window->draw(*this->GetSFMLText());
 
+}
+
+void GameButton::SetBackgroundColor(sf::Color * color)
+{
+	this->rectangle->setFillColor(*color);
 }

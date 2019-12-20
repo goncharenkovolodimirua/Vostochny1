@@ -15,6 +15,12 @@ public:
 	virtual ~GameButton();
 
 	virtual void DrawOnWindow(sf::RenderWindow *window);
+
+	void SetBackgroundColor(sf::Color *color);
+
+	void ChangeButtonPosition();
+
+
 };
 #endif
 
