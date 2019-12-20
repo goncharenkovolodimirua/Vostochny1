@@ -131,6 +131,16 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 		0, 0, this->shipTexture.getSize().x, this->shipTexture.getSize().y,
 		0, this->windowWidth, 0, this->windowHeight, &bullets);
 
+	startButtonFontSize = int(this->windowHeight / 8);
+	this->startButton = new GameButton(500, 500, &this->font, startButtonFontSize, "START", startButtonFontSize/7, startButtonFontSize/7);
+	startButtonPositionY = this->windowHeight / 2;
+	startButtonPositionX= this->windowWidth / 2 - this->startButton->GetWidth() / 2;
+	this->startButton->ChangeButtonPosition(startButtonPositionX, startButtonPositionY);
+	this->startButton->SetBackgroundColorMouseOver(sf::Color(100, 200, 100));
+	this->startButton->SetBackgroundColorNoMouse(sf::Color(100, 150, 100));
+	this->startButton->SetBackgroundColorPressed(sf::Color(100, 100, 100));
+
+
 	fontSize = int(this->windowHeight / 4);
 	textPositionY = int((this->windowHeight / 3.5) - (fontSize / 2));
 	this->gameName = new SFML_TextGameObject(100, 0, &this->font, fontSize,GAME_NAME);
@@ -184,6 +194,18 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 
 		this->ship->DrawOnWindow(this->window);
 		this->gameName->DrawOnWindow(window);
+
+		if (this->started == false) {
+			this->gameName->DrawOnWindow(this->window);
+			this->startButton->DrawOnWindow(this->window);
+			if (this->startButton->CheckButtonPressed()) {
+				this->started = true;
+			}
+		}
+		
+
+
+
 		this->window->display();
 	}
 }
