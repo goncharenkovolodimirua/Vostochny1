@@ -1,6 +1,11 @@
 #include "pch.h"
 #include "SFML_GameWindow.h"
 
+
+
+#include"SFML/Audio.hpp"
+
+
 void SFML_GameWindow::GenerateMeteors()
 {
 	Meteor* dinamicMeteor = nullptr;
@@ -106,6 +111,17 @@ void SFML_GameWindow::ClearLabels()
 }
 
 SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string windowName){
+
+
+
+	sf::Music sound;
+	sound.openFromFile("m1.ogg");
+	//sound.setLoopPoints(sf::Music::Span<sf::milliseconds>(10, 10));
+	//sound.setLoop(true);
+
+	sound.play();
+
+
 
 	srand(time(NULL));
 
