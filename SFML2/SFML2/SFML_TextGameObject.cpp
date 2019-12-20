@@ -2,7 +2,12 @@
 #include "SFML_TextGameObject.h"
 
 
-SFML_TextGameObject::SFML_TextGameObject(int positionX, int positionY, int width, int height, 
+sf::Text * SFML_TextGameObject::GetSFMLText()
+{
+	return this->SFMLText;
+}
+
+SFML_TextGameObject::SFML_TextGameObject(int positionX, int positionY, int width, int height,
 	sf::Font * font, int fontSize):SFML_GameObject(positionX, positionY, width, height)
 {
 	this->SFMLFont = font;
