@@ -15,6 +15,9 @@ private:
 	sf::Text* SFMLText;
 	std::string text;
 
+protected:
+	sf::Text* GetSFMLText();
+
 
 public:
 	SFML_TextGameObject(int positionX, int positionY, int width, int height, sf::Font* font, int fontSize);
