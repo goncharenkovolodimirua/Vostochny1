@@ -20,6 +20,7 @@
 #include "PlayerShip.h"
 #include "PhysicalGameObject.h"
 #include "SFML_TextGameObject.h"
+#include "GameButton.h"
 
 class SFML_GameWindow
 {
@@ -54,6 +55,7 @@ private:
 	PlayerShip* ship;
 	Background* background;
 	SFML_TextGameObject* gameName;
+	GameButton* startButton;
 
 
 	void GenerateMeteors();
