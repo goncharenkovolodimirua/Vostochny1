@@ -16,10 +16,13 @@ GameButton::GameButton(int positionX, int positionY, sf::Font* font, int fontSiz
 		this->GetSFMLText()->getGlobalBounds().top-offsetVertical/2);
 
 	this->noMouseFillColor = sf::Color(255, 255, 255);
+	this->mouseOverFillColor = sf::Color(255, 255, 255);
+	this->pressedFillColor= sf::Color(255, 255, 255);
+
 	rectangle->setFillColor(this->noMouseFillColor);
 
+	this->window = nullptr;
 }
-
 
 GameButton::~GameButton()
 {
@@ -30,6 +33,11 @@ void GameButton::DrawOnWindow(sf::RenderWindow *window)
 {
 	window->draw(*this->rectangle);
 	window->draw(*this->GetSFMLText());
+
+	if (this->window != window) {
+		this->window = window;
+	}
+	
 
 }
 
@@ -80,4 +88,37 @@ void GameButton::Resize(uint16_t width, uint16_t height)
 
 	this->rectangle->setPosition(this->GetSFMLText()->getGlobalBounds().left - this->offsetHorizontal / 2,
 		this->GetSFMLText()->getGlobalBounds().top - this->offsetVertical / 2);
+}
+
+bool GameButton::CheckButtonPressed()
+{
+	int positionX;
+	int positionY;
+	if (this->window != nullptr) {
+		positionX=sf::Mouse::getPosition(*window).x;
+		positionY = sf::Mouse::getPosition(*window).y;
+		
+		if ((positionX >= this->rectangle->getGlobalBounds().left) 
+			and ((positionX <= this->rectangle->getGlobalBounds().left 
+				+ this->rectangle->getGlobalBounds().width) 
+			and (positionY >= this->rectangle->getGlobalBounds().top)
+			and ((positionY <= this->rectangle->getGlobalBounds().top
+				+ this->rectangle->getGlobalBounds().height)))) {
+			
+			this->rectangle->setFillColor(this->mouseOverFillColor);
+
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+				this->rectangle->setFillColor(this->pressedFillColor);
+				return true;
+			}
+			return false;
+			
+		}
+		else {
+			this->rectangle->setFillColor(this->noMouseFillColor);
+			return false;
+		}
+	}
+	
+	return false;
 }

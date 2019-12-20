@@ -6,6 +6,8 @@ class GameButton :
 {
 private:
 	sf::RectangleShape* rectangle;
+	sf::RenderWindow *window;
+
 	int offsetVertical;
 	int offsetHorizontal;
 
@@ -26,6 +28,8 @@ public:
 
 	virtual void ChangeButtonPosition(int positionX, int positionY);
 	virtual void Resize(uint16_t width, uint16_t height);
+
+	bool CheckButtonPressed();
 
 };
 #endif
