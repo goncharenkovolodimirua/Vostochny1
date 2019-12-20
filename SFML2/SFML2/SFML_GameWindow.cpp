@@ -208,10 +208,17 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 		}
 
 		this->ship->DrawOnWindow(this->window);
-		this->gameName->DrawOnWindow(this->window);
 
-		this->startButton->DrawOnWindow(this->window);
-		this->startButton->CheckButtonPressed();
+		if (this->started == false) {
+			this->gameName->DrawOnWindow(this->window);
+			this->startButton->DrawOnWindow(this->window);
+			if (this->startButton->CheckButtonPressed()) {
+				this->started = true;
+			}
+		}
+		
+
+
 
 		this->window->display();
 	}
