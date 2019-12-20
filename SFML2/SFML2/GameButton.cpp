@@ -12,11 +12,11 @@ GameButton::GameButton(int positionX, int positionY, sf::Font* font, int fontSiz
 	this->rectangle = new sf::RectangleShape(sf::Vector2f(this->GetWidth()+offsetHorizontal, 
 		this->GetHeight()+offsetVertical));
 
-	rectangle->setPosition(this->GetSFMLText()->getGlobalBounds().left-offsetHorizontal/2,
+	this->rectangle->setPosition(this->GetSFMLText()->getGlobalBounds().left-offsetHorizontal/2,
 		this->GetSFMLText()->getGlobalBounds().top-offsetVertical/2);
 
 	this->noMouseFillColor = sf::Color(255, 255, 255);
-	rectangle->setFillColor(sf::Color(100, 250, 50));
+	rectangle->setFillColor(this->noMouseFillColor);
 
 }
 
@@ -50,6 +50,34 @@ void GameButton::SetBackgroundColorPressed(sf::Color * color)
 
 }
 
-void GameButton::ChangeButtonPosition()
+void GameButton::ChangeButtonPosition(int positionX, int positionY)
 {
+	this->SetTextPosition(positionX, positionY);
+	this->rectangle->setPosition(this->GetSFMLText()->getGlobalBounds().left - this->offsetHorizontal / 2,
+		this->GetSFMLText()->getGlobalBounds().top - this->offsetVertical / 2);
+}
+
+void GameButton::Resize(uint16_t width, uint16_t height)
+{
+	float scaleX;
+	float scaleY;
+
+	this->GetSFMLText()->setScale(1, 1);
+	this->SetOriginalWidth(this->GetSFMLText()->getGlobalBounds().width);
+	this->SetOriginalHeight(this->GetSFMLText()->getGlobalBounds().height);
+
+	if ((width > 0)&(height > 0)) {
+		scaleX = ((float)width - this->offsetHorizontal)/ this->GetOriginalWidth();
+		scaleY = ((float)height - this->offsetVertical)/ this->GetOriginalHeight();
+
+		this->SetWidth(width);
+		this->SetHeight(height);
+
+		this->GetSFMLText()->setScale(scaleX, scaleY);
+	}
+	this->rectangle->setSize(sf::Vector2f(this->GetWidth() + this->offsetHorizontal,
+		this->GetHeight() + this->offsetVertical));
+
+	this->rectangle->setPosition(this->GetSFMLText()->getGlobalBounds().left - this->offsetHorizontal / 2,
+		this->GetSFMLText()->getGlobalBounds().top - this->offsetVertical / 2);
 }

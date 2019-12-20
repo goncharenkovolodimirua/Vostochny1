@@ -24,8 +24,8 @@ public:
 	void SetBackgroundColorMouseOver(sf::Color *color);
 	void SetBackgroundColorPressed(sf::Color *color);
 
-	virtual void ChangeButtonPosition();
-	virtual void Resize();
+	virtual void ChangeButtonPosition(int positionX, int positionY);
+	virtual void Resize(uint16_t width, uint16_t height);
 
 };
 #endif
