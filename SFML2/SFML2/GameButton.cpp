@@ -22,6 +22,7 @@ GameButton::GameButton(int positionX, int positionY, sf::Font* font, int fontSiz
 	rectangle->setFillColor(this->noMouseFillColor);
 
 	this->window = nullptr;
+	this->lastSatement = false;
 }
 
 GameButton::~GameButton()
@@ -106,19 +107,28 @@ bool GameButton::CheckButtonPressed()
 				+ this->rectangle->getGlobalBounds().height)))) {
 			
 			this->rectangle->setFillColor(this->mouseOverFillColor);
-
+			
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 				this->rectangle->setFillColor(this->pressedFillColor);
-				return true;
+				this->lastSatement = true;
+				return false;
 			}
-			return false;
-			
+			else {
+				if (this->lastSatement == true) {
+					this->lastSatement = false;
+					return true;
+				}
+				return false;
+			}
 		}
 		else {
 			this->rectangle->setFillColor(this->noMouseFillColor);
+			this->lastSatement = false;
 			return false;
 		}
 	}
-	
-	return false;
+	else {
+		this->lastSatement = false;
+		return false;
+	}
 }
