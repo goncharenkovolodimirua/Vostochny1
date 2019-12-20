@@ -9,6 +9,10 @@ private:
 	int offsetVertical;
 	int offsetHorizontal;
 
+	sf::Color noMouseFillColor;
+	sf::Color mouseOverFillColor;
+	sf::Color pressedFillColor;
+
 public:
 	GameButton(int positionX, int positionY, sf::Font* font, 
 		int fontSize, std::string text, int offsetVertical, int offsetHorizontal);
@@ -16,10 +20,12 @@ public:
 
 	virtual void DrawOnWindow(sf::RenderWindow *window);
 
-	void SetBackgroundColor(sf::Color *color);
+	void SetBackgroundColorNoMouse(sf::Color *color);
+	void SetBackgroundColorMouseOver(sf::Color *color);
+	void SetBackgroundColorPressed(sf::Color *color);
 
-	void ChangeButtonPosition();
-
+	virtual void ChangeButtonPosition();
+	virtual void Resize();
 
 };
 #endif
