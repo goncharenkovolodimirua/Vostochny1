@@ -15,6 +15,9 @@ private:
     sf::Texture* texture;
     sf::Sprite* sprite;
 
+	double scaleX;
+	double scaleY;
+
 protected:
     sf::Sprite* GetSpriteAddress();
 
@@ -37,6 +40,10 @@ public:
         std::int16_t y
     );
 
+	virtual double GetScaleX();
+	virtual double GetScaleY();
+
+
     virtual void Resize(
         std::uint16_t width,
         std::uint16_t height
@@ -52,6 +59,7 @@ public:
     );
 
     virtual void DrawOnWindow(sf::RenderWindow *window);
+
 };
 #endif
 

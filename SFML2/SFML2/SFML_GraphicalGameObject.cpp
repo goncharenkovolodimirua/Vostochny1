@@ -59,6 +59,16 @@ void SFML_GraphicalGameObject::SetPosition(int16_t x, int16_t y)
     this->sprite->setPosition(x, y);
 }
 
+double SFML_GraphicalGameObject::GetScaleX()
+{
+	return this->scaleX;
+}
+
+double SFML_GraphicalGameObject::GetScaleY()
+{
+	return this->scaleY;
+}
+
 void SFML_GraphicalGameObject::ResizeDefault()
 {
     this->sprite->setScale(1, 1);
@@ -72,19 +82,17 @@ void SFML_GraphicalGameObject::DrawOnWindow(sf::RenderWindow * window)
 
 void SFML_GraphicalGameObject::Resize(uint16_t width, uint16_t height)
 {
-    double scaleX;
-    double scaleY;
     
     if (uint16_t originalWidth = this->GetOriginalWidth())
     {
-        scaleX = (double) width / originalWidth;
+        this->scaleX = (double) width / originalWidth;
     } else {
         return;
     }
 
     if (uint16_t originalHeight = this->GetOriginalHeight())
     {
-        scaleY = (double) height / originalHeight;
+        this->scaleY = (double) height / originalHeight;
     } else {
         return;
     }
