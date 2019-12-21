@@ -92,14 +92,17 @@ sf::Color SFML_GraphicalGameObject::GetPxColorLocal(int positionX, int positionY
 		positionXInTexture = this->positionXInTexture + int(positionX * (1/this->scaleX));
 		positionYInTexture = this->positionYInTexture + int(positionY * (1/this->scaleY));
 
-		sf::Color ge=img.getPixel(positionXInTexture, positionYInTexture);
-		return ge;
+		return img.getPixel(positionXInTexture, positionYInTexture);
 	}
 }
 
 void SFML_GraphicalGameObject::ResizeDefault()
 {
     this->sprite->setScale(1, 1);
+	this->scaleX = 1;
+	this->scaleY = 1;
+	this->SetWidth(this->GetOriginalWidth());
+	this->SetHeight(this->GetOriginalHeight());
 }
 
 void SFML_GraphicalGameObject::DrawOnWindow(sf::RenderWindow * window)
