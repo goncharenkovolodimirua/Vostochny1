@@ -71,8 +71,30 @@ double SFML_GraphicalGameObject::GetScaleY()
 
 sf::IntRect SFML_GraphicalGameObject::GetTextureRect()
 {
-	return sf::IntRect(sf::Vector2i(positionXInTexture, positionYInTexture), 
+	return sf::IntRect(sf::Vector2i(this->positionXInTexture, this->positionYInTexture), 
 		sf::Vector2i(this->GetOriginalWidth(), this->GetOriginalHeight()));
+}
+
+sf::Color SFML_GraphicalGameObject::GetPxColorLocal(int positionX, int positionY)
+{
+	sf::Image img;
+
+	int positionXInTexture;
+	int positionYInTexture;
+
+	if ((positionX < 0) or (positionX > this->GetWidth()) or 
+		(positionY<0) or positionY>this->GetHeight()) {
+		return sf::Color(0, 0, 0, 0);
+	}
+	else {
+		img = this->texture->copyToImage();
+
+		positionXInTexture = this->positionXInTexture + int(positionX * (1/this->scaleX));
+		positionYInTexture = this->positionYInTexture + int(positionY * (1/this->scaleY));
+
+		sf::Color ge=img.getPixel(positionXInTexture, positionYInTexture);
+		return ge;
+	}
 }
 
 void SFML_GraphicalGameObject::ResizeDefault()
