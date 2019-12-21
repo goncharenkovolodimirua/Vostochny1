@@ -199,7 +199,6 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 		}
 
 		this->ship->DrawOnWindow(this->window);
-		this->gameName->DrawOnWindow(window);
 
 		if (this->started == false) {
 			this->gameName->DrawOnWindow(this->window);
@@ -208,9 +207,6 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 				this->started = true;
 			}
 		}
-		
-
-
 
 		this->window->display();
 	}
