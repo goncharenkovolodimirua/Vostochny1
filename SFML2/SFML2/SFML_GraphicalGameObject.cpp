@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "SFML_GraphicalGameObject.h"
 
 SFML_GraphicalGameObject::SFML_GraphicalGameObject(
