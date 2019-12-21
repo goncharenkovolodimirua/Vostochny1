@@ -24,9 +24,9 @@ public:
 
 	virtual void DrawOnWindow(sf::RenderWindow *window);
 
-	void SetBackgroundColorNoMouse(sf::Color *color);
-	void SetBackgroundColorMouseOver(sf::Color *color);
-	void SetBackgroundColorPressed(sf::Color *color);
+	void SetBackgroundColorNoMouse(sf::Color color);
+	void SetBackgroundColorMouseOver(sf::Color color);
+	void SetBackgroundColorPressed(sf::Color color);
 
 	virtual void ChangeButtonPosition(int positionX, int positionY);
 	virtual void Resize(uint16_t width, uint16_t height);

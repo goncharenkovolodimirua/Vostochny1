@@ -15,9 +15,13 @@ private:
     sf::Texture* texture;
     sf::Sprite* sprite;
 
+	double scaleX;
+	double scaleY;
+
 protected:
     sf::Sprite* GetSpriteAddress();
-
+	sf::Image* GetTextureAddress();
+	
 public:
     SFML_GraphicalGameObject(
         std::int16_t positionX,
@@ -32,10 +36,22 @@ public:
     );
     virtual ~SFML_GraphicalGameObject();
 
+
     virtual void SetPosition(
         std::int16_t x, 
         std::int16_t y
     );
+
+	virtual double GetScaleX();
+	virtual double GetScaleY();
+
+	virtual sf::IntRect GetTextureRect();
+	virtual sf::Image* GetTextureCopy();
+
+	virtual sf::Color GetPxColorLocal(int positionX, int positionY);
+	virtual sf::Color GetPxColorGlobal(int positionX, int positionY);
+
+	virtual bool CheckPxCollision(SFML_GraphicalGameObject* graphicalGameObject, int alphaChanelMinValue);	
 
     virtual void Resize(
         std::uint16_t width,
@@ -52,6 +68,16 @@ public:
     );
 
     virtual void DrawOnWindow(sf::RenderWindow *window);
+
+	virtual int localXPositionToPositionInTexture(int positionX);
+	virtual int localYPositionToPositionInTexture(int positionY);
+
+	virtual int GlobalXPositionToLocalPosition(int positionX);
+	virtual int GlobalYPositionToLocalPosition(int positionY);
+
+	virtual int GlobalXPositionToPositionInTexture(int positionX);
+	virtual int GlobalYPositionToPositionInTexture(int positionY);
+
 };
 #endif
 
