@@ -69,6 +69,12 @@ double SFML_GraphicalGameObject::GetScaleY()
 	return this->scaleY;
 }
 
+sf::IntRect SFML_GraphicalGameObject::GetTextureRect()
+{
+	return sf::IntRect(sf::Vector2i(positionXInTexture, positionYInTexture), 
+		sf::Vector2i(this->GetOriginalWidth(), this->GetOriginalHeight()));
+}
+
 void SFML_GraphicalGameObject::ResizeDefault()
 {
     this->sprite->setScale(1, 1);

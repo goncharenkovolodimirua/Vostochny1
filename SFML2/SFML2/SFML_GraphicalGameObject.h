@@ -43,6 +43,7 @@ public:
 	virtual double GetScaleX();
 	virtual double GetScaleY();
 
+	virtual sf::IntRect GetTextureRect();
 
     virtual void Resize(
         std::uint16_t width,
