@@ -1,6 +1,10 @@
 #include "pch.h"
 #include "SFML_GraphicalGameObject.h"
 
+#include <iostream>
+
+
+
 SFML_GraphicalGameObject::SFML_GraphicalGameObject(
     std::int16_t positionX, 
     std::int16_t positionY, 
@@ -37,7 +41,6 @@ SFML_GraphicalGameObject::SFML_GraphicalGameObject(
         );
         this->sprite->setPosition(positionX, positionY);
         this->Resize(width, height);
-
     }
 
 }
@@ -87,12 +90,11 @@ sf::Color SFML_GraphicalGameObject::GetPxColorLocal(int positionX, int positionY
 		return sf::Color(0, 0, 0, 0);
 	}
 	else {
-		img = this->texture->copyToImage();
 
 		positionXInTexture = this->positionXInTexture + int(positionX * (1/this->scaleX));
 		positionYInTexture = this->positionYInTexture + int(positionY * (1/this->scaleY));
 
-		return img.getPixel(positionXInTexture, positionYInTexture);
+		return this->textureImage->getPixel(positionXInTexture, positionYInTexture);
 	}
 }
 
@@ -106,6 +108,8 @@ sf::Color SFML_GraphicalGameObject::GetPxColorGlobal(int positionX, int position
 
 	return this->GetPxColorLocal(positionXInSprite, positionYInSprite);
 }
+
+
 
 void SFML_GraphicalGameObject::ResizeDefault()
 {
@@ -169,3 +173,10 @@ sf::Sprite * SFML_GraphicalGameObject::GetSpriteAddress()
 {
     return this->sprite;
 }
+
+sf::Image * SFML_GraphicalGameObject::GetTextureAddress()
+{
+	return this->textureImage;
+}
+
+

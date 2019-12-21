@@ -20,6 +20,8 @@ private:
 
 protected:
     sf::Sprite* GetSpriteAddress();
+	sf::Image* GetTextureAddress();
+	
 
 public:
     SFML_GraphicalGameObject(
@@ -35,6 +37,7 @@ public:
     );
     virtual ~SFML_GraphicalGameObject();
 
+
     virtual void SetPosition(
         std::int16_t x, 
         std::int16_t y
@@ -47,6 +50,8 @@ public:
 
 	virtual sf::Color GetPxColorLocal(int positionX, int positionY);
 	virtual sf::Color GetPxColorGlobal(int positionX, int positionY);
+
+	
 
     virtual void Resize(
         std::uint16_t width,
@@ -63,6 +68,7 @@ public:
     );
 
     virtual void DrawOnWindow(sf::RenderWindow *window);
+
 
 };
 #endif
