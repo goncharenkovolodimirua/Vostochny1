@@ -47,7 +47,7 @@ void Meteor::CheckColisionsWithBullets(std::list<PhysicalGameObject*> *bulletsLi
 	std::list<PhysicalGameObject*>::iterator k;
 	for (k = bulletsList->begin(); k != bulletsList->end();) {
 		if (this->health > 0) {
-			if ((*k)->CheckColision(this)) {
+			if ((*k)->CheckSpriteColision(this)) {
 				delete (*k);
 				k=bulletsList->erase(k);
 				this->health = this->health - (int(METEOR_NORMAL_MASS / this->mass*(METEOR_INITIAL_NORMAL_HEALTH / 2)));
@@ -89,7 +89,7 @@ bool Meteor::CheckCollisionsWithMetheors(std::list<PhysicalGameObject*>* meteors
 	for (k = meteors->begin(); k != meteors->end();) {
 		if (this->health > 0) {
 			if ((*k) != this) {
-				if ((*k)->CheckColision(this)) {
+				if ((*k)->CheckSpriteColision(this)) {
 					collision = true;
 					++k;
 				}

@@ -134,7 +134,7 @@ bool PlayerShip::CheckCollisionsWithMeteors(std::list<PhysicalGameObject*>* mete
 	bool collision = false;
 
 	for (k = meteors->begin(); k != meteors->end();) {
-		if ((*k)->CheckColision(this)) {
+		if ((*k)->CheckSpriteColision(this)) {
 			collision = true;
 			++k;
 		}
