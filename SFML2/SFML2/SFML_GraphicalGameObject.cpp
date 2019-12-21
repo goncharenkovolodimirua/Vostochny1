@@ -96,6 +96,17 @@ sf::Color SFML_GraphicalGameObject::GetPxColorLocal(int positionX, int positionY
 	}
 }
 
+sf::Color SFML_GraphicalGameObject::GetPxColorGlobal(int positionX, int positionY)
+{
+	int positionXInSprite;
+	int positionYInSprite;
+	
+	positionXInSprite = positionX - this->GetPositionX();
+	positionYInSprite = positionY - this->GetPositionY();
+
+	return this->GetPxColorLocal(positionXInSprite, positionYInSprite);
+}
+
 void SFML_GraphicalGameObject::ResizeDefault()
 {
     this->sprite->setScale(1, 1);

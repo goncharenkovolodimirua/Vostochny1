@@ -46,6 +46,7 @@ public:
 	virtual sf::IntRect GetTextureRect();
 
 	virtual sf::Color GetPxColorLocal(int positionX, int positionY);
+	virtual sf::Color GetPxColorGlobal(int positionX, int positionY);
 
     virtual void Resize(
         std::uint16_t width,
