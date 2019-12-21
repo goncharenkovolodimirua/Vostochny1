@@ -128,7 +128,6 @@ void SFML_GraphicalGameObject::DrawOnWindow(sf::RenderWindow * window)
 
 void SFML_GraphicalGameObject::Resize(uint16_t width, uint16_t height)
 {
-    
     if (uint16_t originalWidth = this->GetOriginalWidth())
     {
         this->scaleX = (double) width / originalWidth;
@@ -148,6 +147,37 @@ void SFML_GraphicalGameObject::Resize(uint16_t width, uint16_t height)
     this->sprite->setScale(scaleX, scaleY);
 
 }
+
+int SFML_GraphicalGameObject::localXPositionToPositionInTexture(int positionX)
+{
+	return this->positionXInTexture + int(positionX * (1 / this->scaleX));
+}
+
+int SFML_GraphicalGameObject::localYPositionToPositionInTexture(int positionY)
+{
+	return this->positionYInTexture + int(positionY * (1 / this->scaleY));
+}
+
+int SFML_GraphicalGameObject::GlobalXPositionToLocalPosition(int positionX)
+{
+	return positionX - this->GetPositionX();
+}
+
+int SFML_GraphicalGameObject::GlobalYPositionToLocalPosition(int positionY)
+{
+	return positionY - this->GetPositionY();
+}
+
+int SFML_GraphicalGameObject::GlobalXPositionToPositionInTexture(int positionX)
+{
+	return this->localXPositionToPositionInTexture(this->GlobalXPositionToLocalPosition(positionX));
+}
+
+int SFML_GraphicalGameObject::GlobalYPositionToPositionInTexture(int positionY)
+{
+	return this->localYPositionToPositionInTexture(this->GlobalYPositionToLocalPosition(positionY));
+}
+
 
 
 void SFML_GraphicalGameObject::ChangeTextureRectangle(

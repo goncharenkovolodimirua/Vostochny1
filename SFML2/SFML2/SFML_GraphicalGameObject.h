@@ -69,6 +69,14 @@ public:
 
     virtual void DrawOnWindow(sf::RenderWindow *window);
 
+	virtual int localXPositionToPositionInTexture(int positionX);
+	virtual int localYPositionToPositionInTexture(int positionY);
+
+	virtual int GlobalXPositionToLocalPosition(int positionX);
+	virtual int GlobalYPositionToLocalPosition(int positionY);
+
+	virtual int GlobalXPositionToPositionInTexture(int positionX);
+	virtual int GlobalYPositionToPositionInTexture(int positionY);
 
 };
 #endif
