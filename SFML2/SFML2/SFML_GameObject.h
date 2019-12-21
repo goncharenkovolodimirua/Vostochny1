@@ -37,8 +37,8 @@ public:
 	SFML_GameObject(int16_t positionX, int16_t positionY);
 	virtual ~SFML_GameObject();
 
-	virtual sf::IntRect GetIntRect();
-	virtual bool CheckColision(SFML_GameObject *gameObject);
+	virtual sf::IntRect GetSpriteIntRect();
+	virtual bool CheckSpriteColision(SFML_GameObject *gameObject);
 	virtual void DrawOnWindow(sf::RenderWindow *window) = 0;
 	virtual void Resize(uint16_t width, uint16_t height) = 0;
 	virtual void ResizeDefault()=0;
