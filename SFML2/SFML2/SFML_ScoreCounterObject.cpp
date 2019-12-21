@@ -17,3 +17,15 @@ void SFML_ScoreCounterObject::AddWithTime(float deltaTime)
 	this->score = score + deltaTime * coef;
 	this->SetText("SCORE:" + std::to_string(score));
 }
+
+void SFML_ScoreCounterObject::AddWithNumber(int score)
+{
+	this->score += score;
+	this->SetText("SCORE:" + std::to_string(score));
+}
+
+void  SFML_ScoreCounterObject::SubstractWithNumber(int score)
+{
+	this->score -= score;
+	this->SetText("SCORE:" + std::to_string(score));
+}
