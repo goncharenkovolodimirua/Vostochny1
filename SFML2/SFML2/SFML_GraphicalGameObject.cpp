@@ -1,10 +1,6 @@
 #include "pch.h"
 #include "SFML_GraphicalGameObject.h"
 
-#include <iostream>
-
-
-
 SFML_GraphicalGameObject::SFML_GraphicalGameObject(
     std::int16_t positionX, 
     std::int16_t positionY, 
@@ -78,6 +74,12 @@ sf::IntRect SFML_GraphicalGameObject::GetTextureRect()
 		sf::Vector2i(this->GetOriginalWidth(), this->GetOriginalHeight()));
 }
 
+sf::Image * SFML_GraphicalGameObject::GetTextureCopy()
+{
+	sf::Image* copy = new sf::Image(*this->textureImage);
+	return copy;
+}
+
 sf::Color SFML_GraphicalGameObject::GetPxColorLocal(int positionX, int positionY)
 {
 	sf::Image img;
@@ -145,7 +147,6 @@ void SFML_GraphicalGameObject::Resize(uint16_t width, uint16_t height)
     this->SetWidth(width);
     this->SetHeight(height);
     this->sprite->setScale(scaleX, scaleY);
-
 }
 
 int SFML_GraphicalGameObject::localXPositionToPositionInTexture(int positionX)
@@ -177,7 +178,6 @@ int SFML_GraphicalGameObject::GlobalYPositionToPositionInTexture(int positionY)
 {
 	return this->localYPositionToPositionInTexture(this->GlobalYPositionToLocalPosition(positionY));
 }
-
 
 
 void SFML_GraphicalGameObject::ChangeTextureRectangle(
@@ -242,5 +242,3 @@ bool SFML_GraphicalGameObject::CheckPxCollision(SFML_GraphicalGameObject * graph
 		return false;
 	}
 }
-
-

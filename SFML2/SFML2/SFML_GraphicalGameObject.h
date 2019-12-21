@@ -22,7 +22,6 @@ protected:
     sf::Sprite* GetSpriteAddress();
 	sf::Image* GetTextureAddress();
 	
-
 public:
     SFML_GraphicalGameObject(
         std::int16_t positionX,
@@ -47,6 +46,7 @@ public:
 	virtual double GetScaleY();
 
 	virtual sf::IntRect GetTextureRect();
+	virtual sf::Image* GetTextureCopy();
 
 	virtual sf::Color GetPxColorLocal(int positionX, int positionY);
 	virtual sf::Color GetPxColorGlobal(int positionX, int positionY);
