@@ -74,6 +74,11 @@ bool SFML_GameObject::CheckSpriteColision(SFML_GameObject *gameObject)
 	return this->GetSpriteIntRect().intersects(gameObject->GetSpriteIntRect());
 }
 
+bool SFML_GameObject::CheckSpriteColision(SFML_GameObject * gameObject, sf::IntRect * intersection)
+{
+	return this->GetSpriteIntRect().intersects(gameObject->GetSpriteIntRect(), *intersection);
+}
+
 SFML_GameObject::SFML_GameObject(int16_t positionX, int16_t positionY, uint16_t width, uint16_t height)
 {
 	this->positionX = positionX;

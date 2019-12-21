@@ -39,6 +39,7 @@ public:
 
 	virtual sf::IntRect GetSpriteIntRect();
 	virtual bool CheckSpriteColision(SFML_GameObject *gameObject);
+	virtual bool CheckSpriteColision(SFML_GameObject *gameObject, sf::IntRect *intersection);
 	virtual void DrawOnWindow(sf::RenderWindow *window) = 0;
 	virtual void Resize(uint16_t width, uint16_t height) = 0;
 	virtual void ResizeDefault()=0;
