@@ -21,6 +21,10 @@ public:
 	void AddWithTime(float deltaTime);
 	void AddWithNumber(int score);
 	void SubstractWithNumber(int score);
+	void SetScore(int score);
+	void SetCoef(float coef);
+	int GetScore();
+	float GetCoef();
 };
 
 
