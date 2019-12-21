@@ -51,7 +51,7 @@ public:
 	virtual sf::Color GetPxColorLocal(int positionX, int positionY);
 	virtual sf::Color GetPxColorGlobal(int positionX, int positionY);
 
-	
+	virtual bool CheckPxCollision(SFML_GraphicalGameObject* graphicalGameObject, int alphaChanelMinValue);	
 
     virtual void Resize(
         std::uint16_t width,

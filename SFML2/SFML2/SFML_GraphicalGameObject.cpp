@@ -210,3 +210,37 @@ sf::Image * SFML_GraphicalGameObject::GetTextureAddress()
 }
 
 
+bool SFML_GraphicalGameObject::CheckPxCollision(SFML_GraphicalGameObject * graphicalGameObject, int alphaChanelMinValue)
+{
+	sf::IntRect intersection;
+
+	if (this->CheckSpriteColision(graphicalGameObject, &intersection)) {
+		//For each string in intersection 
+		for (int i = intersection.top; i < intersection.top + intersection.height; i++) {
+			//For each column in intersection 
+			for (int j = intersection.left; j < intersection.left + intersection.width; j += 1) {
+
+				//If in this sprite alpha chanel is greater or equal min value 
+				//(that means there is an object part)
+				if (this->textureImage->getPixel(this->GlobalXPositionToPositionInTexture(j), 
+					this->GlobalYPositionToPositionInTexture(i)).a >= alphaChanelMinValue) {
+
+					//If in sprite of second object alpha chanel is greater or equal min value 
+					//(that means there is an object part)
+					if (graphicalGameObject->GetTextureAddress()->getPixel(graphicalGameObject->GlobalXPositionToPositionInTexture(j),
+						graphicalGameObject->GlobalYPositionToPositionInTexture(i)).a >= alphaChanelMinValue) {
+						
+						//It's a collision
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	else {
+		return false;
+	}
+}
+
+
