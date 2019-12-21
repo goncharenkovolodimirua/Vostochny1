@@ -3,7 +3,7 @@
 
 #define METEOR_INITIAL_NORMAL_HEALTH 100
 #define METEOR_NORMAL_MASS 100
-#define METEOR_RELIFE_TIME 80
+#define METEOR_RELIFE_TIME 200
 
 #include "PhysicalGameObject.h"
 
