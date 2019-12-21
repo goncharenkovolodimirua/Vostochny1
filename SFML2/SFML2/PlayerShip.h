@@ -5,6 +5,8 @@
 #define BULLET_COST 1000
 #define BULLET_SPEED -0.8
 
+#define MIN_ALPHA_VAL 10
+
 #include "SFML_GraphicalGameObject.h"
 #include "PhysicalGameObject.h"
 #include "Bullet.h"
