@@ -116,12 +116,6 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 	int startButtonFontSize;
 	int startButtonPositionX;
 	int startButtonPositionY;
-
-
-	
-
-
-
 	
 	srand(time(NULL));
 
@@ -129,9 +123,6 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 	this->shipTexture.loadFromFile("57.png");
 	this->backgroundImage.loadFromFile("34.png");
 	this->font.loadFromFile(FONT_NAME);
-
-
-	
 
 	this->window = new sf::RenderWindow(sf::VideoMode(windowWidth, windowHeight), windowName, sf::Style::Close);
 	this->clock = new sf::Clock;
@@ -151,9 +142,9 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 	startButtonPositionY = this->windowHeight / 2;
 	startButtonPositionX= this->windowWidth / 2 - this->startButton->GetWidth() / 2;
 	this->startButton->ChangeButtonPosition(startButtonPositionX, startButtonPositionY);
-	this->startButton->SetBackgroundColorMouseOver(&sf::Color(100, 200, 100));
-	this->startButton->SetBackgroundColorNoMouse(&sf::Color(100, 150, 100));
-	this->startButton->SetBackgroundColorPressed(&sf::Color(100, 100, 100));
+	this->startButton->SetBackgroundColorMouseOver(sf::Color(100, 200, 100));
+	this->startButton->SetBackgroundColorNoMouse(sf::Color(100, 150, 100));
+	this->startButton->SetBackgroundColorPressed(sf::Color(100, 100, 100));
 
 
 	fontSize = int(this->windowHeight / 4);
@@ -201,11 +192,13 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 		this->CheckMeteorsWithBullets();
 		this->CheckBulletsWithScreen();
 		
-
-		if (this->ship->CheckCollisionsWithMeteors(&this->meteors)) {
-			this->started = false;
-			this->deltaTime = 0;
+		if (this->started) {
+			if (this->ship->CheckCollisionsWithMeteors(&this->meteors)) {
+				this->started = false;
+				this->deltaTime = 0;
+			}
 		}
+
 
 		this->ship->DrawOnWindow(this->window);
 
@@ -216,9 +209,6 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 				this->started = true;
 			}
 		}
-		
-
-
 
 		this->window->display();
 	}
