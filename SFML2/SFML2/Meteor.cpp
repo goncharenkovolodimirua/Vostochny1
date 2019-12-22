@@ -42,15 +42,18 @@ int Meteor::GetHealth()
 	return this->health;
 }
 
-void Meteor::CheckColisionsWithBullets(std::list<PhysicalGameObject*> *bulletsList)
+bool Meteor::CheckColisionsWithBullets(std::list<PhysicalGameObject*> *bulletsList)
 {
 	std::list<PhysicalGameObject*>::iterator k;
+	bool collision = false;
+
 	for (k = bulletsList->begin(); k != bulletsList->end();) {
 		if (this->health > 0) {
-			if ((*k)->CheckColision(this)) {
+			if ((*k)->CheckSpriteColision(this)) {
 				delete (*k);
 				k=bulletsList->erase(k);
 				this->health = this->health - (int(METEOR_NORMAL_MASS / this->mass*(METEOR_INITIAL_NORMAL_HEALTH / 2)));
+				collision = true;
 			}
 			else {
 				++k;
@@ -63,6 +66,7 @@ void Meteor::CheckColisionsWithBullets(std::list<PhysicalGameObject*> *bulletsLi
 	if (this->health <= 0) {
 		this->ChangeTextureRectangle(this->GetOriginalWidth(), 0, this->GetOriginalWidth(), this->GetOriginalHeight());
 	}
+	return collision;
 }
 
 bool Meteor::CheckAlive(float time)
@@ -89,7 +93,7 @@ bool Meteor::CheckCollisionsWithMetheors(std::list<PhysicalGameObject*>* meteors
 	for (k = meteors->begin(); k != meteors->end();) {
 		if (this->health > 0) {
 			if ((*k) != this) {
-				if ((*k)->CheckColision(this)) {
+				if ((*k)->CheckSpriteColision(this)) {
 					collision = true;
 					++k;
 				}
@@ -106,4 +110,26 @@ bool Meteor::CheckCollisionsWithMetheors(std::list<PhysicalGameObject*>* meteors
 		}
 	}
 	return collision;
+}
+
+void Meteor::Move(float deltaT)
+{
+	this->LinearMove(deltaT);
+}
+
+bool Meteor::CheckCollisionWithList(std::list<PhysicalGameObject*>* physicalGameObjectList, CollisionTypes typeOfCollision)
+{
+	switch (typeOfCollision)
+	{
+	case COLLISION_WITH_METEOR:
+		return this->CheckCollisionsWithMetheors(physicalGameObjectList);
+		break;
+	case COLLISION_WITH_BULLET:
+		return this->CheckColisionsWithBullets(physicalGameObjectList);
+		break;
+	default:
+		return false;
+		break;
+	}
+	
 }

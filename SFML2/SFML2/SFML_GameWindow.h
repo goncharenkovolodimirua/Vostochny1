@@ -3,6 +3,8 @@
 
 #define TIME_BETW_GEN 900000
 #define FPS_TIME 800
+#define FONT_NAME "F.ttf"
+#define GAME_NAME "VOSTOCHNY"
 
 #pragma warning(disable : 4996)
 
@@ -17,7 +19,9 @@
 #include "Bullet.h"
 #include "PlayerShip.h"
 #include "PhysicalGameObject.h"
-
+#include "SFML_TextGameObject.h"
+#include "GameButton.h"
+#include "CollisionTypes.h"
 class SFML_GameWindow
 {
 private:
@@ -43,12 +47,15 @@ private:
 	sf::Image meteorTexture;
 	sf::Image shipTexture;
 	sf::Image backgroundImage;
+	sf::Font font;
 
 	sf::Event event;
 
 
 	PlayerShip* ship;
 	Background* background;
+	SFML_TextGameObject* gameName;
+	GameButton* startButton;
 
 
 	void GenerateMeteors();

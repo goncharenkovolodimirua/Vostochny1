@@ -10,7 +10,7 @@ void PlayerShip::Shoot()
 		int positionY = this->GetPositionY() + 1+this->bulletHeight;
 		Bullet* bullet = new Bullet(positionX, positionY, this->bulletWidth, this->bulletHeight, this->bulletTexture, 0, 0, 
 			this->bulletTexture->getSize().x, this->bulletTexture->getSize().y, 0, BULLET_SPEED, this->bulletBoundXMin,
-			this->bulletBoundXMax, this->bulletBoundYMin, this->bulletBoundYMax, BULLET_COST);
+			this->bulletBoundXMax, this->bulletBoundYMin, this->bulletBoundYMax, BULLET_COST, this);
 		this->bulletsList->push_back(bullet);
 	}
 	
@@ -134,7 +134,7 @@ bool PlayerShip::CheckCollisionsWithMeteors(std::list<PhysicalGameObject*>* mete
 	bool collision = false;
 
 	for (k = meteors->begin(); k != meteors->end();) {
-		if ((*k)->CheckColision(this)) {
+		if ((*k)->CheckPxCollision(this, MIN_ALPHA_VAL)) {
 			collision = true;
 			++k;
 		}

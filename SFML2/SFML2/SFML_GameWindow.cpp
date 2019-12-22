@@ -6,6 +6,8 @@
 #include"SFML/Audio.hpp"
 
 
+#include <iostream>
+
 void SFML_GameWindow::GenerateMeteors()
 {
 	Meteor* dinamicMeteor = nullptr;
@@ -53,7 +55,7 @@ void SFML_GameWindow::CheckMeteorsWithBullets()
 	for (this->meteorsIterator = this->meteors.begin(); 
 		this->meteorsIterator != this->meteors.end();) {
 		(*this->meteorsIterator)->Move(this->deltaTime / FPS_TIME);
-		(*this->meteorsIterator)->CheckColisionsWithBullets(&this->bullets);
+		(*this->meteorsIterator)->CheckCollisionWithList(&this->bullets, COLLISION_WITH_BULLET);
 
 
 		if ((*this->meteorsIterator)->CheckAlive(this->deltaTime / FPS_TIME)) {
@@ -123,11 +125,20 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 
 
 
+	int fontSize;
+	int textPositionY;
+	int textPositionX;
+
+	int startButtonFontSize;
+	int startButtonPositionX;
+	int startButtonPositionY;
+	
 	srand(time(NULL));
 
 	this->meteorTexture.loadFromFile("78.png");
 	this->shipTexture.loadFromFile("57.png");
 	this->backgroundImage.loadFromFile("34.png");
+	this->font.loadFromFile(FONT_NAME);
 
 	this->window = new sf::RenderWindow(sf::VideoMode(windowWidth, windowHeight), windowName, sf::Style::Close);
 	this->clock = new sf::Clock;
@@ -135,12 +146,29 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 	this->windowWidth = windowWidth;
 	this->windowHeight = windowHeight;
 
-	this->started = true;
+	this->started= false;
 
 
-	this->ship=new PlayerShip(1000, 1000, 330, 210, &this->shipTexture,
+	this->ship=new PlayerShip(1000, 800, 330, 210, &this->shipTexture,
 		0, 0, this->shipTexture.getSize().x, this->shipTexture.getSize().y,
 		0, this->windowWidth, 0, this->windowHeight, &bullets);
+
+	startButtonFontSize = int(this->windowHeight / 8);
+	this->startButton = new GameButton(500, 500, &this->font, startButtonFontSize, "START", startButtonFontSize/7, startButtonFontSize/7);
+	startButtonPositionY = this->windowHeight / 2;
+	startButtonPositionX= this->windowWidth / 2 - this->startButton->GetWidth() / 2;
+	this->startButton->ChangeButtonPosition(startButtonPositionX, startButtonPositionY);
+	this->startButton->SetBackgroundColorMouseOver(sf::Color(100, 200, 100));
+	this->startButton->SetBackgroundColorNoMouse(sf::Color(100, 150, 100));
+	this->startButton->SetBackgroundColorPressed(sf::Color(100, 100, 100));
+
+
+	fontSize = int(this->windowHeight / 4);
+	textPositionY = int((this->windowHeight / 3.5) - (fontSize / 2));
+	this->gameName = new SFML_TextGameObject(100, 0, &this->font, fontSize,GAME_NAME);
+	textPositionX = (this->windowWidth / 2) - (this->gameName->GetWidth() / 2);
+	this->gameName->SetTextPosition(textPositionX, textPositionY);
+
 
 	this->ship->SetBulletTextureImage(&this->meteorTexture);
 	this->ship->SetBulletBoundXMax(this->windowWidth);
@@ -180,13 +208,24 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 		this->CheckMeteorsWithBullets();
 		this->CheckBulletsWithScreen();
 		
-
-		if (this->ship->CheckCollisionsWithMeteors(&this->meteors)) {
-			this->started = false;
-			this->deltaTime = 0;
+		if (this->started) {
+			if (this->ship->CheckCollisionsWithMeteors(&this->meteors)) {
+				this->started = false;
+				this->deltaTime = 0;
+			}
 		}
 
+
 		this->ship->DrawOnWindow(this->window);
+
+		if (this->started == false) {
+			this->gameName->DrawOnWindow(this->window);
+			this->startButton->DrawOnWindow(this->window);
+			if (this->startButton->CheckButtonPressed()) {
+				this->started = true;
+			}
+		}
+
 		this->window->display();
 	}
 }
