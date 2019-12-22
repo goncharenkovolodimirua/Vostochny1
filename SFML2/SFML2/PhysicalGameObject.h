@@ -46,13 +46,8 @@ public:
 	int GetBoundYMax();
 
 	
-	
-	virtual void CheckColisionsWithBullets(std::list<PhysicalGameObject*>* bulletsList) = 0;
-
+	virtual void CheckCollisionWithList(std::list<PhysicalGameObject*>* physicalGameObjectList, int typeOfObjects) = 0;
 	virtual bool CheckAlive(float time)=0;
-
-	virtual bool CheckCollisionsWithMetheors(std::list<PhysicalGameObject*>* meteors)=0;
-
 	virtual void Move(float deltaT) = 0;
 };
 #endif
