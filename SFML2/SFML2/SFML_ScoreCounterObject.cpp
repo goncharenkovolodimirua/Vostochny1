@@ -12,8 +12,10 @@ SFML_ScoreCounterObject::SFML_ScoreCounterObject(int positionX, int positionY, s
 
 void SFML_ScoreCounterObject::AddWithTime(float deltaTime)
 {
-
-	this->coef = this->coef + TIME_COEF * deltaTime;
+	if (this->coef<MAX_COEF)
+	{
+		this->coef = this->coef + TIME_COEF * deltaTime;
+	}
 	this->score = this->score + deltaTime * this->coef;
 	this->SetText("SCORE:" + std::to_string(this->score));
 	
