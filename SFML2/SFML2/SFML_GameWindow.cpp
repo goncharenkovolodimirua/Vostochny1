@@ -50,7 +50,7 @@ void SFML_GameWindow::CheckMeteorsWithBullets()
 	for (this->meteorsIterator = this->meteors.begin(); 
 		this->meteorsIterator != this->meteors.end();) {
 		(*this->meteorsIterator)->Move(this->deltaTime / FPS_TIME);
-		(*this->meteorsIterator)->CheckColisionsWithBullets(&this->bullets);
+		(*this->meteorsIterator)->CheckCollisionWithList(&this->bullets, COLLISION_WITH_BULLET);
 
 
 		if ((*this->meteorsIterator)->CheckAlive(this->deltaTime / FPS_TIME)) {
