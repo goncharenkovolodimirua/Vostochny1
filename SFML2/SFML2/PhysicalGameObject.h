@@ -37,6 +37,13 @@ public:
 	void SetboundYMin(int boundYMin);
 	void SetBoundYMax(int boundYMax);
 
+	int GetBoundXMin();
+	int GetBoundXMax();
+	int GetBoundYMin();
+	int GetBoundYMax();
+
+	
+
 	virtual void CheckColisionsWithBullets(std::list<PhysicalGameObject*>* bulletsList)=0;
 	virtual bool CheckAlive(float time)=0;
 

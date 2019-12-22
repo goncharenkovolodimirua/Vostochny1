@@ -53,6 +53,26 @@ void PhysicalGameObject::SetBoundYMax(int boundYMax)
 	this->boundYMax = boundYMax;
 }
 
+int PhysicalGameObject::GetBoundXMin()
+{
+	return this->boundXMin;
+}
+
+int PhysicalGameObject::GetBoundXMax()
+{
+	return this->boundXMax;
+}
+
+int PhysicalGameObject::GetBoundYMin()
+{
+	return this->boundYMin;
+}
+
+int PhysicalGameObject::GetBoundYMax()
+{
+	return this->boundYMax;
+}
+
 void PhysicalGameObject::Move(float deltaT)
 {
 	this->globalPosX += Vx * deltaT;
