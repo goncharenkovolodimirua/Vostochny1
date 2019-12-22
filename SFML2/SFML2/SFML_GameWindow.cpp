@@ -1,11 +1,6 @@
 #include "pch.h"
 #include "SFML_GameWindow.h"
 
-
-
-#include"SFML/Audio.hpp"
-
-
 #include <iostream>
 
 void SFML_GameWindow::GenerateMeteors()
@@ -114,17 +109,6 @@ void SFML_GameWindow::ClearLabels()
 
 SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string windowName){
 
-
-
-	sf::Music sound;
-	sound.openFromFile("m1.ogg");
-	//sound.setLoopPoints(sf::Music::Span<sf::milliseconds>(10, 10));
-	//sound.setLoop(true);
-
-	sound.play();
-
-
-
 	int fontSize;
 	int textPositionY;
 	int textPositionX;
@@ -147,6 +131,12 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 	this->windowHeight = windowHeight;
 
 	this->started= false;
+
+	
+	this->backgroundMusic = new sf::Music();
+	this->backgroundMusic->openFromFile(BACKGROUND_SOUNDNAME);
+	this->backgroundMusic->setLoop(true);
+	this->backgroundMusic->play();
 
 
 	this->ship=new PlayerShip(1000, 800, 330, 210, &this->shipTexture,
@@ -238,6 +228,9 @@ SFML_GameWindow::~SFML_GameWindow()
 	}
 	if (this->background != nullptr) {
 		delete this->background;
+	}
+	if (this->backgroundMusic != nullptr) {
+		delete this->backgroundMusic;
 	}
 	this->ClearLabels();
 }

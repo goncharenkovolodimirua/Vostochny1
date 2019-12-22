@@ -5,11 +5,13 @@
 #define FPS_TIME 800
 #define FONT_NAME "F.ttf"
 #define GAME_NAME "VOSTOCHNY"
+#define BACKGROUND_SOUNDNAME "m3.ogg"
 
 #pragma warning(disable : 4996)
 
 #include <string>
 #include <SFML/Graphics.hpp>
+#include"SFML/Audio.hpp"
 #include <cstdlib>
 #include <ctime>
 #include <list>
@@ -27,6 +29,7 @@ class SFML_GameWindow
 private:
 	sf::RenderWindow* window;
 	sf::Clock* clock;
+	sf::Music* backgroundMusic;
 
 	std::list<PhysicalGameObject*> bullets;
 	std::list<PhysicalGameObject*> meteors;
