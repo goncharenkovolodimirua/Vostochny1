@@ -15,5 +15,10 @@ public:
 
 	void SetCost(int cost);
 	int GetCost();
+
+	virtual void CheckColisionsWithBullets(std::list<PhysicalGameObject*>* bulletsList);
+	virtual bool CheckAlive(float time);
+
+	virtual bool CheckCollisionsWithMetheors(std::list<PhysicalGameObject*>* meteors);
 };
 
