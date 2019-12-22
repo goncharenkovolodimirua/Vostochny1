@@ -1,3 +1,7 @@
+/*!
+* \file
+* \brief Header file, which store declaration Bullet class.
+*/
 #ifndef BULLET
 #define BULLET
 
