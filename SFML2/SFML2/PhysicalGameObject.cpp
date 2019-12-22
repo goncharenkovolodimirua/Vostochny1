@@ -33,6 +33,16 @@ void PhysicalGameObject::SetVy(float Vy)
 	this->Vy = Vy;
 }
 
+float PhysicalGameObject::GetVx()
+{
+	return this->Vx;
+}
+
+float PhysicalGameObject::GetVy()
+{
+	return this->Vy;
+}
+
 void PhysicalGameObject::SetBoundXMin(int boundXMin)
 {
 	this->boundXMin = boundXMin;

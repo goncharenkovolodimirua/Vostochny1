@@ -32,6 +32,9 @@ public:
 	void SetVx(float Vx);
 	void SetVy(float Vy);
 
+	float GetVx();
+	float GetVy();
+
 	void SetBoundXMin(int boundXMin);
 	void SetBoundXMax(int boundXMax);
 	void SetboundYMin(int boundYMin);
