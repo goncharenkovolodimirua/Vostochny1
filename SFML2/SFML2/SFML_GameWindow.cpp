@@ -50,7 +50,7 @@ void SFML_GameWindow::CheckMeteorsWithBullets()
 	for (this->meteorsIterator = this->meteors.begin(); 
 		this->meteorsIterator != this->meteors.end();) {
 		(*this->meteorsIterator)->Move(this->deltaTime / FPS_TIME);
-		(*this->meteorsIterator)->CheckColisionsWithBullets(&this->bullets);
+		(*this->meteorsIterator)->CheckCollisionWithList(&this->bullets, COLLISION_WITH_BULLET);
 
 
 		if ((*this->meteorsIterator)->CheckAlive(this->deltaTime / FPS_TIME)) {
@@ -192,11 +192,13 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 		this->CheckMeteorsWithBullets();
 		this->CheckBulletsWithScreen();
 		
-
-		if (this->ship->CheckCollisionsWithMeteors(&this->meteors)) {
-			this->started = false;
-			this->deltaTime = 0;
+		if (this->started) {
+			if (this->ship->CheckCollisionsWithMeteors(&this->meteors)) {
+				this->started = false;
+				this->deltaTime = 0;
+			}
 		}
+
 
 		this->ship->DrawOnWindow(this->window);
 

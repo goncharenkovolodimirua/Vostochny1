@@ -21,7 +21,7 @@
 #include "PhysicalGameObject.h"
 #include "SFML_TextGameObject.h"
 #include "GameButton.h"
-
+#include "CollisionTypes.h"
 class SFML_GameWindow
 {
 private:
