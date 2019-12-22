@@ -192,11 +192,13 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 		this->CheckMeteorsWithBullets();
 		this->CheckBulletsWithScreen();
 		
-
-		if (this->ship->CheckCollisionsWithMeteors(&this->meteors)) {
-			this->started = false;
-			this->deltaTime = 0;
+		if (this->started) {
+			if (this->ship->CheckCollisionsWithMeteors(&this->meteors)) {
+				this->started = false;
+				this->deltaTime = 0;
+			}
 		}
+
 
 		this->ship->DrawOnWindow(this->window);
 
