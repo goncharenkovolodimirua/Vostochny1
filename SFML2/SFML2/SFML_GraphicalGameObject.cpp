@@ -37,7 +37,6 @@ SFML_GraphicalGameObject::SFML_GraphicalGameObject(
         );
         this->sprite->setPosition(positionX, positionY);
         this->Resize(width, height);
-
     }
 
 }
@@ -59,9 +58,68 @@ void SFML_GraphicalGameObject::SetPosition(int16_t x, int16_t y)
     this->sprite->setPosition(x, y);
 }
 
+double SFML_GraphicalGameObject::GetScaleX()
+{
+	return this->scaleX;
+}
+
+double SFML_GraphicalGameObject::GetScaleY()
+{
+	return this->scaleY;
+}
+
+sf::IntRect SFML_GraphicalGameObject::GetTextureRect()
+{
+	return sf::IntRect(sf::Vector2i(this->positionXInTexture, this->positionYInTexture), 
+		sf::Vector2i(this->GetOriginalWidth(), this->GetOriginalHeight()));
+}
+
+sf::Image * SFML_GraphicalGameObject::GetTextureCopy()
+{
+	sf::Image* copy = new sf::Image(*this->textureImage);
+	return copy;
+}
+
+sf::Color SFML_GraphicalGameObject::GetPxColorLocal(int positionX, int positionY)
+{
+	sf::Image img;
+
+	int positionXInTexture;
+	int positionYInTexture;
+
+	if ((positionX < 0) or (positionX > this->GetWidth()) or 
+		(positionY<0) or positionY>this->GetHeight()) {
+		return sf::Color(0, 0, 0, 0);
+	}
+	else {
+
+		positionXInTexture = this->positionXInTexture + int(positionX * (1/this->scaleX));
+		positionYInTexture = this->positionYInTexture + int(positionY * (1/this->scaleY));
+
+		return this->textureImage->getPixel(positionXInTexture, positionYInTexture);
+	}
+}
+
+sf::Color SFML_GraphicalGameObject::GetPxColorGlobal(int positionX, int positionY)
+{
+	int positionXInSprite;
+	int positionYInSprite;
+	
+	positionXInSprite = positionX - this->GetPositionX();
+	positionYInSprite = positionY - this->GetPositionY();
+
+	return this->GetPxColorLocal(positionXInSprite, positionYInSprite);
+}
+
+
+
 void SFML_GraphicalGameObject::ResizeDefault()
 {
     this->sprite->setScale(1, 1);
+	this->scaleX = 1;
+	this->scaleY = 1;
+	this->SetWidth(this->GetOriginalWidth());
+	this->SetHeight(this->GetOriginalHeight());
 }
 
 void SFML_GraphicalGameObject::DrawOnWindow(sf::RenderWindow * window)
@@ -72,19 +130,16 @@ void SFML_GraphicalGameObject::DrawOnWindow(sf::RenderWindow * window)
 
 void SFML_GraphicalGameObject::Resize(uint16_t width, uint16_t height)
 {
-    double scaleX;
-    double scaleY;
-    
     if (uint16_t originalWidth = this->GetOriginalWidth())
     {
-        scaleX = (double) width / originalWidth;
+        this->scaleX = (double) width / originalWidth;
     } else {
         return;
     }
 
     if (uint16_t originalHeight = this->GetOriginalHeight())
     {
-        scaleY = (double) height / originalHeight;
+        this->scaleY = (double) height / originalHeight;
     } else {
         return;
     }
@@ -92,7 +147,36 @@ void SFML_GraphicalGameObject::Resize(uint16_t width, uint16_t height)
     this->SetWidth(width);
     this->SetHeight(height);
     this->sprite->setScale(scaleX, scaleY);
+}
 
+int SFML_GraphicalGameObject::localXPositionToPositionInTexture(int positionX)
+{
+	return this->positionXInTexture + int(positionX * (1 / this->scaleX));
+}
+
+int SFML_GraphicalGameObject::localYPositionToPositionInTexture(int positionY)
+{
+	return this->positionYInTexture + int(positionY * (1 / this->scaleY));
+}
+
+int SFML_GraphicalGameObject::GlobalXPositionToLocalPosition(int positionX)
+{
+	return positionX - this->GetPositionX();
+}
+
+int SFML_GraphicalGameObject::GlobalYPositionToLocalPosition(int positionY)
+{
+	return positionY - this->GetPositionY();
+}
+
+int SFML_GraphicalGameObject::GlobalXPositionToPositionInTexture(int positionX)
+{
+	return this->localXPositionToPositionInTexture(this->GlobalXPositionToLocalPosition(positionX));
+}
+
+int SFML_GraphicalGameObject::GlobalYPositionToPositionInTexture(int positionY)
+{
+	return this->localYPositionToPositionInTexture(this->GlobalYPositionToLocalPosition(positionY));
 }
 
 
@@ -118,4 +202,49 @@ void SFML_GraphicalGameObject::ChangeTextureRectangle(
 sf::Sprite * SFML_GraphicalGameObject::GetSpriteAddress()
 {
     return this->sprite;
+}
+
+sf::Image * SFML_GraphicalGameObject::GetTextureAddress()
+{
+	return this->textureImage;
+}
+
+
+bool SFML_GraphicalGameObject::CheckPxCollision(SFML_GraphicalGameObject * graphicalGameObject, int alphaChanelMinValue)
+{
+	sf::IntRect intersection;
+	sf::Image *secondObjectTexture=nullptr; 
+
+	if (this->CheckSpriteColision(graphicalGameObject, &intersection)) {
+		secondObjectTexture = graphicalGameObject->GetTextureCopy();
+		//For each string in intersection 
+		for (int i = intersection.top; i < intersection.top + intersection.height; i++) {
+			//For each column in intersection 
+			for (int j = intersection.left; j < intersection.left + intersection.width; j += 1) {
+
+				//If in this sprite alpha chanel is greater or equal min value 
+				//(that means there is an object part)
+				if (this->textureImage->getPixel(this->GlobalXPositionToPositionInTexture(j), 
+					this->GlobalYPositionToPositionInTexture(i)).a >= alphaChanelMinValue) {
+
+					//If in sprite of second object alpha chanel is greater or equal min value 
+					//(that means there is an object part)
+					if (secondObjectTexture->getPixel(graphicalGameObject->GlobalXPositionToPositionInTexture(j),
+						graphicalGameObject->GlobalYPositionToPositionInTexture(i)).a >= alphaChanelMinValue) {
+						
+						//It's a collision
+						delete secondObjectTexture;
+						return true;
+					}
+				}
+			}
+		}
+		if (secondObjectTexture != nullptr) {
+			delete secondObjectTexture;
+		}
+		return false;
+	}
+	else {
+		return false;
+	}
 }
