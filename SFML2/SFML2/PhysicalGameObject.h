@@ -1,6 +1,6 @@
 /*!
 * \file
-* \brief Header file, which store declaration SFML_PhysicalGameObject class.
+* \brief Header file, which store declaration PhysicalGameObject class.
 */
 #ifndef __PHYSICAL_GAME_OBJECT__
 #define __PHYSICAL_GAME_OBJECT__
@@ -21,16 +21,16 @@ class PhysicalGameObject :
 	public SFML_GraphicalGameObject
 {
 private:
-	float Vx;	//Horizontal speed projection
-	float Vy;	//Vertical speed projection
+	float Vx;	//!<Horizontal speed projection
+	float Vy;	//!<Vertical speed projection
 
-	float globalPosX;	//X position in float coordinates
-	float globalPosY;	//Y position in float coordinates
+	float globalPosX;	//!<X position in float coordinates
+	float globalPosY;	//!<Y position in float coordinates
 
-	int boundXMin;	//Minimal X coordinate
-	int boundXMax;	//Maximum X coordinate
-	int boundYMin;	//Minimum Y coordinate
-	int boundYMax;	//Maximum Y cordinate
+	int boundXMin;	//!<Minimal X coordinate
+	int boundXMax;	//!<Maximum X coordinate
+	int boundYMin;	//!<Minimum Y coordinate
+	int boundYMax;	//!<Maximum Y cordinate
 
 public:
 	/*!
