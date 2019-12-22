@@ -16,7 +16,7 @@ private:
 	int score;
 
 public:
-	SFML_ScoreCounterObject(int positionX, int positionY, sf::Font* font, int fontSize, std::string text);
+	SFML_ScoreCounterObject(int positionX, int positionY, sf::Font* font, int fontSize);
 
 	void AddWithTime(float deltaTime);
 	void AddWithNumber(int score);
