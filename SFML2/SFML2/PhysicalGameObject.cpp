@@ -83,7 +83,7 @@ int PhysicalGameObject::GetBoundYMax()
 	return this->boundYMax;
 }
 
-void PhysicalGameObject::Move(float deltaT)
+void PhysicalGameObject::LinearMove(float deltaT)
 {
 	this->globalPosX += Vx * deltaT;
 	this->globalPosY += Vy * deltaT;

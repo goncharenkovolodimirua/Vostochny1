@@ -26,7 +26,7 @@ public:
 		int boundXMin,	int boundXMax, int boundYMin, int boundYMax);
 	virtual ~PhysicalGameObject();
 
-	void Move(float deltaT);
+	void LinearMove(float deltaT);
 	bool IsInBounds();
 
 	void SetVx(float Vx);
@@ -46,10 +46,13 @@ public:
 	int GetBoundYMax();
 
 	
+	
+	virtual void CheckColisionsWithBullets(std::list<PhysicalGameObject*>* bulletsList) = 0;
 
-	virtual void CheckColisionsWithBullets(std::list<PhysicalGameObject*>* bulletsList)=0;
 	virtual bool CheckAlive(float time)=0;
 
 	virtual bool CheckCollisionsWithMetheors(std::list<PhysicalGameObject*>* meteors)=0;
+
+	virtual void Move(float deltaT) = 0;
 };
 #endif
