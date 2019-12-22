@@ -6,6 +6,8 @@
 #define __PHYSICAL_GAME_OBJECT__
 #include "SFML_GraphicalGameObject.h"
 
+#include "CollisionTypes.h"
+
 #include <list>
 
 /*!
@@ -189,7 +191,7 @@ public:
 	*	
 	* \return Logical value is there a collisions (true) or not (false) 
 	*/
-	virtual bool CheckCollisionWithList(std::list<PhysicalGameObject*>* physicalGameObjectList, int typeOfObjects) = 0;
+	virtual bool CheckCollisionWithList(std::list<PhysicalGameObject*>* physicalGameObjectList, CollisionTypes typeOfObjects) = 0;
 
 	/*!
 	* Check is an object in alive statement

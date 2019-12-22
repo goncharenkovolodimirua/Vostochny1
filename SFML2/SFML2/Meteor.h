@@ -132,7 +132,9 @@ public:
 	virtual bool CheckAlive(float time);
 
 	/*!
-	* Check collisions with array of PhysicalGameObjects. Always return false.
+	* Check collisions with array of PhysicalGameObjects. 
+	* 
+	* \warning In this version always returns false.
 	*
 	* \param[in] bulletsList Reference to list, which store references to meteors
 	* \return Logical value, was there a collision (true) or not (false)
