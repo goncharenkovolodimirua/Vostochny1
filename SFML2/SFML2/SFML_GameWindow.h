@@ -24,6 +24,7 @@
 #include "GameButton.h"
 #include "CollisionTypes.h"
 #include "GameStatements.h"
+#include "SFML_ScoreCounterObject.h"
 class SFML_GameWindow
 {
 private:
@@ -53,6 +54,7 @@ private:
 	sf::Image shipTexture;
 	sf::Image backgroundImage;
 	sf::Image blackBackgroundImage;
+	sf::Image bulletsTexture;
 	sf::Font font;
 
 	sf::Event event;
@@ -61,21 +63,37 @@ private:
 	PlayerShip* ship;
 	Background* background;
 	Background* blackBackground;
+
 	SFML_TextGameObject* gameName;
+	SFML_TextGameObject* looseScore;
 
 	GameButton* startButton;
+	GameButton* restartButton;
+	GameButton* resumeButton;
+	GameButton* mainMenuButton;
+	GameButton* exitButton;
+
+	SFML_ScoreCounterObject* score;
 
 
 	void GenerateMeteors(float deltaTime);
 	void CheckMeteorsWithBullets(float deltaTime);
 	void CheckBulletsWithScreen(float deltaTime);
-	void ClearLabels();
+	void ClearLists();
 
 	void GameFrame(float deltaTime);
 
 	void Control(float deltaTime);
 
 	void UploadTime();
+
+	void InitializeButtons();
+
+	void InitializeImages();
+
+	void InitializePlayerShip();
+
+	void InitializeTexts();
 
 public:
 	SFML_GameWindow(int windowWidth, int windowHeight, std::string windowName);

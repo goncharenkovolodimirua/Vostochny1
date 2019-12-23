@@ -126,6 +126,8 @@ void SFML_TextGameObject::SetText(std::string text)
 {
 	this->text = text;
 	this->SFMLText->setString(text);
+	this->SetHeight(this->SFMLText->getGlobalBounds().height);
+	this->SetWidth(this->SFMLText->getGlobalBounds().width);
 }
 
 void SFML_TextGameObject::SetTextPosition(int positionX, int positionY)
