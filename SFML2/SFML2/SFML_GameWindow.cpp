@@ -250,6 +250,11 @@ void SFML_GameWindow::InitializeButtons()
 	int ButtonPositionY;
 
 	this->font.loadFromFile(FONT_NAME);
+	
+	this->backgroundMusic = new sf::Music();
+	this->backgroundMusic->openFromFile(BACKGROUND_SOUNDNAME);
+	this->backgroundMusic->setLoop(true);
+	this->backgroundMusic->play();
 
 	ButtonFontSize = int(this->windowHeight / 8);
 	this->startButton = new GameButton(500, 500, &this->font, ButtonFontSize, "START", ButtonFontSize / 7, ButtonFontSize / 7);
@@ -446,4 +451,7 @@ SFML_GameWindow::~SFML_GameWindow()
 	}
 
 	this->ClearLists();
+	if (this->backgroundMusic != nullptr) {
+		delete this->backgroundMusic;
+	}
 }
