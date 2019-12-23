@@ -1,0 +1,11 @@
+#ifndef GAME_STATEMENTS
+#define GAME_STATEMENTS
+enum GameStatements
+{
+	NOT_STARTED,
+	STARTED,
+	PAUSED,
+	LOOSED,
+};
+#endif // !GAME_STATEMENTS
+
