@@ -5,6 +5,7 @@
 #define FPS_TIME 800
 #define FONT_NAME "F.ttf"
 #define GAME_NAME "VOSTOCHNY"
+#define ESC_PRESS_TIME 300000
 
 #pragma warning(disable : 4996)
 
@@ -22,6 +23,7 @@
 #include "SFML_TextGameObject.h"
 #include "GameButton.h"
 #include "CollisionTypes.h"
+#include "GameStatements.h"
 class SFML_GameWindow
 {
 private:
@@ -39,14 +41,18 @@ private:
 	
 
 	float deltaTime;
+	float escPressedTime;
 
 	bool started;
+	GameStatements statement;
+	GameStatements lastStatement;
 	float timeBetweenGen = TIME_BETW_GEN;
 
 
 	sf::Image meteorTexture;
 	sf::Image shipTexture;
 	sf::Image backgroundImage;
+	sf::Image blackBackgroundImage;
 	sf::Font font;
 
 	sf::Event event;
@@ -54,14 +60,22 @@ private:
 
 	PlayerShip* ship;
 	Background* background;
+	Background* blackBackground;
 	SFML_TextGameObject* gameName;
+
 	GameButton* startButton;
 
 
-	void GenerateMeteors();
-	void CheckMeteorsWithBullets();
-	void CheckBulletsWithScreen();
+	void GenerateMeteors(float deltaTime);
+	void CheckMeteorsWithBullets(float deltaTime);
+	void CheckBulletsWithScreen(float deltaTime);
 	void ClearLabels();
+
+	void GameFrame(float deltaTime);
+
+	void Control(float deltaTime);
+
+	void UploadTime();
 
 public:
 	SFML_GameWindow(int windowWidth, int windowHeight, std::string windowName);
