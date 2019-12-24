@@ -42,13 +42,13 @@ private:
 	/*!
 	* Field to store metheor health.
 	*/
-	int health;
+	std::int16_t health;
 
 	/*!
 	* Field to store time intrval, when meteor is steal alive after become 0 health.
 	* Used to display explosion texture.
 	*/
-	int relifeTime;
+	std::int16_t relifeTime;
 
 	/*!
 	* Field to store information was meteor destructed.
@@ -77,21 +77,21 @@ public:
 	* \param[in] mass Mass of metheor in points
 	* \param[in] meteors Reference to list of references on meteors
 	*/
-	Meteor(int positionX, 
-		int positionY, 
-		int width,
-		int height, 
+	Meteor(std::int16_t positionX,
+		std::int16_t positionY,
+		std::uint16_t width,
+		std::uint16_t height,
 		sf::Image* textureImage, 
-		int positionXinTexture, 
-		int positionYInTexture,
-		int widthInTexture, 
-		int heightInTexture, 
+		std::int16_t positionXinTexture,
+		std::int16_t positionYInTexture,
+		std::int16_t widthInTexture,
+		std::int16_t heightInTexture,
 		float Vx, 
 		float Vy,
-		int boundXMin, 
-		int boundXMax, 
-		int boundYMin, 
-		int boundYMax, 
+		std::int16_t boundXMin,
+		std::int16_t boundXMax,
+		std::int16_t boundYMin,
+		std::int16_t boundYMax,
 		float mass, 
 		std::list<PhysicalGameObject*>* meteors);
 
@@ -104,19 +104,19 @@ public:
 	* Set mass value into mass field
 	* \param[in] mass Mass of metheor to set in points
 	*/
-	void SetMass(float mass);
+	virtual void SetMass(float mass);
 
 	/*!
 	* Set health value into health field
 	* \param[in] mass Health of metheor to set in points
 	*/
-	void SetHealth(int health);
+	virtual void SetHealth(std::int16_t health);
 
 	/*!
 	* Get mass value from mass field
 	* \return Mass of metheor in points
 	*/
-	float GetMass();
+	virtual float GetMass();
 
 	/*!
 	* Get health value from health field
@@ -169,7 +169,6 @@ public:
 	*
 	*/
 	virtual void GenerateMeteors();
-
 };
 #endif
 
