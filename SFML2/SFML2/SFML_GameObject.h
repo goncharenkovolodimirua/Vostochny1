@@ -14,35 +14,28 @@
 *
 *	Class holds only geometrical parameters.
 *	
-*	int16_t positionX;
-*	int16_t positionY;
-*	uint16_t width;
-*	uint16_t height;
-*	uint16_t originalWidth;
-*	uint16_t originalHeight;
-*	
 */
 
 class SFML_GameObject
 {
 private:
-	int16_t positionX; //! Variable to store X position
-	int16_t positionY; //! Variable to store Y position
-	uint16_t width; //! Variable to store Width with some scale
-	uint16_t height;//! Variable to store Height with some scale
-	uint16_t originalWidth;//! Variable to store Width with scalse=1
-	uint16_t originalHeight;//! Variable to store Height with scalse=1
+	int16_t positionX; //!< Variable to store X position
+	int16_t positionY; //!< Variable to store Y position
+	uint16_t width; //!< Variable to store Width with some scale
+	uint16_t height;//!< Variable to store Height with some scale
+	uint16_t originalWidth;//!<Variable to store Width with scalse=1
+	uint16_t originalHeight;//!<Variable to store Height with scalse=1
 
 
 protected:
 	/*!
-	* Set parameter positinX
+	* Set parameter positionX
 	* \param[in] positionX Position X to set in parameter
 	*/
 	void SetPositionX(int16_t positionX);
 
 	/*!
-	* Set parameter positinY
+	* Set parameter positionY
 	* \param[in] positionY Position Y to set in parameter
 	*/
 	void SetPositionY(int16_t positionY);
