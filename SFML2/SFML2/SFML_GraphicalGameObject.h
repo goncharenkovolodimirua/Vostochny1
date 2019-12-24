@@ -139,7 +139,7 @@ public:
 	*
 	* \return Color of an image pixel as sf::Color
 	*/
-	virtual sf::Color GetPxColorLocal(int16_t positionX, int16_t positionY);
+	virtual sf::Color GetPxColorLocal(std::int16_t positionX, std::int16_t positionY);
 	/*!
 	* Get color of a pixel by its global coordinates
 	*
@@ -152,7 +152,7 @@ public:
 	*
 	* \return Color of an image pixel as sf::Color
 	*/
-	virtual sf::Color GetPxColorGlobal(int16_t positionX, int16_t positionY);
+	virtual sf::Color GetPxColorGlobal(std::int16_t positionX, std::int16_t positionY);
 
 
 	/*!
@@ -167,7 +167,7 @@ public:
 	*
 	* \return Logical value is there a collision (true), or not (false)
 	*/
-	virtual bool CheckPxCollision(SFML_GraphicalGameObject* graphicalGameObject, int16_t alphaChanelMinValue);
+	virtual bool CheckPxCollision(SFML_GraphicalGameObject* graphicalGameObject, std::int16_t alphaChanelMinValue);
 
 
 	/*!
@@ -212,7 +212,7 @@ public:
 	* \return Appropriate position in texture
 	*
 	*/
-	virtual int16_t localXPositionToPositionInTexture(int16_t positionX);
+	virtual std::int16_t localXPositionToPositionInTexture(std::int16_t positionX);
 	/*!
 	* Convert vertical position in sprite in vertical position in texture
 	*
@@ -223,7 +223,7 @@ public:
 	* \return Appropriate position in texture
 	*
 	*/
-	virtual int16_t localYPositionToPositionInTexture(int16_t positionY);
+	virtual std::int16_t localYPositionToPositionInTexture(std::int16_t positionY);
 
 
 	/*!
@@ -234,7 +234,7 @@ public:
 	* \return Appropriate position in sprite
 	*
 	*/
-	virtual int16_t GlobalXPositionToLocalPosition(int16_t positionX);
+	virtual std::int16_t GlobalXPositionToLocalPosition(std::int16_t positionX);
 	/*!
 	* Convert vertical position in window in vertical position in sprite
 	*
@@ -243,7 +243,7 @@ public:
 	* \return Appropriate position in sprite
 	*
 	*/
-	virtual int16_t GlobalYPositionToLocalPosition(int16_t positionY);
+	virtual std::int16_t GlobalYPositionToLocalPosition(std::int16_t positionY);
 
 	/*!
 	* Convert horizontal position in window in horizontal position in texture
@@ -253,7 +253,7 @@ public:
 	* \return Appropriate position in texture
 	*
 	*/
-	virtual int16_t GlobalXPositionToPositionInTexture(int16_t positionX);
+	virtual std::int16_t GlobalXPositionToPositionInTexture(std::int16_t positionX);
 	/*!
 	* Convert vertical position in window in vertical position in texture
 	*
@@ -262,7 +262,7 @@ public:
 	* \return Appropriate position in texture
 	*
 	*/
-	virtual int16_t GlobalYPositionToPositionInTexture(int16_t positionY);
+	virtual std::int16_t GlobalYPositionToPositionInTexture(std::int16_t positionY);
 };
 #endif
 

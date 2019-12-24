@@ -182,8 +182,8 @@ std::int16_t SFML_GraphicalGameObject::GlobalYPositionToPositionInTexture(std::i
 void SFML_GraphicalGameObject::ChangeTextureRectangle(
 	std::int16_t positionXInTexture,
 	std::int16_t positionYInTexture,
-    int16_t widthInTexture,
-    int16_t heightInTexture
+	std::int16_t widthInTexture,
+	std::int16_t heightInTexture
 )
 {
     this->positionXInTexture = positionXInTexture;

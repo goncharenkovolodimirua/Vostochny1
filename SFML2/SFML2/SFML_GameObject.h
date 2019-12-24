@@ -56,25 +56,25 @@ protected:
 	* Set parameter originalWidth
 	* \param[in] originalWidth Width in px with scale 0 to set in parameter
 	*/
-	void SetOriginalWidth(std::uint16_t originalWidth);
+	void SetOriginalWidth(std::int16_t originalWidth);
 
 	/*!
 	* Set parameter originalHeight
 	* \param[in] originalHeight Height in px with scale 0 to set in parameter
 	*/
-	void SetOriginalHeight(std::uint16_t originalHeight);
+	void SetOriginalHeight(std::int16_t originalHeight);
 
 	/*!
 	* Get parameter originalWidth
 	* \return Width in px with scale 0, that is value of parameter originalWidth
 	*/
-	std::uint16_t GetOriginalWidth();
+	std::int16_t GetOriginalWidth();
 
 	/*!
 	* Get parameter originalHeight
 	* \return Height in px with scale 0, that is value of parameter originalHeight
 	*/
-	std::uint16_t GetOriginalHeight();
+	std::int16_t GetOriginalHeight();
 
 
 public:

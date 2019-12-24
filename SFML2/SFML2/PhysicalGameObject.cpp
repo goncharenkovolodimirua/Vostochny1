@@ -2,21 +2,21 @@
 #include "PhysicalGameObject.h"
 
 PhysicalGameObject::PhysicalGameObject(
-	int16_t positionX,
-	int16_t positionY,
-	uint16_t width,
-	uint16_t height,
+	std::int16_t positionX,
+	std::int16_t positionY,
+	std::uint16_t width,
+	std::uint16_t height,
 	sf::Image * textureImage, 
-	int16_t positionXinTexture,
-	int16_t positionYInTexture,
-	uint16_t widthInTexture,
-	uint16_t heightInTexture,
+	std::int16_t positionXinTexture,
+	std::int16_t positionYInTexture,
+	std::uint16_t widthInTexture,
+	std::uint16_t heightInTexture,
 	float Vx, 
 	float Vy, 
-	int16_t boundXMin,
-	int16_t boundXMax,
-	int16_t boundYMin,
-	int16_t boundYMax):SFML_GraphicalGameObject(positionX, positionY,
+	std::int16_t boundXMin,
+	std::int16_t boundXMax,
+	std::int16_t boundYMin,
+	std::int16_t boundYMax):SFML_GraphicalGameObject(positionX, positionY,
 		width, height, textureImage, positionXinTexture,
 		positionYInTexture, widthInTexture, heightInTexture)
 {
@@ -54,42 +54,42 @@ float PhysicalGameObject::GetVy()
 	return this->Vy;
 }
 
-void PhysicalGameObject::SetBoundXMin(int16_t boundXMin)
+void PhysicalGameObject::SetBoundXMin(std::int16_t boundXMin)
 {
 	this->boundXMin = boundXMin;
 }
 
-void PhysicalGameObject::SetBoundXMax(int16_t boundXMax)
+void PhysicalGameObject::SetBoundXMax(std::int16_t boundXMax)
 {
 	this->boundXMax = boundXMax;
 }
 
-void PhysicalGameObject::SetboundYMin(int16_t boundYMin)
+void PhysicalGameObject::SetboundYMin(std::int16_t boundYMin)
 {
 	this->boundYMin = boundYMin;
 }
 
-void PhysicalGameObject::SetBoundYMax(int16_t boundYMax)
+void PhysicalGameObject::SetBoundYMax(std::int16_t boundYMax)
 {
 	this->boundYMax = boundYMax;
 }
 
-int16_t PhysicalGameObject::GetBoundXMin()
+std::int16_t PhysicalGameObject::GetBoundXMin()
 {
 	return this->boundXMin;
 }
 
-int16_t PhysicalGameObject::GetBoundXMax()
+std::int16_t PhysicalGameObject::GetBoundXMax()
 {
 	return this->boundXMax;
 }
 
-int16_t PhysicalGameObject::GetBoundYMin()
+std::int16_t PhysicalGameObject::GetBoundYMin()
 {
 	return this->boundYMin;
 }
 
-int16_t PhysicalGameObject::GetBoundYMax()
+std::int16_t PhysicalGameObject::GetBoundYMax()
 {
 	return this->boundYMax;
 }
@@ -98,7 +98,7 @@ void PhysicalGameObject::LinearMove(float deltaT)
 {
 	this->globalPosX += Vx * deltaT;
 	this->globalPosY += Vy * deltaT;
-	this->SetPosition(static_cast<int16_t>(this->globalPosX), static_cast<int16_t>(this->globalPosY));
+	this->SetPosition(static_cast<std::int16_t>(this->globalPosX), static_cast<std::int16_t>(this->globalPosY));
 }
 
 bool PhysicalGameObject::IsInBounds()

@@ -28,10 +28,10 @@ private:
 	float globalPosX;	//!<X position in float coordinates
 	float globalPosY;	//!<Y position in float coordinates
 	
-	int16_t boundXMin;	//!<Minimal X coordinate
-	int16_t boundXMax;	//!<Maximum X coordinate
-	int16_t boundYMin;	//!<Minimum Y coordinate
-	int16_t boundYMax;	//!<Maximum Y cordinate
+	std::int16_t boundXMin;	//!<Minimal X coordinate
+	std::int16_t boundXMax;	//!<Maximum X coordinate
+	std::int16_t boundYMin;	//!<Minimum Y coordinate
+	std::int16_t boundYMax;	//!<Maximum Y cordinate
 
 public:
 	/*!
@@ -53,21 +53,21 @@ public:
 	* \param[in] boundYMax Maximal Y position in px
 	*/
 	PhysicalGameObject(
-		int16_t positionX,
-		int16_t positionY,
-		uint16_t width,
-		uint16_t height,
+		std::int16_t positionX,
+		std::int16_t positionY,
+		std::uint16_t width,
+		std::uint16_t height,
 		sf::Image* textureImage, 
-		int16_t positionXinTexture,
-		int16_t positionYInTexture,
-		uint16_t widthInTexture,
-		uint16_t heightInTexture,
+		std::int16_t positionXinTexture,
+		std::int16_t positionYInTexture,
+		std::uint16_t widthInTexture,
+		std::uint16_t heightInTexture,
 		float Vx, 
 		float Vy,
-		int16_t boundXMin,
-		int16_t boundXMax,
-		int16_t boundYMin,
-		int16_t boundYMax);
+		std::int16_t boundXMin,
+		std::int16_t boundXMax,
+		std::int16_t boundYMin,
+		std::int16_t boundYMax);
 
 	/*!
 	* Destructor
@@ -129,28 +129,28 @@ public:
 	*
 	* \param[in] boundXMin Minimal x value of bounds rectangle to set into boundXMin field
 	*/
-	void SetBoundXMin(int16_t boundXMin);
+	void SetBoundXMin(std::int16_t boundXMin);
 
 	/*!
 	* Set maximal x value of bounds rectangle
 	*
 	* \param[in] boundXMax MAximal x value of bounds rectangle to set into boundXMax field
 	*/
-	void SetBoundXMax(int16_t boundXMax);
+	void SetBoundXMax(std::int16_t boundXMax);
 
 	/*!
 	* Set minimal y value of bounds rectangle
 	*
 	* \param[in] boundYMin Minimal y value of bounds rectangle to set into boundYMin field
 	*/
-	void SetboundYMin(int16_t boundYMin);
+	void SetboundYMin(std::int16_t boundYMin);
 
 	/*!
 	* Set maximal y value of bounds rectangle
 	*
 	* \param[in] boundYMax Maximal y value of bounds rectangle to set into boundYMax field
 	*/
-	void SetBoundYMax(int16_t boundYMax);
+	void SetBoundYMax(std::int16_t boundYMax);
 
 
 	/*!
@@ -158,28 +158,28 @@ public:
 	*
 	* \return Minimal x value of bounds rectangle, stored in boundXMin field
 	*/
-	int16_t GetBoundXMin();
+	std::int16_t GetBoundXMin();
 
 	/*!
 	* Get maximal x value of bounds rectangle
 	*
 	* \return Maximal x value of bounds rectangle, stored in boundXMax field
 	*/
-	int16_t GetBoundXMax();
+	std::int16_t GetBoundXMax();
 
 	/*!
 	* Get minimal y value of bounds rectangle
 	*
 	* \return Minimal y value of bounds rectangle, stored in boundYMin field
 	*/
-	int16_t GetBoundYMin();
+	std::int16_t GetBoundYMin();
 
 	/*!
 	* Get maximal y value of bounds rectangle
 	*
 	* \return Maximal y value of bounds rectangle, stored in boundYMax field
 	*/
-	int16_t GetBoundYMax();
+	std::int16_t GetBoundYMax();
 
 	/*!
 	* Check collision with every PhysicalGameObject in the list

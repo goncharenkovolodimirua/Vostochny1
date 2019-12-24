@@ -66,7 +66,7 @@ bool Meteor::CheckColisionsWithBullets(std::list<PhysicalGameObject*> *bulletsLi
 			if ((*k)->CheckSpriteColision(this)) {
 				delete (*k);
 				k=bulletsList->erase(k);
-				this->health = this->health - (int(METEOR_NORMAL_MASS / this->mass*(METEOR_INITIAL_NORMAL_HEALTH / 2)));
+				this->health = this->health - (static_cast<std::int16_t>(METEOR_NORMAL_MASS / this->mass*(METEOR_INITIAL_NORMAL_HEALTH / 2)));
 				collision = true;
 			}
 			else {
@@ -175,7 +175,7 @@ void Meteor::GenerateMeteors()
   	for (int i = 0; i < quantity; i++)
 	{
 		
-		localMeteorWidth = int((this->GetWidth() / quantity) + rand() % (5 * (this->GetWidth() / 100)));
+		localMeteorWidth = static_cast<std::int16_t>((this->GetWidth() / quantity) + rand() % (5 * (this->GetWidth() / 100)));
 		localMeteorVx = -0.5 + (0.01 * (rand() % 101));
 		localMeteorVy = -0.5 + (0.01 * (rand() % 101));
 

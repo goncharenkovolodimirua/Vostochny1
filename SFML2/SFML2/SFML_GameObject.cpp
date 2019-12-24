@@ -22,42 +22,42 @@ void SFML_GameObject::SetHeight(std::uint16_t height)
 	this->height = height;
 }
 
-void SFML_GameObject::SetOriginalWidth(std::uint16_t originalWidth)
+void SFML_GameObject::SetOriginalWidth(std::int16_t originalWidth)
 {
 	this->originalWidth = originalWidth;
 }
 
-void SFML_GameObject::SetOriginalHeight(std::uint16_t originalHeight)
+void SFML_GameObject::SetOriginalHeight(std::int16_t originalHeight)
 {
 	this->originalHeight = originalHeight;
 }
 
-uint16_t SFML_GameObject::GetOriginalWidth()
+std::int16_t SFML_GameObject::GetOriginalWidth()
 {
 	return this->originalWidth;
 }
 
-uint16_t SFML_GameObject::GetOriginalHeight()
+std::int16_t SFML_GameObject::GetOriginalHeight()
 {
 	return this->originalHeight;
 }
 
-int16_t SFML_GameObject::GetPositionX()
+std::int16_t SFML_GameObject::GetPositionX()
 {
 	return this->positionX;
 }
 
-int16_t SFML_GameObject::GetPositionY()
+std::int16_t SFML_GameObject::GetPositionY()
 {
 	return this->positionY;
 }
 
-uint16_t SFML_GameObject::GetWidth()
+std::uint16_t SFML_GameObject::GetWidth()
 {
 	return this->width;
 }
 
-uint16_t SFML_GameObject::GetHeight()
+std::uint16_t SFML_GameObject::GetHeight()
 {
 	return this->height;
 }
