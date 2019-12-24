@@ -8,9 +8,14 @@
 #define METEOR_INITIAL_NORMAL_HEALTH 100 //!< Initial health of meteor
 #define METEOR_NORMAL_MASS 100 //!< Normal mass of meteor
 #define METEOR_RELIFE_TIME 200 //!< Time interval when meteor is stel alive with 0 health
+#define CRASHED_SIZE (this->GetBoundXMax()*0.125) //!< Minimal size of meteor to create new after destruction
+
+#include <cstdlib>
+#include <ctime>
 
 #include "PhysicalGameObject.h"
 #include "CollisionTypes.h"
+
 
 #include <list>
 
@@ -44,6 +49,12 @@ private:
 	* Used to display explosion texture.
 	*/
 	int relifeTime;
+
+	/*!
+	* Field to store information was meteor destructed.
+	* Used to call creation of metheros only once.
+	*/
+	bool distructed;
 	
 public:
 	/*!
@@ -149,6 +160,15 @@ public:
 	*/
 	virtual void Move(float deltaT);
 	virtual bool CheckCollisionWithList(std::list<PhysicalGameObject*>* physicalGameObjectList, CollisionTypes typeOfCollision);
+
+	/*!
+	* Generate metheors after meteor destruction.
+	*
+	* If metheor have enough size generates from to to 6 metheors
+	* after meteor destruction.
+	*
+	*/
+	virtual void GenerateMeteors();
 
 };
 #endif
