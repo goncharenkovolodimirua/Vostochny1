@@ -16,6 +16,7 @@ Meteor::Meteor(int positionX, int positionY, int width,
 	this->health = METEOR_INITIAL_NORMAL_HEALTH;
 	this->meteors = meteors;
 	this->relifeTime = METEOR_RELIFE_TIME;
+	this->distructed = false;
 }
 
 Meteor::~Meteor()
@@ -63,8 +64,13 @@ bool Meteor::CheckColisionsWithBullets(std::list<PhysicalGameObject*> *bulletsLi
 			++k;
 		}
 	}
-	if (this->health <= 0) {
+	if ((this->health <= 0) and (!this->distructed)) {
+		this->distructed = true;
 		this->ChangeTextureRectangle(this->GetOriginalWidth(), 0, this->GetOriginalWidth(), this->GetOriginalHeight());
+		if (this->GetWidth() >= CRASHED_SIZE) {
+			this->GenerateMeteors();
+		}
+		
 	}
 	return collision;
 }
@@ -132,4 +138,45 @@ bool Meteor::CheckCollisionWithList(std::list<PhysicalGameObject*>* physicalGame
 		break;
 	}
 	
+}
+
+void Meteor::GenerateMeteors()
+{
+	Meteor* dinamicMeteor = nullptr;
+
+	int localMeteorPositionX;
+	int localMeteorPositionY;
+	int localMeteorWidth;
+	float localMeteorVx;
+	float localMeteorVy;
+	float localMeteorMass;
+
+	int quantity;
+
+	srand(time(NULL));
+
+	quantity = 2 + rand() % 4;
+	
+	localMeteorPositionX = this->GetPositionX();
+	localMeteorPositionY = this->GetPositionY();
+	localMeteorMass = this->GetMass() / 3;
+
+
+  	for (int i = 0; i < quantity; i++)
+	{
+		
+		localMeteorWidth = int((this->GetWidth() / quantity) + rand() % (5 * (this->GetWidth() / 100)));
+		localMeteorVx = -0.5 + (0.01 * (rand() % 101));
+		localMeteorVy = -0.5 + (0.01 * (rand() % 101));
+
+		dinamicMeteor = new Meteor(localMeteorPositionX, localMeteorPositionY,
+			localMeteorWidth, localMeteorWidth, this->GetTextureAddress(), 0, 0,
+			int(this->GetTextureAddress()->getSize().x / 2), int(this->GetTextureAddress()->getSize().y),
+			localMeteorVx, localMeteorVy, this->GetBoundXMin(), this->GetBoundXMax(), this->GetBoundYMin(),
+			this->GetBoundYMax(), localMeteorMass, this->meteors);
+
+		this->meteors->push_back(dinamicMeteor);
+
+		dinamicMeteor = nullptr;
+	}
 }
