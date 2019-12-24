@@ -1,34 +1,33 @@
 #include "pch.h"
 #include "SFML_GameObject.h"
 
-#include <iostream>
 
-void SFML_GameObject::SetPositionX(int16_t positionX)
+void SFML_GameObject::SetPositionX(std::int16_t positionX)
 {
 	this->positionX = positionX;
 }
 
-void SFML_GameObject::SetPositionY(int16_t positionY)
+void SFML_GameObject::SetPositionY(std::int16_t positionY)
 {
 	this->positionY = positionY;
 }
 
-void SFML_GameObject::SetWidth(uint16_t width)
+void SFML_GameObject::SetWidth(std::uint16_t width)
 {
 	this->width = width;
 }
 
-void SFML_GameObject::SetHeight(uint16_t height)
+void SFML_GameObject::SetHeight(std::uint16_t height)
 {
 	this->height = height;
 }
 
-void SFML_GameObject::SetOriginalWidth(uint16_t originalWidth)
+void SFML_GameObject::SetOriginalWidth(std::uint16_t originalWidth)
 {
 	this->originalWidth = originalWidth;
 }
 
-void SFML_GameObject::SetOriginalHeight(uint16_t originalHeight)
+void SFML_GameObject::SetOriginalHeight(std::uint16_t originalHeight)
 {
 	this->originalHeight = originalHeight;
 }
@@ -79,7 +78,8 @@ bool SFML_GameObject::CheckSpriteColision(SFML_GameObject * gameObject, sf::IntR
 	return this->GetSpriteIntRect().intersects(gameObject->GetSpriteIntRect(), *intersection);
 }
 
-SFML_GameObject::SFML_GameObject(int16_t positionX, int16_t positionY, uint16_t width, uint16_t height)
+SFML_GameObject::SFML_GameObject(std::int16_t positionX, std::int16_t positionY,
+	std::uint16_t width, std::uint16_t height)
 {
 	this->positionX = positionX;
 	this->positionY = positionY;
@@ -89,7 +89,7 @@ SFML_GameObject::SFML_GameObject(int16_t positionX, int16_t positionY, uint16_t 
 	this->originalHeight = 0;
 }
 
-SFML_GameObject::SFML_GameObject(int16_t positionX, int16_t positionY)
+SFML_GameObject::SFML_GameObject(std::int16_t positionX, std::int16_t positionY)
 {
 	this->positionX = positionX;
 	this->positionY = positionY;
