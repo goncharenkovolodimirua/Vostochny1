@@ -7,33 +7,32 @@ void PlayerShip::Shoot()
 {
 	if (this->bulletTexture != nullptr) {
 		int positionX = this->GetPositionX() + int(this->GetWidth() / 2)-int(this->bulletWidth/2);
-		int positionY = this->GetPositionY() + 1+this->bulletHeight;
+		int positionY = this->GetPositionY() + 1 + this->bulletHeight;
 		Bullet* bullet = new Bullet(positionX, positionY, this->bulletWidth, this->bulletHeight, this->bulletTexture, 0, 0, 
 			this->bulletTexture->getSize().x, this->bulletTexture->getSize().y, 0, BULLET_SPEED, this->bulletBoundXMin,
 			this->bulletBoundXMax, this->bulletBoundYMin, this->bulletBoundYMax, BULLET_COST, this);
 		this->bulletsList->push_back(bullet);
 	}
-	
 }
 
 PlayerShip::PlayerShip(
-    int posX,
-    int posY,
-    int width,
-    int height,
+	int16_t positionX,
+	int16_t positionY,
+	uint16_t width,
+	uint16_t height,
     sf::Image* textureImage,
-    int positionXinTexture,
-    int positionYInTexture,
-    int widthInTexture,
-    int heightInTexture,
-    int controlWidthMin,
-    int controlWidthMax,
-    int cotrolHeightMin,
-    int controlHeightMax,
-    std::list<PhysicalGameObject*>* bulletsList
-): SFML_GraphicalGameObject(
-        posX,
-        posY,
+	int16_t positionXinTexture,
+	int16_t positionYInTexture,
+	uint16_t widthInTexture,
+	uint16_t heightInTexture,
+	int16_t controlWidthMin,
+	int16_t controlWidthMax,
+	int16_t cotrolHeightMin,
+	int16_t controlHeightMax,
+    std::list<PhysicalGameObject*>* bulletsList):SFML_GraphicalGameObject
+	(
+        positionX,
+        positionY,
         width,
         height,
         textureImage,
@@ -113,19 +112,16 @@ void PlayerShip::Control(float time) {
 		this->lastSpaceStatement = false;
 	}
 
-
 	this->lastShotTime += time;
 
 	if (this->needToShot > 0) {
 		if (this->lastShotTime >= BULLET_TIMEOUT) {
-
+			
 			this->Shoot();
-
 			this->lastShotTime = 0;
 			this->needToShot -= 1;
 		}
 	}
-	
 }
 
 bool PlayerShip::CheckCollisionsWithMeteors(std::list<PhysicalGameObject*>* meteors)
@@ -142,7 +138,6 @@ bool PlayerShip::CheckCollisionsWithMeteors(std::list<PhysicalGameObject*>* mete
 			++k;
 		}
 	}
-
 	return collision;
 }
 
@@ -151,32 +146,32 @@ void PlayerShip::SetBulletTextureImage(sf::Image * bulletTexture)
 	this->bulletTexture = bulletTexture;
 }
 
-void PlayerShip::SetBulletBoundXMax(int bulletBoundXMax)
+void PlayerShip::SetBulletBoundXMax(int16_t bulletBoundXMax)
 {
 	this->bulletBoundXMax = bulletBoundXMax;
 }
 
-void PlayerShip::SetBulletBoundYMax(int bulletBoundYMax)
+void PlayerShip::SetBulletBoundYMax(int16_t bulletBoundYMax)
 {
 	this->bulletBoundYMax = bulletBoundYMax;
 }
 
-void PlayerShip::SetBulletBoundXMin(int bulletBoundXMin)
+void PlayerShip::SetBulletBoundXMin(int16_t bulletBoundXMin)
 {
 	this->bulletBoundXMin = bulletBoundXMin;
 }
 
-void PlayerShip::SetBulletBoundYMin(int bulletBoundYMin)
+void PlayerShip::SetBulletBoundYMin(int16_t bulletBoundYMin)
 {
 	this->bulletBoundYMin = bulletBoundYMin;
 }
 
-void PlayerShip::SetBulletWidth(int bulletWidth)
+void PlayerShip::SetBulletWidth(uint16_t bulletWidth)
 {
 	this->bulletWidth = bulletWidth;
 }
 
-void PlayerShip::SetBulletHeight(int bulletHeight)
+void PlayerShip::SetBulletHeight(uint16_t bulletHeight)
 {
 	this->bulletHeight = bulletHeight;
 }
