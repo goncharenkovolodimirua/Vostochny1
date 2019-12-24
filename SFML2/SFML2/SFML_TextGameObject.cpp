@@ -100,8 +100,8 @@ void SFML_TextGameObject::Resize(std::uint16_t width, std::uint16_t height) {
 	this->SetOriginalHeight(this->SFMLText->getGlobalBounds().height);
 
 	if ((width > 0)&(height > 0)) {
-		scaleX = (float)width / this->GetOriginalWidth();
-		scaleY = (float)height / this->GetOriginalHeight();
+		scaleX = static_cast<float>(width / this->GetOriginalWidth());
+		scaleY = static_cast<float>(height / this->GetOriginalHeight());
 
 		this->SetWidth (width);
 		this->SetHeight (height);

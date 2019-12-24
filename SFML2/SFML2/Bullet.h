@@ -75,13 +75,13 @@ public:
 	* Set bullet cost value into cost field
 	* \param[in] cost Cost of a bullet to set in points
 	*/
-	void SetCost(std::int16_t cost);
+	virtual void SetCost(std::int16_t cost);
 
 	/*!
 	* Get cost value from cost field
 	* \return Cost of a bullet in points
 	*/
-	int GetCost();
+	virtual int GetCost();
 
 	/*!
 	* Check collisions with array of PhysicalGameObjects where stored bullets.

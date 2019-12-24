@@ -103,46 +103,46 @@ public:
 	*
 	* \param[in] font Reference to sf::Font, which store font to use in label
 	*/
-	void SetFont(sf::Font * font);
+	virtual void SetFont(sf::Font * font);
 	/*!
 	* Set font size 
 	*
 	* \param[in] fontSize Size of font in px
 	*/
-	void SetFontSize(std::uint16_t fontSize);
+	virtual void SetFontSize(std::uint16_t fontSize);
 	/*!
 	* Set text string
 	*
 	* \param[in] text String to set in text field
 	*/
-	void SetText(std::string text);
+	virtual void SetText(std::string text);
 	/*!
 	* Set position of top left corner of text
 	*
 	* \param[in] positionX Horizontal position
 	* \param[in] positionY Vertical position
 	*/
-	void SetTextPosition(std::int16_t positionX, std::int16_t positionY);
+	virtual void SetTextPosition(std::int16_t positionX, std::int16_t positionY);
 
 	/*!
 	* Set color of text
 	*
 	* \param[in] color Color as sf::Color
 	*/
-	void SetTextColor(sf::Color color);
+	virtual void SetTextColor(sf::Color color);
 
 	/*!
 	* Get font size in px
 	*
 	* \return Font size in px
 	*/
-	int GetFontSize();
+	virtual int GetFontSize();
 	/*!
 	* Get string vith curen label text value
 	*
 	* \return String with curren text value
 	*/
-	std::string GetText();
+	virtual std::string GetText();
 
 	virtual void ResizeDefault();
 	virtual void Resize(uint16_t width, uint16_t height);
