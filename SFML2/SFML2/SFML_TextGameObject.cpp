@@ -7,12 +7,8 @@ sf::Text * SFML_TextGameObject::GetSFMLText()
 	return this->SFMLText;
 }
 
-SFML_TextGameObject::SFML_TextGameObject(std::int16_t positionX,
-	std::int16_t positionY,
-	std::uint16_t width,
-	std::uint16_t height,
-	sf::Font* font,
-	std::uint16_t fontSize):SFML_GameObject(positionX, positionY, width, height)
+SFML_TextGameObject::SFML_TextGameObject(std::int16_t positionX, std::int16_t positionY, std::uint16_t width, std::uint16_t height,
+	sf::Font * font, std::uint16_t fontSize):SFML_GameObject(positionX, positionY, width, height)
 {
 	this->SFMLFont = font;
 	this->fontSize = fontSize;
@@ -23,13 +19,8 @@ SFML_TextGameObject::SFML_TextGameObject(std::int16_t positionX,
 	this->Resize(width, height);
 }
 
-SFML_TextGameObject::SFML_TextGameObject(std::int16_t positionX,
-	std::int16_t positionY,
-	std::uint16_t width,
-	std::uint16_t height,
-	sf::Font* font,
-	std::uint16_t fontSize,
-	std::string text) :SFML_GameObject(positionX, positionY, width, height)
+SFML_TextGameObject::SFML_TextGameObject(std::int16_t positionX, std::int16_t positionY, std::uint16_t width,
+	std::uint16_t height, sf::Font * font, std::uint16_t fontSize, std::string text) :SFML_GameObject(positionX, positionY, width, height)
 {
 	this->SFMLFont = font;
 	this->fontSize = fontSize;
@@ -41,10 +32,8 @@ SFML_TextGameObject::SFML_TextGameObject(std::int16_t positionX,
 	this->Resize(width, height);
 }
 
-SFML_TextGameObject::SFML_TextGameObject(std::int16_t positionX,
-	std::int16_t positionY,
-	sf::Font* font,
-	std::uint16_t fontSize) :SFML_GameObject(positionX, positionY)
+SFML_TextGameObject::SFML_TextGameObject(std::int16_t positionX, std::int16_t positionY,
+	sf::Font * font, std::uint16_t fontSize) :SFML_GameObject(positionX, positionY)
 {
 	this->SFMLFont = font;
 	this->fontSize = fontSize;
@@ -60,11 +49,7 @@ SFML_TextGameObject::SFML_TextGameObject(std::int16_t positionX,
 
 }
 
-SFML_TextGameObject::SFML_TextGameObject(std::int16_t positionX,
-	std::int16_t positionY,
-	sf::Font* font,
-	std::uint16_t fontSize,
-	std::string text) :SFML_GameObject(positionX, positionY)
+SFML_TextGameObject::SFML_TextGameObject(std::int16_t positionX, std::int16_t positionY, sf::Font * font, std::uint16_t fontSize, std::string text) :SFML_GameObject(positionX, positionY)
 {
 	this->SFMLFont = font;
 	this->fontSize = fontSize;
