@@ -9,7 +9,7 @@
 #include <cstdint>
 
 /*!
-* \brief Class with represent graphical object in game/
+* \brief Class with represent graphical object in game.
 *
 * Class stored data about texture and rectangle in it, sprite and its scale 
 *
