@@ -85,7 +85,7 @@ public:
 	* \param[in] positionY Vertical position in px
 	*
 	*/
-	virtual void ChangeButtonPosition(int positionX, int positionY);
+	virtual void ChangeButtonPosition(std::int16_t positionX, std::int16_t positionY);
 	virtual void Resize(std::uint16_t width, std::uint16_t height);
 
 	/*!
