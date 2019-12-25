@@ -20,7 +20,7 @@ private:
 	/*!
 	* Field to store bullet cost in points.
 	*/
-	int cost;
+	std::int16_t cost;
 
 	/*!
 	* Field to store reference on object, which created bullet.
@@ -48,22 +48,22 @@ public:
 	* \param[in] cost Cost of bullet in points
 	* \param[in] ovner Reference on object, which created bullet
 	*/
-	Bullet(int positionX, 
-		int positionY, 
-		int width,
-		int height, 
+	Bullet(std::int16_t positionX,
+		std::int16_t positionY,
+		std::uint16_t width,
+		std::uint16_t height,
 		sf::Image* textureImage, 
-		int positionXinTexture, 
-		int positionYInTexture,
-		int widthInTexture, 
-		int heightInTexture, 
+		std::int16_t positionXinTexture,
+		std::int16_t positionYInTexture,
+		std::int16_t widthInTexture,
+		std::int16_t heightInTexture,
 		float Vx, 
 		float Vy,
-		int boundXMin, 
-		int boundXMax, 
-		int boundYMin, 
-		int boundYMax, 
-		int cost,
+		std::int16_t boundXMin,
+		std::int16_t boundXMax,
+		std::int16_t boundYMin,
+		std::int16_t boundYMax,
+		std::int16_t cost,
 		SFML_GraphicalGameObject* ovner);
 
 	/*!
@@ -75,13 +75,13 @@ public:
 	* Set bullet cost value into cost field
 	* \param[in] cost Cost of a bullet to set in points
 	*/
-	void SetCost(int cost);
+	virtual void SetCost(std::int16_t cost);
 
 	/*!
 	* Get cost value from cost field
 	* \return Cost of a bullet in points
 	*/
-	int GetCost();
+	virtual int GetCost();
 
 	/*!
 	* Check collisions with array of PhysicalGameObjects where stored bullets.
@@ -123,8 +123,8 @@ public:
 	*
 	*/
 	virtual void Move(float deltaT);
+
 	virtual bool CheckCollisionWithList(std::list<PhysicalGameObject*>* physicalGameObjectList, CollisionTypes typeOfCollision);
 };
-
 #endif
 

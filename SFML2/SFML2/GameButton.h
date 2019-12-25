@@ -1,6 +1,9 @@
 #ifndef __GAME_BUTTON__
 #define __GAME_BUTTON__
 #include "SFML_TextGameObject.h"
+
+#include <cstdint>
+
 class GameButton :
 	public SFML_TextGameObject
 {
@@ -8,8 +11,8 @@ private:
 	sf::RectangleShape* rectangle;
 	sf::RenderWindow *window;
 
-	int offsetVertical;
-	int offsetHorizontal;
+	std::int16_t offsetVertical;
+	std::int16_t offsetHorizontal;
 
 	bool lastSatement;
 
@@ -18,8 +21,13 @@ private:
 	sf::Color pressedFillColor;
 
 public:
-	GameButton(int positionX, int positionY, sf::Font* font, 
-		int fontSize, std::string text, int offsetVertical, int offsetHorizontal);
+	GameButton(std::int16_t positionX, 
+		std::int16_t positionY,
+		sf::Font* font,
+		std::uint16_t fontSize, 
+		std::string text, 
+		std::int16_t offsetVertical, 
+		std::int16_t offsetHorizontal);
 	virtual ~GameButton();
 
 	virtual void DrawOnWindow(sf::RenderWindow *window);
@@ -29,7 +37,7 @@ public:
 	void SetBackgroundColorPressed(sf::Color color);
 
 	virtual void ChangeButtonPosition(int positionX, int positionY);
-	virtual void Resize(uint16_t width, uint16_t height);
+	virtual void Resize(std::uint16_t width, std::uint16_t height);
 
 	bool CheckButtonPressed();
 

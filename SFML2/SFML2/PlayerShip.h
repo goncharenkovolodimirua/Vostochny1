@@ -26,13 +26,13 @@
 class PlayerShip :
     public SFML_GraphicalGameObject
 {
-private:
-    int controlWidthMin; //!< Minimal value of horizontal position where player ship can be
-    int controlWidthMax; //!< Maximal value of horizontal position where player ship can be 
-    int controlHeightMin; //!< Minimal value of vertical position where player ship can be
-    int controlHeightMax;  //!< Maximal value of vertical position where player ship can be
+private: 
+	std::int16_t controlWidthMin; //!< Minimal value of horizontal position where player ship can be
+	std::int16_t controlWidthMax; //!< Maximal value of horizontal position where player ship can be 
+	std::int16_t controlHeightMin; //!< Minimal value of vertical position where player ship can be
+	std::int16_t controlHeightMax;  //!< Maximal value of vertical position where player ship can be
 
-	int needToShot; //!< How much times should ship shoot at this moment
+	std::uint16_t needToShot; //!< How much times should ship shoot at this moment
 	float lastShotTime; //!< How long is time interval from last shoot
 
 	bool lastSpaceStatement; //!< Last statement of space key (true==pressed, false=unpressed)
@@ -40,13 +40,13 @@ private:
 	std::list<PhysicalGameObject*>* bulletsList; //!<Reference to list, which store references on bullets objects
 
 	sf::Image* bulletTexture; //!< Referense on sf::Image, which store bullet texture
-	int bulletWidth; //!<Width of bullets
-	int bulletHeight; //!<Height of bullets
+	std::uint16_t bulletWidth; //!<Width of bullets
+	std::uint16_t bulletHeight; //!<Height of bullets
 
-	int bulletBoundXMax; //!<Maximal horizontal coordinate in px, where bullet can be
-	int bulletBoundYMax; //!<Maximal vertical coordinate in px, where bullet can be
-	int bulletBoundXMin; //!<Minimal horizontal coordinate in px, where bullet can be
-	int bulletBoundYMin; //!<Minimal vertical coordinate in px, where bullet can be
+	std::int16_t bulletBoundXMax; //!<Maximal horizontal coordinate in px, where bullet can be
+	std::int16_t bulletBoundYMax; //!<Maximal vertical coordinate in px, where bullet can be
+	std::int16_t bulletBoundXMin; //!<Minimal horizontal coordinate in px, where bullet can be
+	std::int16_t bulletBoundYMin; //!<Minimal vertical coordinate in px, where bullet can be
 
 
 protected:
@@ -77,26 +77,26 @@ public:
 	* \param[in] bulletsList Reference to list, which store references on bullets objects
 	*/
     PlayerShip(
-        int positionX,
-        int positionY,
-        int width,
-        int height,
+		std::int16_t positionX,
+		std::int16_t positionY,
+		std::uint16_t width,
+		std::uint16_t height,
         sf::Image* textureImage,
-        int positionXinTexture,
-        int positionYInTexture,
-        int widthInTexture,
-        int heightInTexture,
-        int controlWidthMin,
-        int controlWidthMax,
-        int cotrolHeightMin,
-        int controlHeightMax,
+		std::int16_t positionXinTexture,
+		std::int16_t positionYInTexture,
+		std::uint16_t widthInTexture,
+		std::uint16_t heightInTexture,
+		std::int16_t controlWidthMin,
+		std::int16_t controlWidthMax,
+		std::int16_t cotrolHeightMin,
+		std::int16_t controlHeightMax,
         std::list<PhysicalGameObject*>* bulletsList
     );
 
 	/*!
 	* Destructor
 	*/
-    ~PlayerShip();
+    virtual ~PlayerShip();
     
 	/*!
 	* Control method
@@ -114,7 +114,7 @@ public:
 	*
 	*\param[in] time Time interval from last check
 	*/
-    void Control(float time);
+    virtual void Control(float time);
 
 	/*!
 	* Check collisions with array of PhysicalGameObjects.
@@ -122,55 +122,54 @@ public:
 	* \param[in] bulletsList Reference to list, which store references to meteors
 	* \return Logical value, was there a collision (true) or not (false)
 	*/
-	bool CheckCollisionsWithMeteors(std::list<PhysicalGameObject*>* meteors);
+	virtual bool CheckCollisionsWithMeteors(std::list<PhysicalGameObject*>* meteors);
 
 	/*!
 	* Set bullet texture in bulletTexture field.
 	*
 	* \param[in] bulletTexture Reference to sf::Image, which store bullet texture
 	*/
-	void SetBulletTextureImage(sf::Image* bulletTexture);
+	virtual void SetBulletTextureImage(sf::Image* bulletTexture);
 	/*!
 	* Set maximal X value of bounds rectangle for bullet
 	*
 	* \param[in] bulletBoundXMax Maximal x value of bounds rectangle 
 	to set into boundYMax field of bullet in px
 	*/
-	void SetBulletBoundXMax(int bulletBoundXMax);
+	virtual void SetBulletBoundXMax(std::int16_t bulletBoundXMax);
 	/*!
 	* Set maximal Y value of bounds rectangle for bullet
 	*
 	* \param[in] bulletBoundYMax Maximal y value of bounds rectangle 
 	to set into boundYMax field of bullet in px
 	*/
-	void SetBulletBoundYMax(int bulletBoundYMax);
+	virtual void SetBulletBoundYMax(std::int16_t bulletBoundYMax);
 	/*!
 	* Set minimal X value of bounds rectangle for bullet
 	*
 	* \param[in] bulletBoundXMin Minimal x value of bounds rectangle 
 	to set into boundXMin field of bullet in px
 	*/
-	void SetBulletBoundXMin(int bulletBoundXMin);
+	virtual void SetBulletBoundXMin(std::int16_t bulletBoundXMin);
 	/*!
 	* Set minimal Y value of bounds rectangle for bullet
 	*
 	* \param[in] bulletBoundYMin Minimal y value of bounds rectangle 
 	to set into boundYMin field of bullet in px
 	*/
-	void SetBulletBoundYMin(int bulletBoundYMin);
+	virtual void SetBulletBoundYMin(std::int16_t bulletBoundYMin);
 
 	/*!
 	* Set bullet width to bulletWidth field
 	*
 	* \param[in] bulletWidth Width of bullet in px
 	*/
-	void SetBulletWidth(int bulletWidth);
+	virtual void SetBulletWidth(std::uint16_t bulletWidth);
 	/*!
 	* Set bullet width to bulletHeight field
 	*
 	* \param[in] bulletHeight Height of bullet in px
 	*/
-	void SetBulletHeight(int bulletHeight);
-
+	virtual void SetBulletHeight(std::uint16_t bulletHeight);
 };
 #endif

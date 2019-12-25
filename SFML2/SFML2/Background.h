@@ -31,8 +31,8 @@ public:
 		sf::Image* textureImage,
 		std::int16_t positionXInTexture,
 		std::int16_t positionYInTexture,
-		std::uint16_t widthInTexture,
-		std::uint16_t heightInTexture);
+		std::int16_t widthInTexture,
+		std::int16_t heightInTexture);
 
 	/*!
 	* Destructor

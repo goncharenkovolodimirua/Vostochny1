@@ -2,7 +2,7 @@
 #define __SFML_ScoreCounterObject__
 
 #define TIME_COEF 100
-#define MAX_COEF 1
+#define MAX_COEF 0.0001
 
 #include "SFML_TextGameObject.h"
 #include <string>
