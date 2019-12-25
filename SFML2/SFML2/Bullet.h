@@ -100,7 +100,7 @@ public:
 	* Check collisions with array of PhysicalGameObjects. This method called by 
 	* CheckCollisionWithList method, when COLLISION_WITH_METEOR selected.
 	*
-	* \param[in] bulletsList Reference to list, which store references to meteors
+	* \param[in] meteors Reference to list, which store references to meteors
 	* \return Logical value, was there a collision (true) or not (false)
 	*/
 	virtual bool CheckCollisionsWithMetheors(std::list<PhysicalGameObject*>* meteors);
@@ -119,7 +119,7 @@ public:
 	/*!
 	* Move a bullet. Now uses usual linear movement.
 	*
-	* \param[in] bulletsList Time interval of movement
+	* \param[in] deltaT Time interval of movement
 	*
 	*/
 	virtual void Move(float deltaT);

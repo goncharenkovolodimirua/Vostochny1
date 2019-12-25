@@ -108,7 +108,7 @@ public:
 
 	/*!
 	* Set health value into health field
-	* \param[in] mass Health of metheor to set in points
+	* \param[in] health Health of metheor to set in points
 	*/
 	virtual void SetHealth(std::int16_t health);
 
@@ -147,7 +147,7 @@ public:
 	* 
 	* \warning In this version always returns false.
 	*
-	* \param[in] bulletsList Reference to list, which store references to meteors
+	* \param[in] meteors Reference to list, which store references to meteors
 	* \return Logical value, was there a collision (true) or not (false)
 	*/
 	virtual bool CheckCollisionsWithMetheors(std::list<PhysicalGameObject*>* meteors);
@@ -155,7 +155,7 @@ public:
 	/*!
 	* Move a meteor. Now uses usual linear movement.
 	*
-	* \param[in] bulletsList Time interval of movement
+	* \param[in] deltaT Time interval of movement
 	*
 	*/
 	virtual void Move(float deltaT);
