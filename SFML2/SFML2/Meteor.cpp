@@ -3,11 +3,24 @@
 
 #include <iostream>
 
-Meteor::Meteor(int positionX, int positionY, int width,
-	int height, sf::Image* textureImage, int positionXinTexture, int positionYInTexture,
-	int widthInTexture, int heightInTexture, float Vx, float Vy,
-	int boundXMin, int boundXMax, int boundYMin, int boundYMax, float mass, 
-	std::list<PhysicalGameObject*>* meteors):PhysicalGameObject(positionX, positionY, width,
+Meteor::Meteor(std::int16_t positionX,
+	std::int16_t positionY,
+	std::uint16_t width,
+	std::uint16_t height,
+	sf::Image* textureImage, 
+	std::int16_t positionXinTexture,
+	std::int16_t positionYInTexture,
+	std::int16_t widthInTexture,
+	std::int16_t heightInTexture,
+	float Vx, 
+	float Vy,
+	std::int16_t boundXMin,
+	std::int16_t boundXMax,
+	std::int16_t boundYMin,
+	std::int16_t boundYMax,
+	float mass, 
+	std::list<PhysicalGameObject*>* meteors):
+	PhysicalGameObject(positionX, positionY, width,
 		height, textureImage, positionXinTexture, positionYInTexture,
 		 widthInTexture, heightInTexture, Vx, Vy,
 		boundXMin, boundXMax, boundYMin, boundYMax)
@@ -28,7 +41,7 @@ void Meteor::SetMass(float mass)
 	this->mass = mass;
 }
 
-void Meteor::SetHealth(int health)
+void Meteor::SetHealth(std::int16_t health)
 {
 	this->health = health;
 }
@@ -38,7 +51,7 @@ float Meteor::GetMass()
 	return this->mass;
 }
 
-int Meteor::GetHealth()
+std::int16_t Meteor::GetHealth()
 {
 	return this->health;
 }
@@ -53,7 +66,7 @@ bool Meteor::CheckColisionsWithBullets(std::list<PhysicalGameObject*> *bulletsLi
 			if ((*k)->CheckSpriteColision(this)) {
 				delete (*k);
 				k=bulletsList->erase(k);
-				this->health = this->health - (int(METEOR_NORMAL_MASS / this->mass*(METEOR_INITIAL_NORMAL_HEALTH / 2)));
+				this->health = this->health - (static_cast<std::int16_t>(METEOR_NORMAL_MASS / this->mass*(METEOR_INITIAL_NORMAL_HEALTH / 2)));
 				collision = true;
 			}
 			else {
@@ -70,7 +83,6 @@ bool Meteor::CheckColisionsWithBullets(std::list<PhysicalGameObject*> *bulletsLi
 		if (this->GetWidth() >= CRASHED_SIZE) {
 			this->GenerateMeteors();
 		}
-		
 	}
 	return collision;
 }
@@ -137,21 +149,20 @@ bool Meteor::CheckCollisionWithList(std::list<PhysicalGameObject*>* physicalGame
 		return false;
 		break;
 	}
-	
 }
 
 void Meteor::GenerateMeteors()
 {
 	Meteor* dinamicMeteor = nullptr;
 
-	int localMeteorPositionX;
-	int localMeteorPositionY;
-	int localMeteorWidth;
+	std::int16_t localMeteorPositionX;
+	std::int16_t localMeteorPositionY;
+	std::int16_t localMeteorWidth;
 	float localMeteorVx;
 	float localMeteorVy;
 	float localMeteorMass;
 
-	int quantity;
+	std::uint16_t quantity;
 
 	srand(time(NULL));
 
@@ -161,11 +172,10 @@ void Meteor::GenerateMeteors()
 	localMeteorPositionY = this->GetPositionY();
 	localMeteorMass = this->GetMass() / 3;
 
-
   	for (int i = 0; i < quantity; i++)
 	{
 		
-		localMeteorWidth = int((this->GetWidth() / quantity) + rand() % (5 * (this->GetWidth() / 100)));
+		localMeteorWidth = static_cast<std::int16_t>((this->GetWidth() / quantity) + rand() % (5 * (this->GetWidth() / 100)));
 		localMeteorVx = -0.5 + (0.01 * (rand() % 101));
 		localMeteorVy = -0.5 + (0.01 * (rand() % 101));
 
