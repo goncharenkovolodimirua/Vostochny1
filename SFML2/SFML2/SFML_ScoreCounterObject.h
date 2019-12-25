@@ -1,6 +1,6 @@
 /*!
 * \file
-* \brief Header file, which store declaration SFML_TextGameObject class.
+* \brief Header file, which store declaration SFML_ScoreCounterObject class.
 */
 #ifndef __SFML_ScoreCounterObject__
 #define __SFML_ScoreCounterObject__
