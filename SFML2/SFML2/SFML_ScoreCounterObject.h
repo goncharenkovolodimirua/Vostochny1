@@ -6,6 +6,7 @@
 
 #include "SFML_TextGameObject.h"
 #include <string>
+#include <cstdint>
 
 #pragma warning(disable : 4996)
 
@@ -14,17 +15,17 @@ class SFML_ScoreCounterObject :
 {
 private:
 	float coef;
-	int score;
+	std::int16_t score;
 
 public:
-	SFML_ScoreCounterObject(int positionX, int positionY, sf::Font* font, int fontSize);
+	SFML_ScoreCounterObject(std::int16_t positionX, std::int16_t positionY, sf::Font* font, std::uint16_t fontSize);
 
 	void AddWithTime(float deltaTime);
-	void AddWithNumber(int score);
-	void SubstractWithNumber(int score);
-	void SetScore(int score);
+	void AddWithNumber(std::int16_t score);
+	void SubstractWithNumber(std::int16_t score);
+	void SetScore(std::int16_t score);
 	void SetCoef(float coef);
-	int GetScore();
+	std::int16_t GetScore();
 	float GetCoef();
 };
 

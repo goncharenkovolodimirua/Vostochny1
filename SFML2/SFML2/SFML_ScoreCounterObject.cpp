@@ -2,7 +2,7 @@
 #include "SFML_ScoreCounterObject.h"
 
 
-SFML_ScoreCounterObject::SFML_ScoreCounterObject(int positionX, int positionY, sf::Font* font, int fontSize) :SFML_TextGameObject(positionX, positionY, font, fontSize, "SCORE: ")
+SFML_ScoreCounterObject::SFML_ScoreCounterObject(std::int16_t positionX, std::int16_t positionY, sf::Font* font, std::uint16_t fontSize) :SFML_TextGameObject(positionX, positionY, font, fontSize, "SCORE: ")
 {
 	this->coef = 1;
 	this->score = 0;
@@ -16,23 +16,23 @@ void SFML_ScoreCounterObject::AddWithTime(float deltaTime)
 	{
 		this->coef = this->coef + TIME_COEF * deltaTime;
 	}
-	this->score = this->score + int(deltaTime * this->coef);
+	this->score = this->score + static_cast<std::int16_t>(deltaTime * this->coef);
 	this->SetText("SCORE:" + std::to_string(this->score));
 	
 }
 
-void SFML_ScoreCounterObject::AddWithNumber(int score)
+void SFML_ScoreCounterObject::AddWithNumber(std::int16_t score)
 {
 	this->score += score;
 	this->SetText("SCORE:" + std::to_string(this->score));
 }
 
-void  SFML_ScoreCounterObject::SubstractWithNumber(int score)
+void  SFML_ScoreCounterObject::SubstractWithNumber(std::int16_t score)
 {
 	this->score -= score;
 	this->SetText("SCORE:" + std::to_string(this->score));
 }
-void SFML_ScoreCounterObject::SetScore(int score)
+void SFML_ScoreCounterObject::SetScore(std::int16_t score)
 {
 	this->score = score;
 }
