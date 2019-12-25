@@ -250,7 +250,7 @@ void SFML_GameWindow::InitializeButtons()
 	int ButtonPositionY;
 
 	this->font.loadFromFile(FONT_NAME);
-
+	
 	ButtonFontSize = int(this->windowHeight / 8);
 	this->startButton = new GameButton(500, 500, &this->font, ButtonFontSize, "START", ButtonFontSize / 7, ButtonFontSize / 7);
 	ButtonPositionY = this->windowHeight / 2;
@@ -375,7 +375,10 @@ SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string 
 
 	this->statement = NOT_STARTED;
 
-
+	this->backgroundMusic = new sf::Music();
+	this->backgroundMusic->openFromFile(BACKGROUND_SOUNDNAME);
+	this->backgroundMusic->setLoop(true);
+	this->backgroundMusic->play();
 
 	this->InitializeImages();
 	this->InitializeButtons();	
@@ -446,4 +449,7 @@ SFML_GameWindow::~SFML_GameWindow()
 	}
 
 	this->ClearLists();
+	if (this->backgroundMusic != nullptr) {
+		delete this->backgroundMusic;
+	}
 }
