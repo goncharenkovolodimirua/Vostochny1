@@ -119,7 +119,7 @@ public:
 	/*!
 	* Check collisions with array of PhysicalGameObjects.
 	*
-	* \param[in] bulletsList Reference to list, which store references to meteors
+	* \param[in] meteors Reference to list, which store references to meteors
 	* \return Logical value, was there a collision (true) or not (false)
 	*/
 	virtual bool CheckCollisionsWithMeteors(std::list<PhysicalGameObject*>* meteors);

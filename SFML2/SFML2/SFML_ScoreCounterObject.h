@@ -32,7 +32,7 @@ public:
 	* \param[in] positionX X coordinate in px
 	* \param[in] positionY Y coordinate in px
 	* \param[in] font Reference to sf::Font, which store font to use in label
-	* \param[in] text Value of string to output
+	* \param[in] fontSize Value of string to output
 	*/
 	SFML_ScoreCounterObject(std::int16_t positionX,
 		std::int16_t positionY,

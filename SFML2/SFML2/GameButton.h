@@ -82,7 +82,7 @@ public:
 	* Set position of button 
 	*
 	* \param[in] positionX Horizontal position in px
-	* \param[in] positionX Vertical position in px
+	* \param[in] positionY Vertical position in px
 	*
 	*/
 	virtual void ChangeButtonPosition(int positionX, int positionY);

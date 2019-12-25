@@ -140,7 +140,7 @@ public:
 	/*!
 	* Check is there collision between rectangles of objects
 	* \param[in] *gameObject Reference to gameObject to check collision with
-	* \param[out] sf::IntRect Reference to return collision area as rectangle
+	* \param[out] *intersection Reference to return collision area as sf:IntRect
 	* \return Logical wariable. True when one object IntRect overlays another object ones
 	*/
 	virtual bool CheckSpriteColision(SFML_GameObject *gameObject, sf::IntRect *intersection);
