@@ -2,13 +2,18 @@
 #include "SFML_ScoreCounterObject.h"
 
 
-SFML_ScoreCounterObject::SFML_ScoreCounterObject(std::int16_t positionX, std::int16_t positionY, sf::Font* font, std::uint16_t fontSize) :SFML_TextGameObject(positionX, positionY, font, fontSize, "SCORE: ")
+SFML_ScoreCounterObject::SFML_ScoreCounterObject(std::int16_t positionX,
+	std::int16_t positionY,
+	sf::Font* font,
+	std::uint16_t fontSize) :SFML_TextGameObject(positionX, positionY, font, fontSize, "SCORE: ")
 {
 	this->coef = 1;
 	this->score = 0;
 }
 
-
+SFML_ScoreCounterObject::~SFML_ScoreCounterObject()
+{
+}
 
 void SFML_ScoreCounterObject::AddWithTime(float deltaTime)
 {
@@ -40,7 +45,7 @@ void SFML_ScoreCounterObject::SetCoef(float coef)
 {
 	this->coef = coef;
 }
-int SFML_ScoreCounterObject::GetScore()
+std::int16_t SFML_ScoreCounterObject::GetScore()
 {
 	return this->score;
 }

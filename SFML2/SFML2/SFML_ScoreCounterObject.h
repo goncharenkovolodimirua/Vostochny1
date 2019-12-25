@@ -34,57 +34,63 @@ public:
 	* \param[in] font Reference to sf::Font, which store font to use in label
 	* \param[in] text Value of string to output
 	*/
-	SFML_ScoreCounterObject(std::int16_t positionX, std::int16_t positionY, sf::Font* font, std::uint16_t fontSize);
+	SFML_ScoreCounterObject(std::int16_t positionX,
+		std::int16_t positionY,
+		sf::Font* font,
+		std::uint16_t fontSize);
+
+	/*!
+	* Destructor
+	*/
+	virtual ~SFML_ScoreCounterObject();
+
 	/*!
 	* Change coef by formula coef = coef + TIME_COEF * deltaTime and enlarge score with formula score = score + deltaTime * coef 
 	*
 	* \param[in] deltaTime TimeInterval as microseconds
 	*/
-	void AddWithTime(float deltaTime);
+	virtual void AddWithTime(float deltaTime);
 	
 	/*!
 	* Enlarge score with formula score += score and changing text
 	*
 	* \param[in] score Score in point
 	*/
-	void AddWithNumber(std::int16_t score);
+	virtual void AddWithNumber(std::int16_t score);
 
 	/*!
 	* Enlarge score with formula score -= score and changing text
 	*
 	* \param[in] score Score in point
 	*/
-	void SubstractWithNumber(std::int16_t score);
+	virtual void SubstractWithNumber(std::int16_t score);
 
 	/*!
 	* Set score into field score
 	*
 	* \param[in] score Score in point
 	*/
-	void SetScore(std::int16_t score);
+	virtual void SetScore(std::int16_t score);
 
 	/*!
 	* Set coef into field coef
 	*
 	* \param[in] coef Coefficient which used to transform time interval into score enlargement
 	*/
-	void SetCoef(float coef);
+	virtual void SetCoef(float coef);
 	
 	/*!
 	* Get score from field score
 	*
 	* \return Score in points
 	*/
-	std::int16_t GetScore();
+	virtual std::int16_t GetScore();
 
 	/*!
 	* Get coef from field coef
 	*
 	* \return Coefficient which used to transform time interval into score enlargement
 	*/
-	float GetCoef();
-
+	virtual float GetCoef();
 };
-
-
 #endif

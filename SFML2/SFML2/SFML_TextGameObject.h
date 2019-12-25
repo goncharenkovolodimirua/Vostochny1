@@ -46,7 +46,12 @@ public:
 	* \param[in] font Reference to sf::Font, which store font to use in label
 	* \param[in] fontSize Size of font in px
 	*/
-	SFML_TextGameObject(std::int16_t positionX, std::int16_t positionY, std::uint16_t width, std::uint16_t height, sf::Font* font, std::uint16_t fontSize);
+	SFML_TextGameObject(std::int16_t positionX,
+		std::int16_t positionY,
+		std::uint16_t width,
+		std::uint16_t height,
+		sf::Font* font,
+		std::uint16_t fontSize);
 	/*!
 	* Constructor with resizing
 	* \param[in] positionX X coordinate in px
@@ -57,7 +62,13 @@ public:
 	* \param[in] fontSize Size of font in px
 	* \param[in] text Value of string to output
 	*/
-	SFML_TextGameObject(std::int16_t positionX, std::int16_t positionY, std::uint16_t width, std::uint16_t height, sf::Font* font, std::uint16_t fontSize, std::string text);
+	SFML_TextGameObject(std::int16_t positionX,
+		std::int16_t positionY,
+		std::uint16_t width,
+		std::uint16_t height,
+		sf::Font* font,
+		std::uint16_t fontSize,
+		std::string text);
 
 	/*!
 	* Constructor whithout resizing
@@ -66,7 +77,10 @@ public:
 	* \param[in] font Reference to sf::Font, which store font to use in label
 	* \param[in] fontSize Size of font in px
 	*/
-	SFML_TextGameObject(std::int16_t positionX, std::int16_t positionY, sf::Font* font, std::uint16_t fontSize);
+	SFML_TextGameObject(std::int16_t positionX,
+		std::int16_t positionY,
+		sf::Font* font,
+		std::uint16_t fontSize);
 	/*!
 	* Constructor whithout resizing
 	* \param[in] positionX X coordinate in px
@@ -75,7 +89,11 @@ public:
 	* \param[in] fontSize Size of font in px
 	* \param[in] text Value of string to output
 	*/
-	SFML_TextGameObject(std::int16_t positionX, std::int16_t positionY, sf::Font* font, std::uint16_t fontSize, std::string text);
+	SFML_TextGameObject(std::int16_t positionX,
+		std::int16_t positionY,
+		sf::Font* font,
+		std::uint16_t fontSize,
+		std::string text);
 	
 	/*!
 	* Destructor
@@ -133,6 +151,4 @@ public:
 
 	virtual void DrawOnWindow(sf::RenderWindow *window);
 };
-
-
 #endif
