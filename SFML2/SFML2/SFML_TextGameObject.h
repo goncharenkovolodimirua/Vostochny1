@@ -8,6 +8,8 @@
 #include "SFML_GameObject.h"
 #include <string>
 
+#include <cstdint>
+
 #pragma warning(disable : 4996) //Remove error "sf::Text::setColor declareted deprecate"
 
 /*!
@@ -21,7 +23,7 @@ class SFML_TextGameObject :
 {
 private:
 	sf::Font* SFMLFont; //!< Reference to sf::Font, which store font to use in label
-	int fontSize; //!< Size of font in px
+	std::uint16_t fontSize; //!< Size of font in px
 	sf::Text* SFMLText; //!< Reference to sf::Text, to output text on RenderWindo
 	std::string text; //!<Value of string to output
 
@@ -44,7 +46,7 @@ public:
 	* \param[in] font Reference to sf::Font, which store font to use in label
 	* \param[in] fontSize Size of font in px
 	*/
-	SFML_TextGameObject(int positionX, int positionY, int width, int height, sf::Font* font, int fontSize);
+	SFML_TextGameObject(std::int16_t positionX, std::int16_t positionY, std::uint16_t width, std::uint16_t height, sf::Font* font, std::uint16_t fontSize);
 	/*!
 	* Constructor with resizing
 	* \param[in] positionX X coordinate in px
@@ -55,7 +57,7 @@ public:
 	* \param[in] fontSize Size of font in px
 	* \param[in] text Value of string to output
 	*/
-	SFML_TextGameObject(int positionX, int positionY, int width, int height, sf::Font* font, int fontSize, std::string text);
+	SFML_TextGameObject(std::int16_t positionX, std::int16_t positionY, std::uint16_t width, std::uint16_t height, sf::Font* font, std::uint16_t fontSize, std::string text);
 
 	/*!
 	* Constructor whithout resizing
@@ -64,7 +66,7 @@ public:
 	* \param[in] font Reference to sf::Font, which store font to use in label
 	* \param[in] fontSize Size of font in px
 	*/
-	SFML_TextGameObject(int positionX, int positionY, sf::Font* font, int fontSize);
+	SFML_TextGameObject(std::int16_t positionX, std::int16_t positionY, sf::Font* font, std::uint16_t fontSize);
 	/*!
 	* Constructor whithout resizing
 	* \param[in] positionX X coordinate in px
@@ -73,7 +75,7 @@ public:
 	* \param[in] fontSize Size of font in px
 	* \param[in] text Value of string to output
 	*/
-	SFML_TextGameObject(int positionX, int positionY, sf::Font* font, int fontSize, std::string text);
+	SFML_TextGameObject(std::int16_t positionX, std::int16_t positionY, sf::Font* font, std::uint16_t fontSize, std::string text);
 	
 	/*!
 	* Destructor
@@ -91,7 +93,7 @@ public:
 	*
 	* \param[in] fontSize Size of font in px
 	*/
-	void SetFontSize(int fontSize);
+	void SetFontSize(std::uint16_t fontSize);
 	/*!
 	* Set text string
 	*
@@ -104,7 +106,7 @@ public:
 	* \param[in] positionX Horizontal position
 	* \param[in] positionY Vertical position
 	*/
-	void SetTextPosition(int positionX, int positionY);
+	void SetTextPosition(std::int16_t positionX, std::int16_t positionY);
 
 	/*!
 	* Set color of text
@@ -118,7 +120,7 @@ public:
 	*
 	* \return Font size in px
 	*/
-	int GetFontSize();
+	std::uint16_t GetFontSize();
 	/*!
 	* Get string vith curen label text value
 	*
@@ -127,7 +129,7 @@ public:
 	std::string GetText();
 
 	virtual void ResizeDefault();
-	virtual void Resize(uint16_t width, uint16_t height);
+	virtual void Resize(std::uint16_t width, std::uint16_t height);
 
 	virtual void DrawOnWindow(sf::RenderWindow *window);
 };
