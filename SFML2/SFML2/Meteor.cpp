@@ -51,7 +51,7 @@ float Meteor::GetMass()
 	return this->mass;
 }
 
-int Meteor::GetHealth()
+std::int16_t Meteor::GetHealth()
 {
 	return this->health;
 }

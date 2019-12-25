@@ -6,8 +6,8 @@
 void PlayerShip::Shoot()
 {
 	if (this->bulletTexture != nullptr) {
-		int positionX = this->GetPositionX() + int(this->GetWidth() / 2)-int(this->bulletWidth/2);
-		int positionY = this->GetPositionY() + 1 + this->bulletHeight;
+		std::int16_t positionX = this->GetPositionX() + int(this->GetWidth() / 2)-int(this->bulletWidth/2);
+		std::int16_t positionY = this->GetPositionY() + 1 + this->bulletHeight;
 		Bullet* bullet = new Bullet(positionX, positionY, this->bulletWidth, this->bulletHeight, this->bulletTexture, 0, 0, 
 			this->bulletTexture->getSize().x, this->bulletTexture->getSize().y, 0, BULLET_SPEED, this->bulletBoundXMin,
 			this->bulletBoundXMax, this->bulletBoundYMin, this->bulletBoundYMax, BULLET_COST, this);
@@ -16,19 +16,19 @@ void PlayerShip::Shoot()
 }
 
 PlayerShip::PlayerShip(
-	int16_t positionX,
-	int16_t positionY,
-	uint16_t width,
-	uint16_t height,
+	std::int16_t positionX,
+	std::int16_t positionY,
+	std::uint16_t width,
+	std::uint16_t height,
     sf::Image* textureImage,
-	int16_t positionXinTexture,
-	int16_t positionYInTexture,
-	uint16_t widthInTexture,
-	uint16_t heightInTexture,
-	int16_t controlWidthMin,
-	int16_t controlWidthMax,
-	int16_t cotrolHeightMin,
-	int16_t controlHeightMax,
+	std::int16_t positionXinTexture,
+	std::int16_t positionYInTexture,
+	std::uint16_t widthInTexture,
+	std::uint16_t heightInTexture,
+	std::int16_t controlWidthMin,
+	std::int16_t controlWidthMax,
+	std::int16_t cotrolHeightMin,
+	std::int16_t controlHeightMax,
     std::list<PhysicalGameObject*>* bulletsList):SFML_GraphicalGameObject
 	(
         positionX,
@@ -146,32 +146,32 @@ void PlayerShip::SetBulletTextureImage(sf::Image * bulletTexture)
 	this->bulletTexture = bulletTexture;
 }
 
-void PlayerShip::SetBulletBoundXMax(int16_t bulletBoundXMax)
+void PlayerShip::SetBulletBoundXMax(std::int16_t bulletBoundXMax)
 {
 	this->bulletBoundXMax = bulletBoundXMax;
 }
 
-void PlayerShip::SetBulletBoundYMax(int16_t bulletBoundYMax)
+void PlayerShip::SetBulletBoundYMax(std::int16_t bulletBoundYMax)
 {
 	this->bulletBoundYMax = bulletBoundYMax;
 }
 
-void PlayerShip::SetBulletBoundXMin(int16_t bulletBoundXMin)
+void PlayerShip::SetBulletBoundXMin(std::int16_t bulletBoundXMin)
 {
 	this->bulletBoundXMin = bulletBoundXMin;
 }
 
-void PlayerShip::SetBulletBoundYMin(int16_t bulletBoundYMin)
+void PlayerShip::SetBulletBoundYMin(std::int16_t bulletBoundYMin)
 {
 	this->bulletBoundYMin = bulletBoundYMin;
 }
 
-void PlayerShip::SetBulletWidth(uint16_t bulletWidth)
+void PlayerShip::SetBulletWidth(std::uint16_t bulletWidth)
 {
 	this->bulletWidth = bulletWidth;
 }
 
-void PlayerShip::SetBulletHeight(uint16_t bulletHeight)
+void PlayerShip::SetBulletHeight(std::uint16_t bulletHeight)
 {
 	this->bulletHeight = bulletHeight;
 }

@@ -122,7 +122,7 @@ public:
 	* Get health value from health field
 	* \return Health of metheor in points
 	*/
-	virtual int GetHealth();
+	virtual std::int16_t GetHealth();
 
 	/*!
 	* Check collisions with array of PhysicalGameObjects. If detect collision 
