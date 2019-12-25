@@ -60,7 +60,7 @@ void GameButton::SetBackgroundColorPressed(sf::Color color)
 	this->pressedFillColor = color;
 }
 
-void GameButton::ChangeButtonPosition(int positionX, int positionY)
+void GameButton::ChangeButtonPosition(std::int16_t positionX, std::int16_t positionY)
 {
 	this->SetTextPosition(positionX, positionY);
 	this->rectangle->setPosition(this->GetSFMLText()->getGlobalBounds().left - this->offsetHorizontal / 2,
