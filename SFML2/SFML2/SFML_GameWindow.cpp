@@ -186,9 +186,6 @@ void SFML_GameWindow::GameFrame(float deltaTime)
 			this->restartButton->DrawOnWindow(this->GetWindowAddress());
 			this->mainMenuButton->DrawOnWindow(this->GetWindowAddress());
 
-
-			
-
 			fontSize = int(this->GetWindowHeight() / 6);
 			textPositionY = int((this->GetWindowHeight() / 4) - (fontSize / 2));
 			textPositionX = (this->GetWindowWidth() / 2) - (this->looseScore->GetWidth() / 2);
