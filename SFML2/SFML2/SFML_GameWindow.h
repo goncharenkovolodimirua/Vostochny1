@@ -9,7 +9,7 @@
 #define ESC_PRESS_TIME 300000
 
 #pragma warning(disable : 4996)
-
+#include "SFML_Window.h"
 #include <string>
 #include <SFML/Graphics.hpp>
 #include"SFML/Audio.hpp"
@@ -27,11 +27,9 @@
 #include "CollisionTypes.h"
 #include "GameStatements.h"
 #include "SFML_ScoreCounterObject.h"
-class SFML_GameWindow
+class SFML_GameWindow: public SFML_Window
 {
 private:
-	sf::RenderWindow* window;
-	sf::Clock* clock;
 	sf::Music* backgroundMusic;
 
 	std::list<PhysicalGameObject*> bullets;
@@ -39,11 +37,8 @@ private:
 
 	std::list<PhysicalGameObject*>::iterator meteorsIterator;
 	std::list<PhysicalGameObject*>::iterator bulletsIterator;
-	
-	int windowWidth;
-	int windowHeight;
-	
 
+	
 	float deltaTime;
 	float escPressedTime;
 
@@ -60,7 +55,6 @@ private:
 	sf::Image bulletsTexture;
 	sf::Font font;
 
-	sf::Event event;
 
 
 	PlayerShip* ship;
@@ -98,8 +92,10 @@ private:
 
 	void InitializeTexts();
 
+	void InitializeBackgroundMusic();
+
 public:
-	SFML_GameWindow(int windowWidth, int windowHeight, std::string windowName);
+	SFML_GameWindow(std::uint16_t windowWidth, std::uint16_t windowHeight, std::string windowName, sf::Uint32 style);
 	~SFML_GameWindow();
 };
 #endif

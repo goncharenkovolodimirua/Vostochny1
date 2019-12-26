@@ -24,8 +24,8 @@ void SFML_GameWindow::GenerateMeteors(float deltaTime)
 			if (dinamicMeteor != nullptr) {
 				delete dinamicMeteor;
 			}
-			localMeteorWidth = int((this->windowWidth / 10) + rand() % (5 * (this->windowWidth / 100)));
-			localMeteorPositionX = rand() % (this->windowWidth - localMeteorWidth - 1);
+			localMeteorWidth = int((this->GetWindowWidth() / 10) + rand() % (5 * (this->GetWindowWidth() / 100)));
+			localMeteorPositionX = rand() % (this->GetWindowWidth() - localMeteorWidth - 1);
 			localMeteorPositionY = -localMeteorWidth + 1;
 			localMeteorVx = 0; 
 			localMeteorVy = 0.1 + 0.01 * (rand() % 31);
@@ -34,8 +34,8 @@ void SFML_GameWindow::GenerateMeteors(float deltaTime)
 			dinamicMeteor = new Meteor(localMeteorPositionX, localMeteorPositionY, 
 				localMeteorWidth, localMeteorWidth, &this->meteorTexture, 0, 0,
 				int(meteorTexture.getSize().x / 2), int(meteorTexture.getSize().y),
-				localMeteorVx, localMeteorVy, 0, this->windowWidth, 0, 
-				this->windowHeight, localMeteorMass, &this->meteors);
+				localMeteorVx, localMeteorVy, 0, this->GetWindowWidth(), 0,
+				this->GetWindowHeight(), localMeteorMass, &this->meteors);
 
 		} while (dinamicMeteor->CheckCollisionsWithMetheors(&meteors));
 
@@ -54,7 +54,7 @@ void SFML_GameWindow::CheckMeteorsWithBullets(float deltaTime)
 
 
 		if ((*this->meteorsIterator)->CheckAlive(deltaTime / FPS_TIME)) {
-			(*this->meteorsIterator)->DrawOnWindow(this->window);
+			(*this->meteorsIterator)->DrawOnWindow(this->GetWindowAddress());
 
 			if (!(*this->meteorsIterator)->IsInBounds())
 			{
@@ -77,7 +77,7 @@ void SFML_GameWindow::CheckBulletsWithScreen(float deltaTime)
 	for (this->bulletsIterator = this->bullets.begin(); 
 		this->bulletsIterator != this->bullets.end();) {
 		(*this->bulletsIterator)->Move(deltaTime / FPS_TIME);
-		(*this->bulletsIterator)->DrawOnWindow(this->window);
+		(*this->bulletsIterator)->DrawOnWindow(this->GetWindowAddress());
 
 		if (!(*this->bulletsIterator)->IsInBounds())
 		{
@@ -117,56 +117,54 @@ void SFML_GameWindow::GameFrame(float deltaTime)
 	int textPositionY;
 	int textPositionX;
 
-	if (this->window->isOpen()) {
+	if (this->GetWindowAddress()->isOpen()) {
 		if (this->statement != STARTED) {
 			deltaTime = 0;
 		}
 		this->GenerateMeteors(deltaTime);
 		this->ship->Control(deltaTime / FPS_TIME);
 
-		this->window->clear();
-		this->background->DrawOnWindow(window);
+		this->WindowClear();
+		this->background->DrawOnWindow(this->GetWindowAddress());
 
 		this->CheckMeteorsWithBullets(deltaTime);
 		this->CheckBulletsWithScreen(deltaTime);
 
-		this->ship->DrawOnWindow(this->window);
+		this->ship->DrawOnWindow(this->GetWindowAddress());
 
 		if (this->statement == STARTED) {
 
 			this->score->AddWithTime(deltaTime);
-			this->score->DrawOnWindow(this->window);
+			this->score->DrawOnWindow(this->GetWindowAddress());
 
 			if (this->ship->CheckCollisionsWithMeteors(&this->meteors)) {
 				this->statement = LOOSED;
 				this->deltaTime = 0;
 
 				this->looseScore->SetText("SCORE: " + std::to_string(this->score->GetScore()));
-
 			}
 		}
 
 		if (this->statement == NOT_STARTED) {
-			this->gameName->DrawOnWindow(this->window);
-			this->startButton->DrawOnWindow(this->window);
-			this->exitButton->DrawOnWindow(this->window);
+			this->gameName->DrawOnWindow(this->GetWindowAddress());
+			this->startButton->DrawOnWindow(this->GetWindowAddress());
+			this->exitButton->DrawOnWindow(this->GetWindowAddress());
 			if (this->startButton->CheckButtonPressed()) {
 				this->score->SetScore(0);
 				this->statement = STARTED;
 			}
 
 			if (this->exitButton->CheckButtonPressed()) {
-				this->window->close();
+				this->WindowClose();
 			}
-
 		}
 
 		if (this->statement == PAUSED) {
-			this->blackBackground->DrawOnWindow(this->window);
+			this->blackBackground->DrawOnWindow(this->GetWindowAddress());
 
-			this->resumeButton->DrawOnWindow(this->window);
-			this->mainMenuButton->DrawOnWindow(this->window);
-			this->exitButton->DrawOnWindow(this->window);
+			this->resumeButton->DrawOnWindow(this->GetWindowAddress());
+			this->mainMenuButton->DrawOnWindow(this->GetWindowAddress());
+			this->exitButton->DrawOnWindow(this->GetWindowAddress());
 
 			if (this->resumeButton->CheckButtonPressed()) {
 				this->statement = STARTED;
@@ -179,24 +177,24 @@ void SFML_GameWindow::GameFrame(float deltaTime)
 			}
 
 			if (this->exitButton->CheckButtonPressed()) {
-				this->window->close();
+				this->WindowClose();
 			}
 		}
 		if (this->statement == LOOSED) {
 
-			this->blackBackground->DrawOnWindow(this->window);
-			this->restartButton->DrawOnWindow(this->window);
-			this->mainMenuButton->DrawOnWindow(this->window);
+			this->blackBackground->DrawOnWindow(this->GetWindowAddress());
+			this->restartButton->DrawOnWindow(this->GetWindowAddress());
+			this->mainMenuButton->DrawOnWindow(this->GetWindowAddress());
 
 
 			
 
-			fontSize = int(this->windowHeight / 6);
-			textPositionY = int((this->windowHeight / 4) - (fontSize / 2));
-			textPositionX = (this->windowWidth / 2) - (this->looseScore->GetWidth() / 2);
+			fontSize = int(this->GetWindowHeight() / 6);
+			textPositionY = int((this->GetWindowHeight() / 4) - (fontSize / 2));
+			textPositionX = (this->GetWindowWidth() / 2) - (this->looseScore->GetWidth() / 2);
 			this->looseScore->SetTextPosition(textPositionX, textPositionY);
 
-			this->looseScore->DrawOnWindow(this->window);
+			this->looseScore->DrawOnWindow(this->GetWindowAddress());
 
 
 			if (this->restartButton->CheckButtonPressed()) {
@@ -213,8 +211,8 @@ void SFML_GameWindow::GameFrame(float deltaTime)
 			}
 		}
 
-		if (this->window->isOpen()) {
-			this->window->display();
+		if (this->GetWindowAddress()->isOpen()) {
+			this->WindowDisplay();
 		}
 	}
 	
@@ -233,14 +231,13 @@ void SFML_GameWindow::Control(float deltaTime)
 			}
 			this->escPressedTime = 0;
 		}
-
 	}
 }
 
 void SFML_GameWindow::UploadTime()
 {
-	this->deltaTime = this->clock->getElapsedTime().asMicroseconds();
-	this->clock->restart();
+	this->deltaTime = this->GetClockTime();
+	this->RestartClock();
 }
 
 void SFML_GameWindow::InitializeButtons()
@@ -251,51 +248,50 @@ void SFML_GameWindow::InitializeButtons()
 
 	this->font.loadFromFile(FONT_NAME);
 	
-	ButtonFontSize = int(this->windowHeight / 8);
+	ButtonFontSize = int(this->GetWindowHeight() / 8);
 	this->startButton = new GameButton(500, 500, &this->font, ButtonFontSize, "START", ButtonFontSize / 7, ButtonFontSize / 7);
-	ButtonPositionY = this->windowHeight / 2;
-	ButtonPositionX = this->windowWidth / 2 - this->startButton->GetWidth() / 2;
+	ButtonPositionY = this->GetWindowHeight() / 2;
+	ButtonPositionX = this->GetWindowWidth() / 2 - this->startButton->GetWidth() / 2;
 	this->startButton->ChangeButtonPosition(ButtonPositionX, ButtonPositionY);
 	this->startButton->SetBackgroundColorMouseOver(sf::Color(100, 200, 100));
 	this->startButton->SetBackgroundColorNoMouse(sf::Color(100, 150, 100));
 	this->startButton->SetBackgroundColorPressed(sf::Color(100, 100, 100));
 
-	ButtonFontSize = int(this->windowHeight / 8);
+	ButtonFontSize = int(this->GetWindowHeight() / 8);
 	this->restartButton = new GameButton(500, 500, &this->font, ButtonFontSize, "RESTART", ButtonFontSize / 7, ButtonFontSize / 7);
-	ButtonPositionY = (this->windowHeight / 3)*2;
-	ButtonPositionX = this->windowWidth / 2 - this->restartButton->GetWidth() / 2;
+	ButtonPositionY = (this->GetWindowHeight() / 3)*2;
+	ButtonPositionX = this->GetWindowWidth() / 2 - this->restartButton->GetWidth() / 2;
 	this->restartButton->ChangeButtonPosition(ButtonPositionX, ButtonPositionY);
 	this->restartButton->SetBackgroundColorMouseOver(sf::Color(100, 200, 100));
 	this->restartButton->SetBackgroundColorNoMouse(sf::Color(100, 150, 100));
 	this->restartButton->SetBackgroundColorPressed(sf::Color(100, 100, 100));
 
-	ButtonFontSize = int(this->windowHeight / 8);
+	ButtonFontSize = int(this->GetWindowHeight() / 8);
 	this->resumeButton = new GameButton(500, 500, &this->font, ButtonFontSize, "RESUME", ButtonFontSize / 7, ButtonFontSize / 7);
-	ButtonPositionY = this->windowHeight / 4.8;
-	ButtonPositionX = this->windowWidth / 2 - this->resumeButton->GetWidth() / 2;
+	ButtonPositionY = this->GetWindowHeight() / 4.8;
+	ButtonPositionX = this->GetWindowWidth() / 2 - this->resumeButton->GetWidth() / 2;
 	this->resumeButton->ChangeButtonPosition(ButtonPositionX, ButtonPositionY);
 	this->resumeButton->SetBackgroundColorMouseOver(sf::Color(100, 200, 100));
 	this->resumeButton->SetBackgroundColorNoMouse(sf::Color(100, 150, 100));
 	this->resumeButton->SetBackgroundColorPressed(sf::Color(100, 100, 100));
 
-	ButtonFontSize = int(this->windowHeight / 8);
+	ButtonFontSize = int(this->GetWindowHeight() / 8);
 	this->mainMenuButton = new GameButton(500, 500, &this->font, ButtonFontSize, "MAIN MENU", ButtonFontSize / 7, ButtonFontSize / 7);
-	ButtonPositionY = (this->windowHeight / 4.8)*2;
-	ButtonPositionX = this->windowWidth / 2 - this->mainMenuButton->GetWidth() / 2;
+	ButtonPositionY = (this->GetWindowHeight() / 4.8)*2;
+	ButtonPositionX = this->GetWindowWidth() / 2 - this->mainMenuButton->GetWidth() / 2;
 	this->mainMenuButton->ChangeButtonPosition(ButtonPositionX, ButtonPositionY);
 	this->mainMenuButton->SetBackgroundColorMouseOver(sf::Color(100, 200, 100));
 	this->mainMenuButton->SetBackgroundColorNoMouse(sf::Color(100, 150, 100));
 	this->mainMenuButton->SetBackgroundColorPressed(sf::Color(100, 100, 100));
 
-	ButtonFontSize = int(this->windowHeight / 8);
+	ButtonFontSize = int(this->GetWindowHeight() / 8);
 	this->exitButton = new GameButton(500, 500, &this->font, ButtonFontSize, "EXIT", ButtonFontSize / 7, ButtonFontSize / 7);
-	ButtonPositionY = (this->windowHeight / 4.8) * 3;
-	ButtonPositionX = this->windowWidth / 2 - this->exitButton->GetWidth() / 2;
+	ButtonPositionY = (this->GetWindowHeight() / 4.8) * 3;
+	ButtonPositionX = this->GetWindowWidth() / 2 - this->exitButton->GetWidth() / 2;
 	this->exitButton->ChangeButtonPosition(ButtonPositionX, ButtonPositionY);
 	this->exitButton->SetBackgroundColorMouseOver(sf::Color(100, 200, 100));
 	this->exitButton->SetBackgroundColorNoMouse(sf::Color(100, 150, 100));
 	this->exitButton->SetBackgroundColorPressed(sf::Color(100, 100, 100));
-
 }
 
 void SFML_GameWindow::InitializeImages()
@@ -304,10 +300,10 @@ void SFML_GameWindow::InitializeImages()
 	this->backgroundImage.loadFromFile("34.png");
 	this->blackBackgroundImage.loadFromFile("gr.png");
 	
-	this->background = new Background(0, 0, this->windowWidth, this->windowHeight,
+	this->background = new Background(0, 0, this->GetWindowWidth(), this->GetWindowHeight(),
 		&this->backgroundImage, 0, 0, this->backgroundImage.getSize().x,
 		this->backgroundImage.getSize().y);
-	this->blackBackground = new Background(0, 0, this->windowWidth, this->windowHeight,
+	this->blackBackground = new Background(0, 0, this->GetWindowWidth(), this->GetWindowHeight(),
 		&this->blackBackgroundImage, 0, 0, this->backgroundImage.getSize().x,
 		this->backgroundImage.getSize().y);
 }
@@ -319,11 +315,11 @@ void SFML_GameWindow::InitializePlayerShip()
 
 	this->ship = new PlayerShip(1200, 800, 330, 210, &this->shipTexture,
 		0, 0, this->shipTexture.getSize().x, this->shipTexture.getSize().y,
-		0, this->windowWidth, 0, this->windowHeight, &bullets);
+		0, this->GetWindowWidth(), 0, this->GetWindowHeight(), &bullets);
 
 	this->ship->SetBulletTextureImage(&this->bulletsTexture);
-	this->ship->SetBulletBoundXMax(this->windowWidth);
-	this->ship->SetBulletBoundYMax(this->windowHeight);
+	this->ship->SetBulletBoundXMax(this->GetWindowWidth());
+	this->ship->SetBulletBoundYMax(this->GetWindowHeight());
 	this->ship->SetBulletBoundXMin(0);
 	this->ship->SetBulletBoundYMin(0);
 
@@ -339,58 +335,50 @@ void SFML_GameWindow::InitializeTexts()
 
 	this->font.loadFromFile(FONT_NAME);
 
-	fontSize = int(this->windowHeight / 4);
-	textPositionY = int((this->windowHeight / 3.5) - (fontSize / 2));
+	fontSize = int(this->GetWindowHeight() / 4);
+	textPositionY = int((this->GetWindowHeight() / 3.5) - (fontSize / 2));
 	this->gameName = new SFML_TextGameObject(100, 0, &this->font, fontSize, GAME_NAME);
-	textPositionX = (this->windowWidth / 2) - (this->gameName->GetWidth() / 2);
+	textPositionX = (this->GetWindowWidth() / 2) - (this->gameName->GetWidth() / 2);
 	this->gameName->SetTextPosition(textPositionX, textPositionY);
 
-	fontSize = int(this->windowHeight / 6);
-	textPositionY = int((this->windowHeight / 4) - (fontSize / 2));
+	fontSize = int(this->GetWindowHeight() / 6);
+	textPositionY = int((this->GetWindowHeight() / 4) - (fontSize / 2));
 	this->looseScore = new SFML_TextGameObject(100, 0, &this->font, fontSize, "SCORE:");
-	textPositionX = (this->windowWidth / 2) - (this->looseScore->GetWidth() / 2);
+	textPositionX = (this->GetWindowWidth() / 2) - (this->looseScore->GetWidth() / 2);
 	this->looseScore->SetTextPosition(textPositionX, textPositionY);
 
 	this->score = new SFML_ScoreCounterObject(10, 10, &this->font, 100);
 	this->score->SetCoef(0.001);
-
 }
 
-
-SFML_GameWindow::SFML_GameWindow(int windowWidth, int windowHeight, std::string windowName){
-
-	
-
-	int startButtonFontSize;
-	int startButtonPositionX;
-	int startButtonPositionY;
-
-	this->windowWidth = windowWidth;
-	this->windowHeight = windowHeight;
-	
-	srand(time(NULL));
-
-	this->window = new sf::RenderWindow(sf::VideoMode(windowWidth, windowHeight), windowName, sf::Style::Close);
-	this->clock = new sf::Clock;
-
-	this->statement = NOT_STARTED;
-
+void SFML_GameWindow::InitializeBackgroundMusic()
+{
 	this->backgroundMusic = new sf::Music();
 	this->backgroundMusic->openFromFile(BACKGROUND_SOUNDNAME);
 	this->backgroundMusic->setLoop(true);
 	this->backgroundMusic->play();
+}
 
+
+SFML_GameWindow::SFML_GameWindow(std::uint16_t windowWidth, 
+	std::uint16_t windowHeight, std::string windowName, 
+	sf::Uint32 style):SFML_Window(windowWidth, windowHeight, windowName, style)
+{
+	srand(time(NULL));
+
+	this->statement = NOT_STARTED;
+
+	this->InitializeBackgroundMusic();
 	this->InitializeImages();
-	this->InitializeButtons();	
+	this->InitializeButtons();
 	this->InitializeTexts();
 	this->InitializePlayerShip();
 
-
-	while (this->window->isOpen()) {
+	while (this->GetWindowAddress()->isOpen()){
 		
-		while (this->window->pollEvent(this->event)) {
+		while (this->GetWindowAddress()->pollEvent(this->event)) {
 			if (this->event.type == sf::Event::Closed) {
-				window->close();
+				this->WindowClose();
 			}
 		}
 
