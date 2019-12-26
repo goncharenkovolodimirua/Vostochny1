@@ -1,8 +1,6 @@
 #include "pch.h"
 #include "Meteor.h"
 
-#include <iostream>
-
 Meteor::Meteor(std::int16_t positionX,
 	std::int16_t positionY,
 	std::uint16_t width,
