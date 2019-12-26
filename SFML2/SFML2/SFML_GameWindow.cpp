@@ -48,11 +48,11 @@ void SFML_GameWindow::CheckMeteorsWithBullets(float deltaTime)
 {
 	for (this->meteorsIterator = this->meteors.begin(); 
 		this->meteorsIterator != this->meteors.end();) {
-		(*this->meteorsIterator)->Move(deltaTime / (FPS_TIME/(this->GetWindowWidth()/1920)));
+		(*this->meteorsIterator)->Move(deltaTime / (FPS_TIME/((float)this->GetWindowWidth()/1920)));
 		(*this->meteorsIterator)->CheckCollisionWithList(&this->bullets, COLLISION_WITH_BULLET);
 
 
-		if ((*this->meteorsIterator)->CheckAlive(deltaTime / (FPS_TIME / (this->GetWindowWidth() / 1920)))) {
+		if ((*this->meteorsIterator)->CheckAlive(deltaTime / (FPS_TIME / ((float)this->GetWindowWidth() / 1920)))) {
 			(*this->meteorsIterator)->DrawOnWindow(this->GetWindowAddress());
 
 			if (!(*this->meteorsIterator)->IsInBounds())
@@ -75,7 +75,7 @@ void SFML_GameWindow::CheckBulletsWithScreen(float deltaTime)
 {
 	for (this->bulletsIterator = this->bullets.begin(); 
 		this->bulletsIterator != this->bullets.end();) {
-		(*this->bulletsIterator)->Move(deltaTime / (FPS_TIME / (this->GetWindowWidth() / 1920)));
+		(*this->bulletsIterator)->Move(deltaTime / (FPS_TIME / ((float)this->GetWindowWidth() / 1920)));
 		(*this->bulletsIterator)->DrawOnWindow(this->GetWindowAddress());
 
 		if (!(*this->bulletsIterator)->IsInBounds())
@@ -124,7 +124,7 @@ void SFML_GameWindow::GameFrame(float deltaTime)
 			deltaTime = 0;
 		}
 		this->GenerateMeteors(deltaTime);
-		this->ship->Control(deltaTime / (FPS_TIME / (this->GetWindowWidth() / 1920)));
+		this->ship->Control(deltaTime / (FPS_TIME / ((float)this->GetWindowWidth() / 1920)));
 
 		this->WindowClear();
 		this->background->DrawOnWindow(this->GetWindowAddress());
