@@ -250,7 +250,7 @@ void SFML_GameWindow::InitializeButtons()
 	
 	ButtonFontSize = int(this->GetWindowHeight() / 8);
 	this->startButton = new GameButton(500, 500, &this->font, ButtonFontSize, "START", ButtonFontSize / 7, ButtonFontSize / 7);
-	ButtonPositionY = this->GetWindowHeight() / 2;
+	ButtonPositionY = this->GetWindowHeight() / 2+ this->GetWindowHeight() / 5.5;
 	ButtonPositionX = this->GetWindowWidth() / 2 - this->startButton->GetWidth() / 2;
 	this->startButton->ChangeButtonPosition(ButtonPositionX, ButtonPositionY);
 	this->startButton->SetBackgroundColorMouseOver(sf::Color(100, 200, 100));
@@ -259,7 +259,7 @@ void SFML_GameWindow::InitializeButtons()
 
 	ButtonFontSize = int(this->GetWindowHeight() / 8);
 	this->restartButton = new GameButton(500, 500, &this->font, ButtonFontSize, "RESTART", ButtonFontSize / 7, ButtonFontSize / 7);
-	ButtonPositionY = (this->GetWindowHeight() / 3)*2;
+	ButtonPositionY = (this->GetWindowHeight() / 3)*2 + this->GetWindowHeight() / 6.5;
 	ButtonPositionX = this->GetWindowWidth() / 2 - this->restartButton->GetWidth() / 2;
 	this->restartButton->ChangeButtonPosition(ButtonPositionX, ButtonPositionY);
 	this->restartButton->SetBackgroundColorMouseOver(sf::Color(198, 22, 22));
@@ -268,7 +268,7 @@ void SFML_GameWindow::InitializeButtons()
 
 	ButtonFontSize = int(this->GetWindowHeight() / 8);
 	this->resumeButton = new GameButton(500, 500, &this->font, ButtonFontSize, "RESUME", ButtonFontSize / 7, ButtonFontSize / 7);
-	ButtonPositionY = this->GetWindowHeight() / 4.8;
+	ButtonPositionY = this->GetWindowHeight() / 4.8 + this->GetWindowHeight() / 5;
 	ButtonPositionX = this->GetWindowWidth() / 2 - this->resumeButton->GetWidth() / 2;
 	this->resumeButton->ChangeButtonPosition(ButtonPositionX, ButtonPositionY);
 	this->resumeButton->SetBackgroundColorMouseOver(sf::Color(100, 200, 100));
@@ -277,7 +277,7 @@ void SFML_GameWindow::InitializeButtons()
 
 	ButtonFontSize = int(this->GetWindowHeight() / 8);
 	this->mainMenuButton = new GameButton(500, 500, &this->font, ButtonFontSize, "MAIN MENU", ButtonFontSize / 7, ButtonFontSize / 7);
-	ButtonPositionY = (this->GetWindowHeight() / 4.8)*2;
+	ButtonPositionY = (this->GetWindowHeight() / 4.8)*2 + this->GetWindowHeight() / 5;
 	ButtonPositionX = this->GetWindowWidth() / 2 - this->mainMenuButton->GetWidth() / 2;
 	this->mainMenuButton->ChangeButtonPosition(ButtonPositionX, ButtonPositionY);
 	this->mainMenuButton->SetBackgroundColorMouseOver(sf::Color(12, 30, 169));
@@ -286,7 +286,7 @@ void SFML_GameWindow::InitializeButtons()
 
 	ButtonFontSize = int(this->GetWindowHeight() / 8);
 	this->exitButton = new GameButton(500, 500, &this->font, ButtonFontSize, "EXIT", ButtonFontSize / 7, ButtonFontSize / 7);
-	ButtonPositionY = (this->GetWindowHeight() / 4.8) * 3;
+	ButtonPositionY = (this->GetWindowHeight() / 4.8) * 3 + this->GetWindowHeight() / 5;
 	ButtonPositionX = this->GetWindowWidth() / 2 - this->exitButton->GetWidth() / 2;
 	this->exitButton->ChangeButtonPosition(ButtonPositionX, ButtonPositionY);
 	this->exitButton->SetBackgroundColorMouseOver(sf::Color(198, 22, 22));
