@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "SFML_GameWindow.h"
 
-#include <iostream>
 
 void SFML_GameWindow::GenerateMeteors(float deltaTime)
 {
