@@ -34,6 +34,7 @@
 #include "CollisionTypes.h"
 #include "GameStatements.h"
 #include "SFML_ScoreCounterObject.h"
+#include "HighScore.h"
 
 /*!
 * \brief Class with represent window with game.
@@ -79,6 +80,8 @@ private:
 	GameButton* resumeButton; //!<Reference to GameButton object with resume button
 	GameButton* mainMenuButton; //!<Reference to GameButton object with mainMenu button
 	GameButton* exitButton; //!<Reference to GameButton object with exit button
+
+	HighScore* higscore;
 
 	SFML_ScoreCounterObject* score; //!<Reference to ScoreCounter object
 

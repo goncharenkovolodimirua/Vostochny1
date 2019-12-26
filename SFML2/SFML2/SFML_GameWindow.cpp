@@ -113,6 +113,9 @@ void SFML_GameWindow::GameFrame(float deltaTime)
 	int startButtonPositionX;
 	int startButtonPositionY;
 
+	std::int16_t positionX;
+	std::int16_t positionY;
+
 	int fontSize;
 	int textPositionY;
 	int textPositionX;
@@ -149,6 +152,13 @@ void SFML_GameWindow::GameFrame(float deltaTime)
 			this->gameName->DrawOnWindow(this->GetWindowAddress());
 			this->startButton->DrawOnWindow(this->GetWindowAddress());
 			this->exitButton->DrawOnWindow(this->GetWindowAddress());
+
+
+			positionX = (this->GetWindowWidth() / 2) - (this->higscore->GetWidth() / 2);
+			positionY = this->GetWindowHeight() / 2.10;
+			this->higscore->SetTextPosition(positionX, positionY);
+			this->higscore->DrawOnWindow(this->GetWindowAddress());
+
 			if (this->startButton->CheckButtonPressed()) {
 				this->score->SetScore(0);
 				this->statement = STARTED;
@@ -165,6 +175,14 @@ void SFML_GameWindow::GameFrame(float deltaTime)
 			this->resumeButton->DrawOnWindow(this->GetWindowAddress());
 			this->mainMenuButton->DrawOnWindow(this->GetWindowAddress());
 			this->exitButton->DrawOnWindow(this->GetWindowAddress());
+
+
+			positionX = (this->GetWindowWidth() / 2) - (this->higscore->GetWidth() / 2);
+			positionY = this->GetWindowHeight() / 6;
+			this->higscore->SetTextPosition(positionX, positionY);
+
+			this->higscore->DrawOnWindow(this->GetWindowAddress());
+
 
 			if (this->resumeButton->CheckButtonPressed()) {
 				this->statement = STARTED;
@@ -194,6 +212,12 @@ void SFML_GameWindow::GameFrame(float deltaTime)
 
 			this->looseScore->DrawOnWindow(this->GetWindowAddress());
 
+			this->higscore->NewScore(this->score->GetScore());
+			positionX = (this->GetWindowWidth() / 2) - (this->higscore->GetWidth() / 2);
+			positionY = this->GetWindowHeight() / 2 - this->GetWindowHeight()/10;
+			this->higscore->SetTextPosition(positionX, positionY);
+
+			this->higscore->DrawOnWindow(this->GetWindowAddress());
 
 			if (this->restartButton->CheckButtonPressed()) {
 				this->score->SetScore(0);
@@ -365,6 +389,9 @@ void SFML_GameWindow::InitializeTexts()
 	textPositionX = textPositionY;
 	this->score = new SFML_ScoreCounterObject(textPositionX, textPositionY, &this->font, fontSize);
 	this->score->SetCoef(0.001);
+
+	fontSize = static_cast<std::int16_t>(this->GetWindowHeight() / 7.2);
+	this->higscore = new HighScore(100, 100, &this->font, fontSize);
 }
 
 void SFML_GameWindow::InitializeBackgroundMusic()
@@ -390,6 +417,7 @@ SFML_GameWindow::SFML_GameWindow(std::uint16_t windowWidth,
 	this->InitializeTexts();
 	this->InitializePlayerShip();
 
+
 	while (this->GetWindowAddress()->isOpen()){
 		
 		while (this->GetWindowAddress()->pollEvent(this->event)) {
@@ -401,7 +429,8 @@ SFML_GameWindow::SFML_GameWindow(std::uint16_t windowWidth,
 		this->UploadTime();
 		this->Control(this->deltaTime);
 		
-		GameFrame(this->deltaTime);		
+		GameFrame(this->deltaTime);
+	
 		
 	}
 }
@@ -455,5 +484,8 @@ SFML_GameWindow::~SFML_GameWindow()
 	this->ClearLists();
 	if (this->backgroundMusic != nullptr) {
 		delete this->backgroundMusic;
+	}
+	if (this->higscore != nullptr) {
+		delete this->higscore;
 	}
 }
