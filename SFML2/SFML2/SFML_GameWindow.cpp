@@ -259,8 +259,8 @@ void SFML_GameWindow::InitializeButtons()
 	ButtonPositionY = (this->GetWindowHeight() / 3)*2;
 	ButtonPositionX = this->GetWindowWidth() / 2 - this->restartButton->GetWidth() / 2;
 	this->restartButton->ChangeButtonPosition(ButtonPositionX, ButtonPositionY);
-	this->restartButton->SetBackgroundColorMouseOver(sf::Color(100, 200, 100));
-	this->restartButton->SetBackgroundColorNoMouse(sf::Color(100, 150, 100));
+	this->restartButton->SetBackgroundColorMouseOver(sf::Color(198, 22, 22));
+	this->restartButton->SetBackgroundColorNoMouse(sf::Color(111, 42, 42));
 	this->restartButton->SetBackgroundColorPressed(sf::Color(100, 100, 100));
 
 	ButtonFontSize = int(this->GetWindowHeight() / 8);
@@ -277,8 +277,8 @@ void SFML_GameWindow::InitializeButtons()
 	ButtonPositionY = (this->GetWindowHeight() / 4.8)*2;
 	ButtonPositionX = this->GetWindowWidth() / 2 - this->mainMenuButton->GetWidth() / 2;
 	this->mainMenuButton->ChangeButtonPosition(ButtonPositionX, ButtonPositionY);
-	this->mainMenuButton->SetBackgroundColorMouseOver(sf::Color(100, 200, 100));
-	this->mainMenuButton->SetBackgroundColorNoMouse(sf::Color(100, 150, 100));
+	this->mainMenuButton->SetBackgroundColorMouseOver(sf::Color(12, 30, 169));
+	this->mainMenuButton->SetBackgroundColorNoMouse(sf::Color(56, 64, 125));
 	this->mainMenuButton->SetBackgroundColorPressed(sf::Color(100, 100, 100));
 
 	ButtonFontSize = int(this->GetWindowHeight() / 8);
@@ -286,8 +286,8 @@ void SFML_GameWindow::InitializeButtons()
 	ButtonPositionY = (this->GetWindowHeight() / 4.8) * 3;
 	ButtonPositionX = this->GetWindowWidth() / 2 - this->exitButton->GetWidth() / 2;
 	this->exitButton->ChangeButtonPosition(ButtonPositionX, ButtonPositionY);
-	this->exitButton->SetBackgroundColorMouseOver(sf::Color(100, 200, 100));
-	this->exitButton->SetBackgroundColorNoMouse(sf::Color(100, 150, 100));
+	this->exitButton->SetBackgroundColorMouseOver(sf::Color(198, 22, 22));
+	this->exitButton->SetBackgroundColorNoMouse(sf::Color(111, 42, 42));
 	this->exitButton->SetBackgroundColorPressed(sf::Color(100, 100, 100));
 }
 
