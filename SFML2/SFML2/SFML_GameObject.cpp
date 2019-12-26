@@ -1,64 +1,63 @@
 #include "pch.h"
 #include "SFML_GameObject.h"
 
-#include <iostream>
 
-void SFML_GameObject::SetPositionX(int16_t positionX)
+void SFML_GameObject::SetPositionX(std::int16_t positionX)
 {
 	this->positionX = positionX;
 }
 
-void SFML_GameObject::SetPositionY(int16_t positionY)
+void SFML_GameObject::SetPositionY(std::int16_t positionY)
 {
 	this->positionY = positionY;
 }
 
-void SFML_GameObject::SetWidth(uint16_t width)
+void SFML_GameObject::SetWidth(std::uint16_t width)
 {
 	this->width = width;
 }
 
-void SFML_GameObject::SetHeight(uint16_t height)
+void SFML_GameObject::SetHeight(std::uint16_t height)
 {
 	this->height = height;
 }
 
-void SFML_GameObject::SetOriginalWidth(uint16_t originalWidth)
+void SFML_GameObject::SetOriginalWidth(std::int16_t originalWidth)
 {
 	this->originalWidth = originalWidth;
 }
 
-void SFML_GameObject::SetOriginalHeight(uint16_t originalHeight)
+void SFML_GameObject::SetOriginalHeight(std::int16_t originalHeight)
 {
 	this->originalHeight = originalHeight;
 }
 
-uint16_t SFML_GameObject::GetOriginalWidth()
+std::int16_t SFML_GameObject::GetOriginalWidth()
 {
 	return this->originalWidth;
 }
 
-uint16_t SFML_GameObject::GetOriginalHeight()
+std::int16_t SFML_GameObject::GetOriginalHeight()
 {
 	return this->originalHeight;
 }
 
-int16_t SFML_GameObject::GetPositionX()
+std::int16_t SFML_GameObject::GetPositionX()
 {
 	return this->positionX;
 }
 
-int16_t SFML_GameObject::GetPositionY()
+std::int16_t SFML_GameObject::GetPositionY()
 {
 	return this->positionY;
 }
 
-uint16_t SFML_GameObject::GetWidth()
+std::uint16_t SFML_GameObject::GetWidth()
 {
 	return this->width;
 }
 
-uint16_t SFML_GameObject::GetHeight()
+std::uint16_t SFML_GameObject::GetHeight()
 {
 	return this->height;
 }
@@ -79,7 +78,8 @@ bool SFML_GameObject::CheckSpriteColision(SFML_GameObject * gameObject, sf::IntR
 	return this->GetSpriteIntRect().intersects(gameObject->GetSpriteIntRect(), *intersection);
 }
 
-SFML_GameObject::SFML_GameObject(int16_t positionX, int16_t positionY, uint16_t width, uint16_t height)
+SFML_GameObject::SFML_GameObject(std::int16_t positionX, std::int16_t positionY,
+	std::uint16_t width, std::uint16_t height)
 {
 	this->positionX = positionX;
 	this->positionY = positionY;
@@ -89,7 +89,7 @@ SFML_GameObject::SFML_GameObject(int16_t positionX, int16_t positionY, uint16_t 
 	this->originalHeight = 0;
 }
 
-SFML_GameObject::SFML_GameObject(int16_t positionX, int16_t positionY)
+SFML_GameObject::SFML_GameObject(std::int16_t positionX, std::int16_t positionY)
 {
 	this->positionX = positionX;
 	this->positionY = positionY;

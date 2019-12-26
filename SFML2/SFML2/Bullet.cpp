@@ -1,23 +1,22 @@
 #include "pch.h"
 #include "Bullet.h"
 
-
-Bullet::Bullet(int positionX, 
-	int positionY, 
-	int width,
-	int height, 
+Bullet::Bullet(std::int16_t positionX,
+	std::int16_t positionY,
+	std::uint16_t width,
+	std::uint16_t height,
 	sf::Image* textureImage, 
-	int positionXinTexture, 
-	int positionYInTexture,
-	int widthInTexture, 
-	int heightInTexture, 
+	std::int16_t positionXinTexture,
+	std::int16_t positionYInTexture,
+	std::int16_t widthInTexture,
+	std::int16_t heightInTexture,
 	float Vx, 
 	float Vy,
-	int boundXMin, 
-	int boundXMax, 
-	int boundYMin, 
-	int boundYMax, 
-	int cost,
+	std::int16_t boundXMin,
+	std::int16_t boundXMax,
+	std::int16_t boundYMin,
+	std::int16_t boundYMax,
+	std::int16_t cost,
 	SFML_GraphicalGameObject* ovner)
 	:PhysicalGameObject(positionX, positionY, width,
 		height, textureImage, positionXinTexture, positionYInTexture,
@@ -33,7 +32,7 @@ Bullet::~Bullet()
 {
 }
 
-void Bullet::SetCost(int cost)
+void Bullet::SetCost(std::int16_t cost)
 {
 	this->cost = cost;
 }

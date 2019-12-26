@@ -1,9 +1,13 @@
 #include "pch.h"
 #include "GameButton.h"
 
-
-GameButton::GameButton(int positionX, int positionY, sf::Font* font, int fontSize, std::string text, 
-	int offsetVertical, int offsetHorizontal):
+GameButton::GameButton(std::int16_t positionX, 
+	std::int16_t positionY, 
+	sf::Font* font, 
+	std::uint16_t fontSize, 
+	std::string text,
+	std::int16_t offsetVertical, 
+	std::int16_t offsetHorizontal):
 	SFML_TextGameObject(positionX, positionY, font, fontSize, text)
 {
 	this->offsetVertical = offsetVertical;
@@ -38,8 +42,6 @@ void GameButton::DrawOnWindow(sf::RenderWindow *window)
 	if (this->window != window) {
 		this->window = window;
 	}
-	
-
 }
 
 void GameButton::SetBackgroundColorNoMouse(sf::Color color)
@@ -56,17 +58,16 @@ void GameButton::SetBackgroundColorMouseOver(sf::Color color)
 void GameButton::SetBackgroundColorPressed(sf::Color color)
 {
 	this->pressedFillColor = color;
-
 }
 
-void GameButton::ChangeButtonPosition(int positionX, int positionY)
+void GameButton::ChangeButtonPosition(std::int16_t positionX, std::int16_t positionY)
 {
 	this->SetTextPosition(positionX, positionY);
 	this->rectangle->setPosition(this->GetSFMLText()->getGlobalBounds().left - this->offsetHorizontal / 2,
 		this->GetSFMLText()->getGlobalBounds().top - this->offsetVertical / 2);
 }
 
-void GameButton::Resize(uint16_t width, uint16_t height)
+void GameButton::Resize(std::uint16_t width, std::uint16_t height)
 {
 	float scaleX;
 	float scaleY;
@@ -93,8 +94,8 @@ void GameButton::Resize(uint16_t width, uint16_t height)
 
 bool GameButton::CheckButtonPressed()
 {
-	int positionX;
-	int positionY;
+	std::int16_t positionX;
+	std::int16_t positionY;
 	if (this->window != nullptr) {
 		positionX=sf::Mouse::getPosition(*window).x;
 		positionY = sf::Mouse::getPosition(*window).y;

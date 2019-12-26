@@ -19,7 +19,7 @@ public:
 	* \param[in] width Width in px
 	* \param[in] height Height in px
 	* \param[in] textureImage Reference to sf::Image with texture
-	* \param[in] positionXinTexture Position of left upper corner of square in texture
+	* \param[in] positionXInTexture Position of left upper corner of square in texture
 	* \param[in] positionYInTexture Position of right upper corner of square in texture
 	* \param[in] widthInTexture Width of square in texture. Sets into originalWidth field
 	* \param[in] heightInTexture Height of square in texture. Sets into originalHeight field
@@ -31,8 +31,8 @@ public:
 		sf::Image* textureImage,
 		std::int16_t positionXInTexture,
 		std::int16_t positionYInTexture,
-		std::uint16_t widthInTexture,
-		std::uint16_t heightInTexture);
+		std::int16_t widthInTexture,
+		std::int16_t heightInTexture);
 
 	/*!
 	* Destructor
