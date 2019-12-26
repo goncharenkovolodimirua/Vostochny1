@@ -49,11 +49,11 @@ void SFML_GameWindow::CheckMeteorsWithBullets(float deltaTime)
 {
 	for (this->meteorsIterator = this->meteors.begin(); 
 		this->meteorsIterator != this->meteors.end();) {
-		(*this->meteorsIterator)->Move(deltaTime / FPS_TIME);
+		(*this->meteorsIterator)->Move(deltaTime / (FPS_TIME/(this->GetWindowWidth()/1920)));
 		(*this->meteorsIterator)->CheckCollisionWithList(&this->bullets, COLLISION_WITH_BULLET);
 
 
-		if ((*this->meteorsIterator)->CheckAlive(deltaTime / FPS_TIME)) {
+		if ((*this->meteorsIterator)->CheckAlive(deltaTime / (FPS_TIME / (this->GetWindowWidth() / 1920)))) {
 			(*this->meteorsIterator)->DrawOnWindow(this->GetWindowAddress());
 
 			if (!(*this->meteorsIterator)->IsInBounds())
@@ -76,7 +76,7 @@ void SFML_GameWindow::CheckBulletsWithScreen(float deltaTime)
 {
 	for (this->bulletsIterator = this->bullets.begin(); 
 		this->bulletsIterator != this->bullets.end();) {
-		(*this->bulletsIterator)->Move(deltaTime / FPS_TIME);
+		(*this->bulletsIterator)->Move(deltaTime / (FPS_TIME / (this->GetWindowWidth() / 1920)));
 		(*this->bulletsIterator)->DrawOnWindow(this->GetWindowAddress());
 
 		if (!(*this->bulletsIterator)->IsInBounds())
@@ -122,7 +122,7 @@ void SFML_GameWindow::GameFrame(float deltaTime)
 			deltaTime = 0;
 		}
 		this->GenerateMeteors(deltaTime);
-		this->ship->Control(deltaTime / FPS_TIME);
+		this->ship->Control(deltaTime / (FPS_TIME / (this->GetWindowWidth() / 1920)));
 
 		this->WindowClear();
 		this->background->DrawOnWindow(this->GetWindowAddress());
@@ -173,7 +173,8 @@ void SFML_GameWindow::GameFrame(float deltaTime)
 			if (this->mainMenuButton->CheckButtonPressed()) {
 				this->ClearLists();
 				this->statement = NOT_STARTED;
-				this->ship->SetPosition(1200, 800);
+				this->ship->SetPosition(static_cast<std::int16_t>(this->GetWindowWidth() / 1.6),
+					static_cast<std::int16_t>(this->GetWindowHeight() / 1.35));
 			}
 
 			if (this->exitButton->CheckButtonPressed()) {
@@ -197,14 +198,16 @@ void SFML_GameWindow::GameFrame(float deltaTime)
 			if (this->restartButton->CheckButtonPressed()) {
 				this->score->SetScore(0);
 				this->statement = STARTED;
-				this->ship->SetPosition(1200, 800);
+				this->ship->SetPosition(static_cast<std::int16_t>(this->GetWindowWidth() / 1.6), 
+					static_cast<std::int16_t>(this->GetWindowHeight() / 1.35));
 				this->ClearLists();
 			}
 
 			if (this->mainMenuButton->CheckButtonPressed()) {
 				this->ClearLists();
 				this->statement = NOT_STARTED;
-				this->ship->SetPosition(1200, 800);
+				this->ship->SetPosition(static_cast<std::int16_t>(this->GetWindowWidth() / 1.6), 
+					static_cast<std::int16_t>(this->GetWindowHeight() / 1.35));
 			}
 		}
 
@@ -259,8 +262,8 @@ void SFML_GameWindow::InitializeButtons()
 	ButtonPositionY = (this->GetWindowHeight() / 3)*2;
 	ButtonPositionX = this->GetWindowWidth() / 2 - this->restartButton->GetWidth() / 2;
 	this->restartButton->ChangeButtonPosition(ButtonPositionX, ButtonPositionY);
-	this->restartButton->SetBackgroundColorMouseOver(sf::Color(100, 200, 100));
-	this->restartButton->SetBackgroundColorNoMouse(sf::Color(100, 150, 100));
+	this->restartButton->SetBackgroundColorMouseOver(sf::Color(198, 22, 22));
+	this->restartButton->SetBackgroundColorNoMouse(sf::Color(111, 42, 42));
 	this->restartButton->SetBackgroundColorPressed(sf::Color(100, 100, 100));
 
 	ButtonFontSize = int(this->GetWindowHeight() / 8);
@@ -277,8 +280,8 @@ void SFML_GameWindow::InitializeButtons()
 	ButtonPositionY = (this->GetWindowHeight() / 4.8)*2;
 	ButtonPositionX = this->GetWindowWidth() / 2 - this->mainMenuButton->GetWidth() / 2;
 	this->mainMenuButton->ChangeButtonPosition(ButtonPositionX, ButtonPositionY);
-	this->mainMenuButton->SetBackgroundColorMouseOver(sf::Color(100, 200, 100));
-	this->mainMenuButton->SetBackgroundColorNoMouse(sf::Color(100, 150, 100));
+	this->mainMenuButton->SetBackgroundColorMouseOver(sf::Color(12, 30, 169));
+	this->mainMenuButton->SetBackgroundColorNoMouse(sf::Color(56, 64, 125));
 	this->mainMenuButton->SetBackgroundColorPressed(sf::Color(100, 100, 100));
 
 	ButtonFontSize = int(this->GetWindowHeight() / 8);
@@ -286,8 +289,8 @@ void SFML_GameWindow::InitializeButtons()
 	ButtonPositionY = (this->GetWindowHeight() / 4.8) * 3;
 	ButtonPositionX = this->GetWindowWidth() / 2 - this->exitButton->GetWidth() / 2;
 	this->exitButton->ChangeButtonPosition(ButtonPositionX, ButtonPositionY);
-	this->exitButton->SetBackgroundColorMouseOver(sf::Color(100, 200, 100));
-	this->exitButton->SetBackgroundColorNoMouse(sf::Color(100, 150, 100));
+	this->exitButton->SetBackgroundColorMouseOver(sf::Color(198, 22, 22));
+	this->exitButton->SetBackgroundColorNoMouse(sf::Color(111, 42, 42));
 	this->exitButton->SetBackgroundColorPressed(sf::Color(100, 100, 100));
 }
 
@@ -307,10 +310,20 @@ void SFML_GameWindow::InitializeImages()
 
 void SFML_GameWindow::InitializePlayerShip()
 {
+	std::int16_t positionX;
+	std::int16_t positionY;
+	std::int16_t width;
+	std::int16_t height;
+
+	positionX = static_cast<std::int16_t>(this->GetWindowWidth()/1.6);
+	positionY = static_cast<std::int16_t>(this->GetWindowHeight() / 1.35);
+	width = static_cast<std::int16_t>(this->GetWindowWidth() / 5.8);
+	height = static_cast<std::int16_t>(width / 1.6);
+
 	this->shipTexture.loadFromFile("57.png");
 	this->bulletsTexture.loadFromFile("b1.png");
 
-	this->ship = new PlayerShip(1200, 800, 330, 210, &this->shipTexture,
+	this->ship = new PlayerShip(positionX, positionY, width, height, &this->shipTexture,
 		0, 0, this->shipTexture.getSize().x, this->shipTexture.getSize().y,
 		0, this->GetWindowWidth(), 0, this->GetWindowHeight(), &bullets);
 
@@ -320,8 +333,11 @@ void SFML_GameWindow::InitializePlayerShip()
 	this->ship->SetBulletBoundXMin(0);
 	this->ship->SetBulletBoundYMin(0);
 
-	this->ship->SetBulletWidth(30);
-	this->ship->SetBulletHeight(50);
+	width = static_cast<std::int16_t>(this->GetWindowWidth() / 64);
+	height = static_cast<std::int16_t>(width * 1.66);
+
+	this->ship->SetBulletWidth(width);
+	this->ship->SetBulletHeight(height);
 }
 
 void SFML_GameWindow::InitializeTexts()
@@ -344,7 +360,10 @@ void SFML_GameWindow::InitializeTexts()
 	textPositionX = (this->GetWindowWidth() / 2) - (this->looseScore->GetWidth() / 2);
 	this->looseScore->SetTextPosition(textPositionX, textPositionY);
 
-	this->score = new SFML_ScoreCounterObject(10, 10, &this->font, 100);
+	fontSize = int(this->GetWindowHeight() / 10);
+	textPositionY = int(this->GetWindowHeight() / 100);
+	textPositionX = textPositionY;
+	this->score = new SFML_ScoreCounterObject(textPositionX, textPositionY, &this->font, fontSize);
 	this->score->SetCoef(0.001);
 }
 
