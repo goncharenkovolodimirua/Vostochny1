@@ -21,23 +21,23 @@ void SFML_ScoreCounterObject::AddWithTime(float deltaTime)
 	{
 		this->coef = this->coef + TIME_COEF * deltaTime;
 	}
-	this->score = this->score + static_cast<std::int16_t>(deltaTime * this->coef);
+	this->score = this->score + static_cast<std::int32_t>(deltaTime * this->coef);
 	this->SetText("SCORE:" + std::to_string(this->score));
 	
 }
 
-void SFML_ScoreCounterObject::AddWithNumber(std::int16_t score)
+void SFML_ScoreCounterObject::AddWithNumber(std::int32_t score)
 {
 	this->score += score;
 	this->SetText("SCORE:" + std::to_string(this->score));
 }
 
-void  SFML_ScoreCounterObject::SubstractWithNumber(std::int16_t score)
+void  SFML_ScoreCounterObject::SubstractWithNumber(std::int32_t score)
 {
 	this->score -= score;
 	this->SetText("SCORE:" + std::to_string(this->score));
 }
-void SFML_ScoreCounterObject::SetScore(std::int16_t score)
+void SFML_ScoreCounterObject::SetScore(std::int32_t score)
 {
 	this->score = score;
 }
@@ -45,7 +45,7 @@ void SFML_ScoreCounterObject::SetCoef(float coef)
 {
 	this->coef = coef;
 }
-std::int16_t SFML_ScoreCounterObject::GetScore()
+std::int32_t SFML_ScoreCounterObject::GetScore()
 {
 	return this->score;
 }

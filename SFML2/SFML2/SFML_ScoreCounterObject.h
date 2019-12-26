@@ -24,7 +24,7 @@ class SFML_ScoreCounterObject :
 {
 private:
 	float coef; //!< Score growth rate coefficient
-	std::int16_t score; //!< Game score
+	std::int32_t score; //!< Game score
 
 public:
 	/*!
@@ -56,21 +56,21 @@ public:
 	*
 	* \param[in] score Score in point
 	*/
-	virtual void AddWithNumber(std::int16_t score);
+	virtual void AddWithNumber(std::int32_t score);
 
 	/*!
 	* Enlarge score with formula score -= score and changing text
 	*
 	* \param[in] score Score in point
 	*/
-	virtual void SubstractWithNumber(std::int16_t score);
+	virtual void SubstractWithNumber(std::int32_t score);
 
 	/*!
 	* Set score into field score
 	*
 	* \param[in] score Score in point
 	*/
-	virtual void SetScore(std::int16_t score);
+	virtual void SetScore(std::int32_t score);
 
 	/*!
 	* Set coef into field coef
@@ -84,7 +84,7 @@ public:
 	*
 	* \return Score in points
 	*/
-	virtual std::int16_t GetScore();
+	virtual std::int32_t GetScore();
 
 	/*!
 	* Get coef from field coef
