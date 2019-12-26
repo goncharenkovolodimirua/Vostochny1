@@ -7,7 +7,7 @@
 
 int main()
 {
-	SFML_GameWindow gw(1920, 1080, "Test");
+	SFML_GameWindow gw(1920, 1080, "Test", sf::Style::Close);
 
 	
 

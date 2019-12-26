@@ -13,7 +13,7 @@
 #pragma warning(disable : 4996) //Remove error "sf::Text::setColor declareted deprecate"
 
 /*!
-* \brief Class with represent phisical text in game
+* \brief Class with represent text in game
 *
 * Class stored data about font, it size, and text value.
 *

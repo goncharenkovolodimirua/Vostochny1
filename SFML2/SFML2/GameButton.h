@@ -1,6 +1,6 @@
 /*!
 * \file
-* \brief Header file, which store declaration GameButton class.
+* \brief Header file, whitch store declaration GameButton class.
 */
 #ifndef __GAME_BUTTON__
 #define __GAME_BUTTON__
@@ -9,7 +9,7 @@
 #include <cstdint>
 
 /*!
-* \brief Class with represent buttons in game.
+* \brief Class witch represent buttons in game.
 *
 */
 class GameButton :
