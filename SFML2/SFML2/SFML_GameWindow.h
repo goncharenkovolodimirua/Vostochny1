@@ -45,7 +45,7 @@
 class SFML_GameWindow: public SFML_Window
 {
 private:
-	sf::Music* backgroundMusic; 
+	sf::Music* backgroundMusic;  //!< Reference to sf::Music, which plays background music
 
 	std::list<PhysicalGameObject*> bullets; //!< Reference to list, which stores bullets
 	std::list<PhysicalGameObject*> meteors; //!< Reference to list, which stores meteors
@@ -81,7 +81,7 @@ private:
 	GameButton* mainMenuButton; //!<Reference to GameButton object with mainMenu button
 	GameButton* exitButton; //!<Reference to GameButton object with exit button
 
-	HighScore* higscore;
+	HighScore* higscore; //!< Reference to HigScore object to dhow higscore
 
 	SFML_ScoreCounterObject* score; //!<Reference to ScoreCounter object
 
